@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ 
+body{
+}
+
+textarea{
+    resize: none;
+    width: 220px;
+    height: 230px;
+}
+
+.write_form{
+    
+    width: 50%;
+    height: 350px;
+    padding: 50px;
+    border: 10px solid black;    
+    border-radius: 50%;
+}
