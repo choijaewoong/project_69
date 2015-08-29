@@ -18,11 +18,14 @@
     <!--모든 게시물-->
     <div class="col-md-7">
         <!--<h1>read</h1>-->
-        <div class="post_form">
-            <% @post_all.each do |post| %>
-                
-            <% end %>      
-        </div>     
+        <% @post_all.each do |post| %>
+            <div class="post_form">
+               
+               <p><%= post.context %></p><br>
+               <span class="glyphicon glyphicon-heart btn-lg" aria-hidden="true"></span>
+               <span class="glyphicons glyphicons-envelope" aria-hidden="true"></span>
+            </div>                         
+        <% end %>      
     </div>
     
 </div>
@@ -36,7 +39,7 @@ $(function(){
                 url: "/board/write",
                 success: function(data){
                     alert("hello");
-                    $("#write_context").val('');                
+                    $("#write_context").val('');            
                     
                 }
             });
