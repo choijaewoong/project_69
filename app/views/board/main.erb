@@ -1,3 +1,6 @@
+<div class="header">
+</div>
+
 <div class="row">
     <div class="col-md-5">
         <!--<h1>write</h1>-->
@@ -19,12 +22,14 @@
     <div class="col-md-7">
         <!--<h1>read</h1>-->
         <% @post_all.each do |post| %>
-            <div class="post_form">
-               
-               <p><%= post.context %></p><br>
-               <span class="glyphicon glyphicon-heart btn-lg" aria-hidden="true"></span>
-               <span class="glyphicons glyphicons-envelope" aria-hidden="true"></span>
-            </div>                         
+            <center>
+                <div class="post_form">
+                   <p class="post_context"><%= post.context %></p><br>
+                   <span class="glyphicon glyphicon-heart" aria-hidden="true"><%= post.like_count %></span>
+                   &nbsp; &nbsp;
+                   <span class="glyphicon glyphicon-envelope" aria-hidden="true"><%= post.reply.size%></span>
+                </div>                         
+             </center>
         <% end %>      
     </div>
     
@@ -32,13 +37,14 @@
 
 <script>
 $(function(){
+    
+    // 게시물 작성
     $("#submit_button").click(
         function(){
             $.ajax({
                 data: { context: $("#write_context").val() },
                 url: "/board/write",
                 success: function(data){
-                    alert("hello");
                     $("#write_context").val('');            
                     
                 }
@@ -46,9 +52,24 @@ $(function(){
         }
     );
     
+    // 게시물 폼 크기 설정 부분 
+    var form_size = $('.post_form').width() + 120;
+    $('.post_form').css({'height':form_size +'px'});
+    $('.write_form').css({'height':form_size +'px'});
+    $('.write_form').css({'width':form_size +'px'});
+
+    $(window).resize(
+        function(){           
+            
+            form_size = $('.post_form').width() + 120;            
+            $('.post_form').css({'height':form_size +'px'});
+            $('.write_form').css({'height':form_size +'px'});
+            $('.write_form').css({'width':form_size +'px'});
+            
+        }
+    );
+    
 }); //function()
-
-
 </script>
 
     

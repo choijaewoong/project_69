@@ -19,26 +19,37 @@ body{
 
 textarea{
     resize: none;
-    width: 220px;
-    height: 220px;
+    width: 90%;
+    height: 90%;
 }
 
-.write_form{
+.header{
+    height: 100px;   
+}
+
+.write_form{    
     
-    width: 50%;
-    height: 350px;
     padding: 50px;
-    border: 10px solid black;    
+    border: 15px solid black;    
     border-radius: 50%;
+    border-color: #FF6B6B;
 }
 
 .post_form{
     
+    min-width: 300px;
     width: 40%;
-    height: 350px;
     padding: 50px;    
     margin: 10px;
-    border: 10px solid black;
+    border: 15px solid black;
     border-radius: 50%;    
+    border-color: #FF6B6B;
     float: left;
+}
+
+.post_context{
+    
+    width: 70%;
+    height: 70%;
+    
 }
