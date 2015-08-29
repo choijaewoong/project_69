@@ -20,7 +20,7 @@ body{
 textarea{
     resize: none;
     width: 220px;
-    height: 230px;
+    height: 220px;
 }
 
 .write_form{
@@ -30,4 +30,13 @@ textarea{
     padding: 50px;
     border: 10px solid black;    
     border-radius: 50%;
+}
+
+.post_form{
+    
+    width: 40%;
+    height: 350px;
+    padding: 50px;
+    border: 10px solid black;
+    border-radius: 50%;    
 }

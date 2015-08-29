@@ -1,25 +1,51 @@
 <div class="row">
     <div class="col-md-5">
         <!--<h1>write</h1>-->
-        <center>
-        <div class="write_form">
-            <textarea></textarea>
-            <br>            
-        </div>
-        <a href="#" id="submit_button" style="margin-top:30px">
-            <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-        </a>
+        
+        <!--게시글 작성 폼-->
+        <center>        
+            <div class="write_form">
+                <textarea id="write_context"></textarea>
+                <br>            
+            </div>
+            <!--전송 버튼(체크 모양)-->
+            <a href="#" id="submit_button" style="margin-top:30px">
+                <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+            </a>
         </center>
     </div>
     
+    <!--모든 게시물-->
     <div class="col-md-7">
         <!--<h1>read</h1>-->
-        
-        
-        
-        
+        <div class="post_form">
+            <% @post_all.each do |post| %>
+                
+            <% end %>      
+        </div>     
     </div>
     
 </div>
+
+<script>
+$(function(){
+    $("#submit_button").click(
+        function(){
+            $.ajax({
+                data: { context: $("#write_context").val() },
+                url: "/board/write",
+                success: function(data){
+                    alert("hello");
+                    $("#write_context").val('');                
+                    
+                }
+            });
+        }
+    );
+    
+}); //function()
+
+
+</script>
 
     
