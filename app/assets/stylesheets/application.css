@@ -39,6 +39,7 @@ textarea{
     
     min-width: 300px;
     width: 40%;
+    height: 365px;
     padding: 50px;    
     margin: 10px;
     border: 15px solid black;
@@ -47,9 +48,26 @@ textarea{
     float: left;
 }
 
+/*첫번째 게시물 옆 빈 공간*/
+.empty_form{
+    
+    width: 20%;
+    /*height: 150px;*/
+    /*background-color: black;*/
+    float: right;
+      
+    
+}
+
 .post_context{
     
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
     
+}
+
+.masonry-item{
+}
+
+.stamp-item{
 }

@@ -1,0 +1,112 @@
+<div class="header">
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <!--<h1>write</h1>-->
+        
+        <!--게시글 작성 폼-->
+        <center>        
+            <div class="write_form">
+                <textarea id="write_context"></textarea>
+                <br>            
+            </div>
+            <!--전송 버튼(체크 모양)-->
+            <a href="#" id="submit_button" style="margin-top:30px">
+                <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+            </a>
+        </center>
+    </div>
+    
+    <!--모든 게시물-->
+    <div class="col-md-7">
+        <!--<h1>read</h1>-->
+        
+        <div class="masonry">
+        
+            <!--첫번째 게시물-->
+            <%= render :partial => 'board/post_form', 
+                       :locals => {:context => @post_first.context, :like_count => @post_first.like_count, :reply_count => @post_first.reply.size } %>        
+                       
+            <div class="empty_form stamp-item">            
+            </div>
+            
+            <!--나머지 게시물-->
+            <% @post_all.each do |post| %>
+               
+               <%= render :partial => 'board/post_form', 
+                          :locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>
+               
+            <% end %>      
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<script>
+$(function(){   
+    
+    // 게시물 폼 크기 설정 부분 
+    var form_size = $('.post_form').width() + 130;
+    $('.post_form').css({'height':form_size +'px'});
+    $('.write_form').css({'height':form_size +'px'});
+    $('.write_form').css({'width':form_size +'px'});
+    $('.empty_form').css({'height':form_size/2 +'px'});
+    
+
+    $(window).resize(
+        function(){           
+            
+            form_size = $('.post_form').width() + 130;            
+            $('.post_form').css({'height':form_size +'px'});
+            $('.write_form').css({'height':form_size +'px'});
+            $('.write_form').css({'width':form_size +'px'});
+            $('.empty_form').css({'height':form_size/2 +'px'});
+    
+            
+        }
+    );    
+    
+}); //function()
+
+
+
+// 게시물 작성
+$(function(){
+        
+    //masonry 추가
+    var $grid = $('.masonry').masonry({
+        itemSelector: '.masonry-item',
+        stamp: '.stamp-item'
+    });   
+        
+    $("#submit_button").click(
+        function(){       
+            $.ajax({
+                data: { context: $("#write_context").val() },
+                url: "/board/write",
+                success: function(data){                                           
+                    
+                    $("#write_context").val('');                  
+                    
+                    var $item = $(
+                        "<center><div class='post_form masonry-item'>"
+                            + "<p class='post_context'>"
+                                + data.context + "</p><br>"
+                            + "<span class='glyphicon glyphicon-heart' aria-hidden='true'>" + data.like_count + "</span>"                            
+                            + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'>" +  data.reply_count + "</span>"
+                        + "</div></center>"
+                        );  
+                        
+                    $grid.prepend($item)
+                         .masonry('prepended', $item);
+                }
+            });
+        }
+    );   
+});
+
+</script>
+
+    
