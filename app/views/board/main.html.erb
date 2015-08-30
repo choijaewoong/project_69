@@ -26,7 +26,7 @@
         
             <!--첫번째 게시물-->
             <%= render :partial => 'board/post_form', 
-                       :locals => {:context => @post_first.context, :like_count => @post_first.like_count, :reply_count => @post_first.reply.size } %>        
+                       :locals => {:post => @post_first } %>        
                        
             <div class="empty_form stamp-item">            
             </div>
@@ -35,7 +35,8 @@
             <% @post_all.each do |post| %>
                
                <%= render :partial => 'board/post_form', 
-                          :locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>
+                          :locals => {:post => post } %>
+               <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
                
             <% end %>      
         </div>
@@ -54,22 +55,18 @@ $(function(){
     $('.write_form').css({'width':form_size +'px'});
     $('.empty_form').css({'height':form_size/2 +'px'});
     
-
+    // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
     $(window).resize(
-        function(){           
-            
+        function(){       
             form_size = $('.post_form').width() + 130;            
             $('.post_form').css({'height':form_size +'px'});
             $('.write_form').css({'height':form_size +'px'});
             $('.write_form').css({'width':form_size +'px'});
             $('.empty_form').css({'height':form_size/2 +'px'});
-    
-            
         }
     );    
     
 }); //function()
-
 
 
 // 게시물 작성
@@ -81,6 +78,7 @@ $(function(){
         stamp: '.stamp-item'
     });   
         
+    //작성 버튼 눌렀을 때 게시글 추가하는 기능 부분
     $("#submit_button").click(
         function(){       
             $.ajax({
@@ -95,9 +93,10 @@ $(function(){
                             + "<p class='post_context'>"
                                 + data.context + "</p><br>"
                             + "<span class='glyphicon glyphicon-heart' aria-hidden='true'>" + data.like_count + "</span>"                            
+                            + "&nbsp;&nbsp;&nbsp;&nbsp;"
                             + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'>" +  data.reply_count + "</span>"
                         + "</div></center>"
-                        );  
+                    );  
                         
                     $grid.prepend($item)
                          .masonry('prepended', $item);
@@ -106,7 +105,6 @@ $(function(){
         }
     );   
 });
-
 </script>
 
     

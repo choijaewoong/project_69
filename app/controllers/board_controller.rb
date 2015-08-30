@@ -16,9 +16,7 @@ class BoardController < ApplicationController
         post = Post.create(user_id: current_user.id,
                     context: params[:context],
                     color: 0,
-                    like_count: 0,
-                    );
-                    
+                    like_count: 0);
         
         render :json => {
                          context: post.context,
@@ -27,9 +25,17 @@ class BoardController < ApplicationController
                          reply_count: post.reply.size}
         
         # render :object => @post
+    end
+    
+    def detail
         
     end
     
+    def like        
+        user = current_user
+        post = Post.find(params[:p_id]);    
+        
+    end
     
 end
 
