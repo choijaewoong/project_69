@@ -7,11 +7,11 @@
         <center>
             <div class="write_form masonry-item">
                <p class="context"><%= @selected_post.context %></p><br>
-               <!--<a href="#" id="like_button">-->
-               <!--<span class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>-->
-               <!--</a>-->
-               <!--&nbsp;&nbsp;-->
-               <!--<span class="glyphicon glyphicon-envelope" aria-hidden="true"><%= @selected_post.reply.size %></span>-->
+               <a href="#" id="like_button">
+                   <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>
+               </a>
+               &nbsp;&nbsp;
+               <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"><%= @selected_post.reply.size %></span>
             </div> 
         </center>
     </div>
@@ -88,21 +88,37 @@ $(function(){
                 data: { context: $("#reply_context").val() },
                 url: "/board/reply/<%=@selected_post.id%>",
                 success: function(data){   
-                    $("#reply_context").val('');
-                    
                     var $item = $(
                             "<center><div class='reply_form masonry-item'>"
                                 + "<p class='context'>"
                                     + data.context + "</p><br>"                                
                             + "</div></center>"
-                    );  
-                        
+                    );                 
                     $grid.prepend($item)
                          .masonry('prepended', $item);
+                         
+                    $("#reply_context").val('');       
+                    $("#reply_count").html(data.reply_count);                    
                 }
             });
         }
-    );   
+    );
+    
+    //게시글 좋아요 버튼을 누를 때 이벤트
+    $("#like_button").click(
+        function(){       
+            $.ajax({
+                data: { post_id: <%= @selected_post.id %> },
+                url: "/board/like",
+                success: function(data){                                                               
+                    
+                    $("#like_count").html(data);
+                    
+                    
+                }
+            });
+        }
+    );
 });
 </script>
 
