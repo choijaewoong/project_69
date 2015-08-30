@@ -30,10 +30,11 @@ textarea{
 .write_form{    
     
     width: 360px;
+    height: 360px;
     padding: 50px;
     border: 15px solid black;    
     border-radius: 50%;
-    border-color: #FF6B6B;
+    border-color: #FF6B6B;    
 }
 
 .post_form{
@@ -44,6 +45,18 @@ textarea{
     padding: 50px;    
     margin: 10px;
     border: 15px solid black;
+    border-radius: 50%;    
+    border-color: #FF6B6B;
+    float: left;
+}
+
+.reply_form{
+    min-width: 300px;
+    width: 40%;
+    height: 365px;
+    padding: 50px;    
+    margin: 10px;
+    border: 15px dotted black;
     border-radius: 50%;    
     border-color: #FF6B6B;
     float: left;
@@ -60,7 +73,7 @@ textarea{
     
 }
 
-.post_context{
+.context{
     
     width: 80%;
     height: 80%;

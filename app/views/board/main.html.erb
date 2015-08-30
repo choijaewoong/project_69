@@ -3,8 +3,6 @@
 
 <div class="row">
     <div class="col-md-5">
-        <!--<h1>write</h1>-->
-        
         <!--게시글 작성 폼-->
         <center>        
             <div class="write_form">
@@ -12,7 +10,7 @@
                 <br>            
             </div>
             <!--전송 버튼(체크 모양)-->
-            <a href="#" id="submit_button" style="margin-top:30px">
+            <a href="#" id="write_button" style="margin-top:30px">
                 <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
             </a>
         </center>
@@ -20,14 +18,13 @@
     
     <!--모든 게시물-->
     <div class="col-md-7">
-        <!--<h1>read</h1>-->
         
         <div class="masonry">
-        
             <!--첫번째 게시물-->
             <%= render :partial => 'board/post_form', 
                        :locals => {:post => @post_first } %>        
-                       
+             
+            <!--첫번째 게시물 옆 빈 공간-->
             <div class="empty_form stamp-item">            
             </div>
             
@@ -79,7 +76,7 @@ $(function(){
     });   
         
     //작성 버튼 눌렀을 때 게시글 추가하는 기능 부분
-    $("#submit_button").click(
+    $("#write_button").click(
         function(){       
             $.ajax({
                 data: { context: $("#write_context").val() },
@@ -89,13 +86,15 @@ $(function(){
                     $("#write_context").val('');                  
                     
                     var $item = $(
-                        "<center><div class='post_form masonry-item'>"
-                            + "<p class='post_context'>"
+                        "<center><a href='board/detail/" + data.p_id + "' data-transition='fade'>"
+                        +"<div class='post_form masonry-item'>"
+                            + "<p class='context'>"
                                 + data.context + "</p><br>"
                             + "<span class='glyphicon glyphicon-heart' aria-hidden='true'>" + data.like_count + "</span>"                            
                             + "&nbsp;&nbsp;&nbsp;&nbsp;"
                             + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'>" +  data.reply_count + "</span>"
-                        + "</div></center>"
+                        + "</div>"
+                        +"</a></center>"
                     );  
                         
                     $grid.prepend($item)
