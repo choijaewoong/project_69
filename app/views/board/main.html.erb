@@ -23,8 +23,7 @@
         <!--게시글 작성 폼-->
         <center>        
             <div class="write_form">
-                <textarea id="write_context"></textarea>
-                <br>            
+                <textarea id="write_context"></textarea>                            
             </div>
             <!--전송 버튼(체크 모양)-->
             <a href="#" id="write_button" style="margin-top:30px">
@@ -77,7 +76,7 @@
 $(function(){   
     
     // 게시물 폼 크기 설정 부분 
-    var form_size = $('.post_form').width() + 130;
+    var form_size = $('.post_form').width() + 30;
     $('.post_form').css({'height':form_size +'px'});
     $('.write_form').css({'height':form_size +'px'});
     $('.write_form').css({'width':form_size +'px'});
@@ -86,7 +85,7 @@ $(function(){
     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
     $(window).resize(
         function(){       
-            form_size = $('.post_form').width() + 130;            
+            form_size = $('.post_form').width() + 30;            
             $('.post_form').css({'height':form_size +'px'});
             $('.write_form').css({'height':form_size +'px'});
             $('.write_form').css({'width':form_size +'px'});

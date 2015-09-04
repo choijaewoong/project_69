@@ -5,8 +5,8 @@
     <div class="col-md-4">
         <!--게시글 detail 폼-->
         <center>
-            <div class="write_form masonry-item">
-               <p class="context"><%= @selected_post.context %></p><br>
+            <div class="write_form">
+               <p class="context"><%= @selected_post.context %></p>
                <a href="#" id="like_button">
                    <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>
                </a>
@@ -22,8 +22,7 @@
         <div class="masonry">
             <center>        
                 <div class="reply_form stamp-item">
-                    <textarea id="reply_context"></textarea>
-                        <br>            
+                    <textarea id="reply_context"></textarea>                                   
                     <!--전송 버튼(체크 모양)-->
                     <a href="#" id="reply_button" style="margin-top:30px">
                         <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
@@ -36,12 +35,13 @@
             </div>
             
             <% @reply_all.each do |reply| %>
+            <center>
                 <div class="reply_form masonry-item">
-                <center>
+                
                    <p class="context"><%= reply.context %></p><br>
                    <!--<a href="#" id="like_button">-->                   
-                </center>
                 </div>            
+            </center>
             <% end %>
         </div>
     </div>
@@ -53,7 +53,7 @@
 $(function(){   
     
     // 게시물 폼 크기 설정 부분 
-    var form_size = $('.reply_form').width() + 130;
+    var form_size = $('.reply_form').width() + 30;
     $('.reply_form').css({'height':form_size +'px'});
     // $('.write_form').css({'height':form_size +'px'});
     // $('.write_form').css({'width':form_size +'px'});
@@ -62,7 +62,7 @@ $(function(){
     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
     $(window).resize(
         function(){       
-            form_size = $('.reply_form').width() + 130;            
+            form_size = $('.reply_form').width() + 30;            
             $('.reply_form').css({'height':form_size +'px'});
             // $('.write_form').css({'height':form_size +'px'});
             // $('.write_form').css({'width':form_size +'px'});
