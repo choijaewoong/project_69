@@ -19,5 +19,48 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+"en":
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one:   "방금"
+        other: "방금"
+      x_seconds:
+        one:   "방금"
+        other: "방금"
+      less_than_x_minutes:
+        one:   "방금"
+        other: "방금"
+      x_minutes:
+        one:   "방금"
+        other: "%{count} 분"
+      about_x_hours:
+        one:   "1 시간"
+        other: "%{count} 시간"
+      x_days:
+        one:   "1 일"
+        other: "%{count} 일"
+      about_x_months:
+        one:   "1 달"
+        other: "%{count} 달"
+      x_months:
+        one:   "1 달"
+        other: "%{count} 달"
+      about_x_years:
+        one:   "about 1 year"
+        other: "about %{count} years"
+      over_x_years:
+        one:   "over 1 year"
+        other: "over %{count} years"
+      almost_x_years:
+        one:   "almost 1 year"
+        other: "almost %{count} years"
+    prompts:
+      year:   "Year"
+      month:  "Month"
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      second: "Seconds"

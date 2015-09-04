@@ -2,12 +2,15 @@
 <center>
 <a href ="board/detail/<%= post.id %>">
     <div class="post_form masonry-item">
+       <br>
+       <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(post.created_at) %> 전       
        <p class="context"><%= post.context %></p>
        <!--<a href="#" id="like_button">-->
-       <span class="glyphicon glyphicon-heart" aria-hidden="true"><%= post.like_count %></span>
+       <br>
+       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= post.like_count %>
        <!--</a>-->
        &nbsp;&nbsp;
-       <span class="glyphicon glyphicon-envelope" aria-hidden="true"><%= post.reply.size %></span>
+       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= post.reply.size %>
     </div>            
 </a>
 </center>

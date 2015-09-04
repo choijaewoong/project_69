@@ -21,18 +21,16 @@
             <!--첫번째 게시물-->
             <%= render :partial => 'board/post_form', 
                        :locals => {:post => @post_first } %>        
-             
+            
             <!--첫번째 게시물 옆 빈 공간-->
             <div class="empty_form stamp-item">            
             </div>
             
             <!--나머지 게시물-->
             <% @post_all.each do |post| %>
-               
                <%= render :partial => 'board/post_form', 
                           :locals => {:post => post } %>
                <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
-               
             <% end %>      
         </div>
     </div>
