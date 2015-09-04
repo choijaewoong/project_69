@@ -1,52 +1,49 @@
-<div class="header">
+
+<div class="col-md-4">
+    <!--게시글 detail 폼-->
+    <center>
+        <div class="write_form">
+           <p class="context"><%= @selected_post.context %></p>
+           <a href="#" id="like_button">
+               <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>
+           </a>
+           &nbsp;&nbsp;
+           <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"><%= @selected_post.reply.size %></span>
+        </div> 
+    </center>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <!--게시글 detail 폼-->
-        <center>
-            <div class="write_form">
-               <p class="context"><%= @selected_post.context %></p>
-               <a href="#" id="like_button">
-                   <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>
-               </a>
-               &nbsp;&nbsp;
-               <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"><%= @selected_post.reply.size %></span>
-            </div> 
-        </center>
-    </div>
-    
-    <!--모든 댓글-->
-    <div class="col-md-6">
-    
-        <div class="masonry">
-            <center>        
-                <div class="reply_form stamp-item">
-                    <textarea id="reply_context"></textarea>                                   
-                    <!--전송 버튼(체크 모양)-->
-                    <a href="#" id="reply_button" style="margin-top:30px">
-                        <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                    </a>
-                </div>
-            </center>    
-            
-            <!--댓글 작성 폼 옆 빈 공간-->
-            <div class="empty_form stamp-item">            
+<!--모든 댓글-->
+<div class="col-md-6">
+
+    <div class="masonry">
+        <center>        
+            <div class="reply_form stamp-item">
+                <textarea id="reply_context"></textarea>                                   
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>
             </div>
-            
-            <% @reply_all.each do |reply| %>
-            <center>
-                <div class="reply_form masonry-item">
-                
-                   <p class="context"><%= reply.context %></p><br>
-                   <!--<a href="#" id="like_button">-->                   
-                </div>            
-            </center>
-            <% end %>
+        </center>    
+        
+        <!--댓글 작성 폼 옆 빈 공간-->
+        <div class="empty_form stamp-item">            
         </div>
+        
+        <% @reply_all.each do |reply| %>
+        <center>
+            <div class="reply_form masonry-item">
+            
+               <p class="context"><%= reply.context %></p><br>
+               <!--<a href="#" id="like_button">-->                   
+            </div>            
+        </center>
+        <% end %>
     </div>
-    
 </div>
+    
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 <script>
