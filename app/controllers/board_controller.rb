@@ -20,8 +20,9 @@ class BoardController < ApplicationController
                          context: post.context,
                          color: post.color,
                          like_count: post.like_count,
-                         reply_count: post.reply.size}
-        # render :object => @post
+                         reply_count: post.reply.size,
+                         time: post.created_at}
+        # render :json => { :post => post}
     end
     
     def detail

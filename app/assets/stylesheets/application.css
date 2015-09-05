@@ -77,7 +77,7 @@ textarea{
     width: 45%;
     height: 350px;   
     margin-bottom: 70px;
-    border: 12px dotted black;
+    border: 10px dotted black;
     border-radius: 50%;    
     border-color: #FF6B6B;
     float: left;
@@ -118,4 +118,25 @@ textarea{
   height:100%; width:100px; /*set dimensions */
   background: #FF6B6B;
   transition: width ease .5s; /* fluid transition when resizing */  
+}
+
+.logo_section{
+    height:130px;
+}
+
+.categori{
+    
+    text-align: right;
+    
+}
+
+hr.style_one {
+    /*border: 0;*/
+    /*height: 1px;*/
+    /*background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));*/
+ 
+    /*border: 0;*/
+    /*height: 0;*/
+    /*border-top: 1px solid rgba(0, 0, 0, 0.1);*/
+    /*border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
 }

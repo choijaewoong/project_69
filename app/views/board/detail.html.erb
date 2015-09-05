@@ -8,10 +8,10 @@
             <p class="context"><%= @selected_post.context %></p>
             <br>
             <a href="#" id="like_button">
-                <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"><%= @selected_post.like_count %></span>
+                <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= @selected_post.like_count %>
             </a>
             &nbsp;&nbsp;
-            <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"><%= @selected_post.reply.size %></span>
+            <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @selected_post.reply.size %>
         </div> 
     </center>
 </div>
@@ -37,9 +37,11 @@
         <% @reply_all.each do |reply| %>
         <center>
             <div class="reply_form masonry-item">
-            
-               <p class="context"><%= reply.context %></p><br>
-               <!--<a href="#" id="like_button">-->                   
+            <br>
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                 <%= time_ago_in_words(@selected_post.created_at) %> 전
+                <p class="context"><%= reply.context %></p><br>
+                <!--<a href="#" id="like_button">-->                   
             </div>            
         </center>
         <% end %>
@@ -89,7 +91,8 @@ $(function(){
                 url: "/board/reply/<%=@selected_post.id%>",
                 success: function(data){   
                     var $item = $(
-                            "<center><div class='reply_form masonry-item'>"
+                            "<center><div class='reply_form masonry-item'><br>"
+                                + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span>"
                                 + "<p class='context'>"
                                     + data.context + "</p><br>"                                
                             + "</div></center>"

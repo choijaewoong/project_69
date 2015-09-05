@@ -71,6 +71,7 @@ $(function(){
     });   
         
     //작성 버튼 눌렀을 때 게시글 추가하는 기능 부분
+    
     $("#write_button").click(
         function(){       
             $.ajax({
@@ -78,18 +79,22 @@ $(function(){
                 url: "/board/write",
                 success: function(data){                                           
                     
-                    $("#write_context").val('');                  
+                    $("#write_context").val('');    
+                    
+                    <%#= time_ago_in_words(data.time) %>
                     
                     var $item = $(
+                        
                         "<center><a href='board/detail/" + data.p_id + "' data-transition='fade'>"
-                        +"<div class='post_form masonry-item'>"
+                        +"<div class='post_form masonry-item'><br>"
+                            + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " //issue
                             + "<p class='context'>"
                                 + data.context + "</p><br>"
-                            + "<span class='glyphicon glyphicon-heart' aria-hidden='true'>" + data.like_count + "</span>"                            
+                            + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.like_count
                             + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                            + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'>" +  data.reply_count + "</span>"
+                            + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> " +  data.reply_count
                         + "</div>"
-                        +"</a></center>"
+                        + "</a></center>"
                     );  
                         
                     $grid.prepend($item)
