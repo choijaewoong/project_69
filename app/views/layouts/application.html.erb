@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>78%</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 </head>
 <body>
 <div class="header">
 </div>
 
 <div class="row">
-
     <div class="col-md-1">
-        
         <div class="left_nav">
             <div class="logo_section">
+                <img src="/assets/bi.png" class="bi"/>
             </div>
             
-            <div class="categori">
-              <hr class="style_one">
-              <a href="#">색동 저고리</a>
-              <hr class="style_one">
-              <a href="#">배냇 저고리</a>
-              <hr class="style_one">
-              <a href="#">반짇 고리</a>
-              <hr class="style_one">
-              <a href="#">연결 고리</a>              
-              <hr class="style_one">
-              <br>
-              <hr class="style_one">              
-              <a href="#">나의 고리</a>
-              <hr class="style_one">
-              <br>
-              <hr class="style_one">              
-              <a href="#" class="open">캠페인</a>
-              <hr class="style_one">
-              <br>
-            </div>
+            <!--<div class="categori">              -->
+            <!--    <a href="#">색동</a>-->
+            <!--</div>-->
+            <!--<div class="categori">  -->
+            <!--  <a href="#">배냇</a>-->
+            <!--</div>  -->
+            <!--<div class="categori">-->
+            <!--  <a href="#">반짇</a>-->
+            <!--</div>  -->
+            <!--<div class="categori">-->
+            <!--  <a href="#">연결</a>              -->
+            <!--</div>  -->
+            <!--<div class="categori">   -->
+            <!--  <a href="#">나의</a>-->
+            <!--</div>                    -->
+            <!--<div class="categori">-->
+            <!--<a href="#" class="open">캠페인</a>-->
+            <!--</div>-->
+            <hr class="style_one">
+            <a href="#">색동</a>
+            <hr class="style_one">
+            <a href="#">배냇</a>
+            <hr class="style_one">
+            <a href="#">반짇</a>
+            <hr class="style_one">
+            <a href="#">연결</a>
+            <hr class="style_one">
+            <br>
+            <hr class="style_one">
+            <a href="#">나의</a>
+            <hr class="style_one">
+            <br>            
+            <hr class="style_one">
+            <a href="#">캠페인</a>
+            <hr class="style_one">
         </div>
     </div>  
   
@@ -49,21 +64,19 @@
 
     <div class="col-md-1">
         <div class="right_nav">
-        
             <div style="height:50px">
             </div>
-         
-            <hr> 
+            <hr class="style_one">
             <a href="#">나의 고리</a>
-            <hr>
+            <hr class="style_one">
             <a href="#">댓글 고리</a>
-            <hr>
+            <hr class="style_one">
             <a href="#">공감 고리</a>
-            <hr>
+            <hr class="style_one">
             <a href="#">스크랩 고리</a>
-            <hr>
+            <hr class="style_one">
             <a href="#">정렬</a>
-            <hr>      
+            <hr class="style_one">      
             <!--<a href="#" class="open">&rarr;</a>-->
             <!--<hr>-->
         </div>

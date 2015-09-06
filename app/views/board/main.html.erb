@@ -1,109 +1,97 @@
-
-
-    
-    <div class="col-md-4">
-        <!--게시글 작성 폼-->
-        <center>        
-            <div class="write_form">
-                <textarea id="write_context"></textarea>                            
-            </div>
-            <!--전송 버튼(체크 모양)-->
-            <a href="#" id="write_button" style="margin-top:30px">
-                <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-            </a>
-        </center>
-    </div>
-    
-    <!--모든 게시물-->
-    <div class="col-md-6">
-        
-        <div class="masonry">        
-            <!--첫번째 게시물-->
-            <%= render :partial => 'board/post_form', 
-                       :locals => {:post => @post_first } %>        
-            
-            <!--첫번째 게시물 옆 빈 공간-->
-            <div class="empty_form stamp-item">            
-            </div>
-            
-            <!--나머지 게시물-->
-            <% @post_all.each do |post| %>
-               <%= render :partial => 'board/post_form', 
-                          :locals => {:post => post } %>
-               <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
-            <% end %>      
+<div class="col-md-4">
+    <!--게시글 작성 폼-->
+    <center>        
+        <div class="write_form">
+            <textarea id="write_context"></textarea>                            
         </div>
+        <!--전송 버튼(체크 모양)-->
+        <a href="#" id="write_button" style="margin-top:30px">
+            <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+        </a>
+    </center>
+</div>
+
+<!--모든 게시물-->
+<div class="col-md-6">
+    
+    <div class="masonry">        
+        <!--첫번째 게시물-->
+        <%= render :partial => 'board/post_form', 
+                   :locals => {:post => @post_first } %>        
+        
+        <!--첫번째 게시물 옆 빈 공간-->
+        <div class="empty_form stamp-item">            
+        </div>
+        
+        <!--나머지 게시물-->
+        <% @post_all.each do |post| %>
+           <%= render :partial => 'board/post_form', 
+                      :locals => {:post => post } %>
+           <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
+        <% end %>      
     </div>
+</div>
     
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 <script>
-$(function(){   
-    
-    // 게시물 폼 크기 설정 부분 
-    var form_size = $('.post_form').width() + 30;
-    $('.post_form').css({'height':form_size +'px'});
-    $('.write_form').css({'height':form_size +'px'});
-    $('.write_form').css({'width':form_size +'px'});
-    $('.empty_form').css({'height':form_size/2 +'px'});
-    
-    // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-    $(window).resize(
-        function(){       
-            form_size = $('.post_form').width() + 30;            
-            $('.post_form').css({'height':form_size +'px'});
-            $('.write_form').css({'height':form_size +'px'});
-            $('.write_form').css({'width':form_size +'px'});
-            $('.empty_form').css({'height':form_size/2 +'px'});
-        }
-    );    
-    
-}); //function()
-
-
-// 게시물 작성
-$(function(){
+    $(function(){   
+        // 게시물 폼 크기 설정 부분 
+        var form_size = $('.post_form').width() + 30;
+        $('.post_form').css({'height':form_size +'px'});
+        $('.write_form').css({'height':form_size +'px'});
+        $('.write_form').css({'width':form_size +'px'});
+        $('.empty_form').css({'height':form_size/2 +'px'});
         
-    //masonry 추가
-    var $grid = $('.masonry').masonry({
-        itemSelector: '.masonry-item',
-        stamp: '.stamp-item'
-    });   
+        // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
+        $(window).resize(
+            function(){       
+                form_size = $('.post_form').width() + 30;            
+                $('.post_form').css({'height':form_size +'px'});
+                $('.write_form').css({'height':form_size +'px'});
+                $('.write_form').css({'width':form_size +'px'});
+                $('.empty_form').css({'height':form_size/2 +'px'});
+            }
+        );    
         
-    //작성 버튼 눌렀을 때 게시글 추가하는 기능 부분
+    }); //function()
     
-    $("#write_button").click(
-        function(){       
-            $.ajax({
-                data: { context: $("#write_context").val() },
-                url: "/board/write",
-                success: function(data){                                           
-                    
-                    $("#write_context").val('');    
-                    
-                    <%#= time_ago_in_words(data.time) %>
-                    
-                    var $item = $(
+    // 게시물 작성
+    $(function(){     
+        //masonry 추가
+        var $grid = $('.masonry').masonry({
+            itemSelector: '.masonry-item',
+            stamp: '.stamp-item'
+        });   
+            
+        //작성 버튼 눌렀을 때 게시글 추가하는 기능 부분
+        $("#write_button").click(
+            function(){       
+                $.ajax({
+                    data: { context: $("#write_context").val() },
+                    url: "/board/write",
+                    success: function(data){                                           
                         
-                        "<center><a href='board/detail/" + data.p_id + "' data-transition='fade'>"
-                        +"<div class='post_form masonry-item'><br>"
-                            + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " //issue
-                            + "<p class='context'>"
-                                + data.context + "</p><br>"
-                            + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.like_count
-                            + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                            + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> " +  data.reply_count
-                        + "</div>"
-                        + "</a></center>"
-                    );  
+                        var time = new Date(data.post.created_at);
                         
-                    $grid.prepend($item)
-                         .masonry('prepended', $item);
-                }
-            });
-        }
-    );   
-});
+                        var $item = $(
+                            "<center><a href='board/detail/" + data.post.id + "' data-transition='fade'>"
+                            +"<div class='post_form masonry-item'><br>"
+                                + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                                + "<p class='context'>"
+                                    + data.post.context + "</p><br>"
+                                + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
+                                + "&nbsp;&nbsp;&nbsp;&nbsp;"
+                                + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> " +  data.reply_count
+                            + "</div>"
+                            + "</a></center>"
+                        );  
+                            
+                        $grid.prepend($item)
+                             .masonry('prepended', $item);
+                             
+                        $("#write_context").val('');    
+                    }
+                });
+            }
+        );   
+    });
 </script>
-
-    

@@ -1,4 +1,3 @@
-
 <div class="col-md-4">
     <!--게시글 detail 폼-->
     <center>
@@ -8,10 +7,10 @@
             <p class="context"><%= @selected_post.context %></p>
             <br>
             <a href="#" id="like_button">
-                <span id="like_count" class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= @selected_post.like_count %>
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
             </a>
             &nbsp;&nbsp;
-            <span id="reply_count" class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @selected_post.reply.size %>
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span id="reply_count"> <%= @selected_post.reply.size %></span>
         </div> 
     </center>
 </div>
@@ -22,7 +21,7 @@
     <div class="masonry">
         <center>        
             <div class="reply_form stamp-item">
-                <textarea id="reply_context"></textarea>                                   
+                <textarea id="reply_context" required></textarea>                                   
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
                     <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
@@ -39,8 +38,10 @@
             <div class="reply_form masonry-item">
             <br>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                 <%= time_ago_in_words(@selected_post.created_at) %> 전
+                 <%= time_ago_in_words(reply.created_at) %> 전
                 <p class="context"><%= reply.context %></p><br>
+                <span class='glyphicon glyphicon-heart' aria-hidden='true'></span>
+                 <%= reply.like_count %>
                 <!--<a href="#" id="like_button">-->                   
             </div>            
         </center>
@@ -48,81 +49,81 @@
     </div>
 </div>
     
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 <script>
-$(function(){   
-    
-    // 게시물 폼 크기 설정 부분 
-    var form_size = $('.reply_form').width() + 30;
-    $('.reply_form').css({'height':form_size +'px'});
-    // $('.write_form').css({'height':form_size +'px'});
-    // $('.write_form').css({'width':form_size +'px'});
-    $('.empty_form').css({'height':form_size/2 +'px'});
-    
-    // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-    $(window).resize(
-        function(){       
-            form_size = $('.reply_form').width() + 30;            
-            $('.reply_form').css({'height':form_size +'px'});
-            // $('.write_form').css({'height':form_size +'px'});
-            // $('.write_form').css({'width':form_size +'px'});
-            $('.empty_form').css({'height':form_size/2 +'px'});
-        }
-    );    
-    
-}); //function()
-
-
-// 게시물 작성
-$(function(){
-    //masonry 추가
-    var $grid = $('.masonry').masonry({
-        itemSelector: '.masonry-item',
-        stamp: '.stamp-item'
-    });   
+    $(function(){   
+        // 게시물 폼 크기 설정 부분 
+        var form_size = $('.reply_form').width() + 30;
+        $('.reply_form').css({'height':form_size +'px'});
+        // $('.write_form').css({'height':form_size +'px'});
+        // $('.write_form').css({'width':form_size +'px'});
+        $('.empty_form').css({'height':form_size/2 +'px'});
         
-    //작성 버튼 눌렀을 때 댓글 추가하는 기능 부분
-    $("#reply_button").click(
-        function(){       
-            $.ajax({
-                data: { context: $("#reply_context").val() },
-                url: "/board/reply/<%=@selected_post.id%>",
-                success: function(data){   
-                    var $item = $(
-                            "<center><div class='reply_form masonry-item'><br>"
-                                + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span>"
-                                + "<p class='context'>"
-                                    + data.context + "</p><br>"                                
-                            + "</div></center>"
-                    );                 
-                    $grid.prepend($item)
-                         .masonry('prepended', $item);
-                         
-                    $("#reply_context").val('');       
-                    $("#reply_count").html(data.reply_count);                    
-                }
-            });
-        }
-    );
+        // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
+        $(window).resize(
+            function(){       
+                form_size = $('.reply_form').width() + 30;            
+                $('.reply_form').css({'height':form_size +'px'});
+                // $('.write_form').css({'height':form_size +'px'});
+                // $('.write_form').css({'width':form_size +'px'});
+                $('.empty_form').css({'height':form_size/2 +'px'});
+            }
+        );    
+    }); //function()
     
-    //게시글 좋아요 버튼을 누를 때 이벤트
-    $("#like_button").click(
-        function(){       
-            $.ajax({
-                data: { post_id: <%= @selected_post.id %> },
-                url: "/board/like",
-                success: function(data){                                                               
-                    
-                    $("#like_count").html(data);
-                    
-                    
-                }
-            });
-        }
-    );
-});
+    
+    // 게시물 작성
+    $(function(){
+        //masonry 추가
+        var $grid = $('.masonry').masonry({
+            itemSelector: '.masonry-item',
+            stamp: '.stamp-item'
+        });   
+            
+        //작성 버튼 눌렀을 때 댓글 추가하는 기능 부분
+        $("#reply_button").click(
+            function(){       
+                $.ajax({
+                    data: { context: $("#reply_context").val() },
+                    url: "/board/reply/<%=@selected_post.id%>",
+                    success: function(data){   
+                        
+                        var time = new Date(data.reply.created_at);
+                        
+                        var $item = $(
+                                "<center><div class='reply_form masonry-item'><br>"
+                                    + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " 
+                                    + moment(time).fromNow()
+                                    + "<p class='context'>" + data.reply.context + "</p><br>"                                
+                                    + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
+                                    + data.reply.like_count
+                                + "</div></center>"
+                        );                 
+                        $grid.prepend($item)
+                             .masonry('prepended', $item);
+                        
+                        $("#reply_count").html(" " + data.reply_count);         
+                        $("#reply_context").val('');       
+                    }
+                });
+            }
+        );
+        
+        //게시글 좋아요 버튼을 누를 때 이벤트
+        $("#like_button").click(
+            function(){       
+                $.ajax({
+                    data: { post_id: <%= @selected_post.id %> },
+                    url: "/board/like",
+                    success: function(data){                                                               
+                        
+                        $("#like_count").html(" " + data);
+                        
+                        
+                    }
+                });
+            }
+        );
+    });
 </script>
 
     
