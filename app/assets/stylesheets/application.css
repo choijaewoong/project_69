@@ -60,30 +60,30 @@ textarea {
     height: 350px;    
     border: 15px solid black;    
     border-radius: 50%;
-    border-color: #FF6B6B;   
+    border-color: #F5979B;   
     background-color: white;
 }
 
 .post_form {    
     min-width: 300px;
-    width: 45%;
+    width: 350px;
     height: 350px;       
     margin-bottom: 70px;
     border: 15px solid black;
     border-radius: 50%;    
-    border-color: #FF6B6B;
+    border-color: #F5979B;
     float: left;
     background-color: white;
 }
 
 .reply_form {
     min-width: 300px;
-    width: 45%;
+    width: 350px;
     height: 350px;   
     margin-bottom: 70px;
     border: 10px solid black;
     border-radius: 50%;    
-    border-color: #FF6B6B;
+    border-color: #F5979B;
     float: left;
     background-color: white;
 }
@@ -91,16 +91,18 @@ textarea {
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {
     
-    width: 30%;
-    /*height: 150px;*/
+    width: 100px;
+    height: 210px;
     /*background-color: black;*/
     float: right;
+    right: 10%;
+    position:fixed;
 }
 
 .masonry-item {
 }
 
-.stamp-item {
+.stamp-item {    
 }
 
 

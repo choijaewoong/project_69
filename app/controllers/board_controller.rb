@@ -3,22 +3,36 @@ class BoardController < ApplicationController
     before_action :authenticate_user!, only: [:main]
     
     def main
-        @post_first = Post.last 
-        @post_all = Post.where("id != #{@post_first.id}").order("id desc").all            
+    
+        @board = Board.where(:description => params[:id]).take
+        @post_all = @board.posts
+        
+        if @post_all.count != 0
+            @post_first = @post_all.last
+            @post_reminder = @post_all.where("id != #{@post_first.id}").order("id desc")
+        end
+        
+        # @post_first = Post.last 
+        # if !@post_first.nil?
+        #     @post_all = Post.where("id != #{@post_first.id}").order("id desc").all            
+        # else
+        #     @post_all = Post.all
+        # end
     end
     
     def write
         p = Post.create(user_id: current_user.id,
+                    board_id: params[:board],
                     context: params[:context],
                     color: 0,
                     like_count: 0)
         render :json => {:post => p,
-                         :reply_count => p.reply.count}
+                         :reply_count => p.replies.count}
     end
     
     def detail
         @selected_post = Post.find(params[:id])
-        @reply_all = @selected_post.reply.order('id desc').all
+        @reply_all = @selected_post.replies.order('id desc').all
     end
     
     def reply

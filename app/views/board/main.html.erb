@@ -2,6 +2,7 @@
     <!--게시글 작성 폼-->
     <center>        
         <div class="write_form">
+            <input type="hidden" id="write_board" value="<%= @board.id %>">
             <textarea id="write_context"></textarea>                            
         </div>
         <!--전송 버튼(체크 모양)-->
@@ -15,20 +16,24 @@
 <div class="col-md-6">
     
     <div class="masonry">        
-        <!--첫번째 게시물-->
-        <%= render :partial => 'board/post_form', 
-                   :locals => {:post => @post_first } %>        
         
+        <!--첫번째 게시물-->
+        <% if @post_all.count != 0 %>
+            <%= render :partial => 'board/post_form', 
+                       :locals => {:post => @post_first } %>        
+        <% end %>
         <!--첫번째 게시물 옆 빈 공간-->
         <div class="empty_form stamp-item">            
         </div>
         
-        <!--나머지 게시물-->
-        <% @post_all.each do |post| %>
-           <%= render :partial => 'board/post_form', 
-                      :locals => {:post => post } %>
-           <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
-        <% end %>      
+         <% if @post_all.count != 0 %>
+            <!--나머지 게시물-->
+            <% @post_reminder.each do |post| %>
+               <%= render :partial => 'board/post_form', 
+                          :locals => {:post => post } %>
+               <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
+            <% end %>      
+        <% end %>
     </div>
 </div>
     
@@ -36,19 +41,19 @@
     $(function(){   
         // 게시물 폼 크기 설정 부분 
         var form_size = $('.post_form').width() + 30;
-        $('.post_form').css({'height':form_size +'px'});
-        $('.write_form').css({'height':form_size +'px'});
-        $('.write_form').css({'width':form_size +'px'});
-        $('.empty_form').css({'height':form_size/2 +'px'});
+        // $('.post_form').css({'height':form_size +'px'});
+        // $('.write_form').css({'height':form_size +'px'});
+        // $('.write_form').css({'width':form_size +'px'});
+        // $('.empty_form').css({'height':form_size/2 +'px'});
         
         // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
         $(window).resize(
             function(){       
                 form_size = $('.post_form').width() + 30;            
-                $('.post_form').css({'height':form_size +'px'});
-                $('.write_form').css({'height':form_size +'px'});
-                $('.write_form').css({'width':form_size +'px'});
-                $('.empty_form').css({'height':form_size/2 +'px'});
+                // $('.post_form').css({'height':form_size +'px'});
+                // $('.write_form').css({'height':form_size +'px'});
+                // $('.write_form').css({'width':form_size +'px'});
+                // $('.empty_form').css({'height':form_size/2 +'px'});
             }
         );    
         
@@ -66,7 +71,8 @@
         $("#write_button").click(
             function(){       
                 $.ajax({
-                    data: { context: $("#write_context").val() },
+                    data: { context: $("#write_context").val(),
+                            board: $("#write_board").val()},
                     url: "/board/write",
                     success: function(data){                                           
                         

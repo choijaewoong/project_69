@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829055226) do
+ActiveRecord::Schema.define(version: 20150907014400) do
+
+  create_table "boards", force: :cascade do |t|
+    t.integer  "grade",       default: 3
+    t.string   "description"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "hashtags", force: :cascade do |t|
     t.string   "voca"
@@ -35,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150829055226) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "board_id"
     t.string   "context"
     t.integer  "color"
     t.integer  "like_count"
@@ -43,10 +51,10 @@ ActiveRecord::Schema.define(version: 20150829055226) do
   end
 
   create_table "replies", force: :cascade do |t|
-    t.string   "context"
-    t.integer  "like_count"
     t.integer  "user_id"
     t.integer  "post_id"
+    t.string   "context"
+    t.integer  "like_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150829055226) do
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "nick_name"
+    t.integer  "grade",                  default: 3
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
