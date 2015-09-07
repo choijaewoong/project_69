@@ -1,11 +1,19 @@
 <div class="col-md-4">
     <!--게시글 작성 폼-->
     <p><%= @board.description %></p><br>
-    <center>                
+    <center>   
         <div class="write_form">            
             <input type="hidden" id="write_board" value="<%= @board.id %>">
-            <textarea id="write_context"></textarea>                            
-        </div>
+            <textarea id="write_context" required></textarea>                            
+        </div><br>
+        
+        <!--색상 선택-->
+        <select id="colorpicker" name="colorpicker">
+            <% $COLOR_ARRAY.each do |color| %>
+                <option value="<%= color %>"><%= color %> </option>
+            <% end %>
+        </select><br>
+        
         <!--전송 버튼(체크 모양)-->
         <a href="#" id="write_button" style="margin-top:30px">
             <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
@@ -39,6 +47,18 @@
 </div>
     
 <script>
+
+    $(function(){
+        
+        $('select[name="colorpicker"]').simplecolorpicker(
+            'selectColor', '#7bd148',
+            {theme: 'regularfont'}
+            ).on('change', function() {
+                                
+        });        
+    });
+
+
     $(function(){   
         // 게시물 폼 크기 설정 부분 
         var form_size = $('.post_form').width() + 30;
@@ -73,7 +93,8 @@
             function(){       
                 $.ajax({
                     data: { context: $("#write_context").val(),
-                            board: $("#write_board").val()},
+                            board: $("#write_board").val(),
+                            color: $("#colorpicker").val()},
                     url: "/board/write",
                     success: function(data){                                           
                         

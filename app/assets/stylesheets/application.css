@@ -90,12 +90,11 @@ textarea {
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {
     
-    width: 100px;
+    width: 300px;
     height: 210px;
     /*background-color: black;*/
     float: right;
-    right: 10%;
-    position:fixed;
+    right: 10%;    
 }
 
 .masonry-item {
@@ -171,12 +170,12 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: #E60E3C;
+    color: #F5979B;
 }
 
 /* selected link */
 a:active {
-    color: #E60E3C;
+    color: #F5979B;
 }
 
 a {

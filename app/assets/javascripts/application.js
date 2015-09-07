@@ -39,7 +39,7 @@ $(function(){
             sameElse : 'L'
         },
         relativeTime : {
-            future : '%s 후',
+            future : '%s 전',
             past : '%s 전',
             s : '방금',
             ss : '%d초',
