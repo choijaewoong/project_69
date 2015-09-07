@@ -1,7 +1,8 @@
 <div class="col-md-4">
     <!--게시글 작성 폼-->
-    <center>        
-        <div class="write_form">
+    <p><%= @board.description %></p><br>
+    <center>                
+        <div class="write_form">            
             <input type="hidden" id="write_board" value="<%= @board.id %>">
             <textarea id="write_context"></textarea>                            
         </div>
@@ -19,7 +20,7 @@
         
         <!--첫번째 게시물-->
         <% if @post_all.count != 0 %>
-            <%= render :partial => 'board/post_form', 
+            <%= render :partial => '/board/post_form', 
                        :locals => {:post => @post_first } %>        
         <% end %>
         <!--첫번째 게시물 옆 빈 공간-->
@@ -29,7 +30,7 @@
          <% if @post_all.count != 0 %>
             <!--나머지 게시물-->
             <% @post_reminder.each do |post| %>
-               <%= render :partial => 'board/post_form', 
+               <%= render :partial => '/board/post_form', 
                           :locals => {:post => post } %>
                <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
             <% end %>      
@@ -79,7 +80,7 @@
                         var time = new Date(data.post.created_at);
                         
                         var $item = $(
-                            "<center><a href='board/detail/" + data.post.id + "' data-transition='fade'>"
+                            "<center><a href='/board/detail/" + data.post.id + "' data-transition='fade'>"
                             +"<div class='post_form masonry-item'><br>"
                                 + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
                                 + "<p class='context'>"

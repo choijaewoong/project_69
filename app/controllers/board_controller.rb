@@ -5,6 +5,9 @@ class BoardController < ApplicationController
     def main
     
         @board = Board.where(:description => params[:id]).take
+        if @board.nil?
+            @board = Board.find(1)
+        end
         @post_all = @board.posts
         
         if @post_all.count != 0
@@ -38,13 +41,13 @@ class BoardController < ApplicationController
     def reply
         
         r = Reply.create(user_id: current_user.id,
-                             post_id: params[:id],
-                             context: params[:context],
-                             like_count: 0)
+                         post_id: params[:id],
+                         context: params[:context],
+                         like_count: 0)
 
         render :json => {
                          :reply => r,
-                         :reply_count => Post.find(params[:id]).reply.count 
+                         :reply_count => Post.find(params[:id]).replies.count 
                          }
                          #user_id: post.id,                
     end

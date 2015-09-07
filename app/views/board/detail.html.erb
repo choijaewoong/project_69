@@ -81,14 +81,12 @@
             
         //작성 버튼 눌렀을 때 댓글 추가하는 기능 부분
         $("#reply_button").click(
-            function(){       
+            function(){                
                 $.ajax({
                     data: { context: $("#reply_context").val() },
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){   
-                        
                         var time = new Date(data.reply.created_at);
-                        
                         var $item = $(
                                 "<center><div class='reply_form masonry-item'><br>"
                                     + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " 
@@ -97,7 +95,8 @@
                                     + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
                                     + data.reply.like_count
                                 + "</div></center>"
-                        );                 
+                        );     
+                        
                         $grid.prepend($item)
                              .masonry('prepended', $item);
                         
