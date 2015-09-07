@@ -59,7 +59,7 @@ textarea {
     height: 350px;    
     border: 15px solid black;    
     border-radius: 50%;
-    border-color: #F5979B;   
+    border-color: #EE3C39;   
     background-color: white;
 }
 
@@ -70,7 +70,7 @@ textarea {
     margin-bottom: 70px;
     border: 15px solid black;
     border-radius: 50%;    
-    border-color: #F5979B;
+    border-color: #EE3C39;
     float: left;
     background-color: white;
 }
@@ -82,7 +82,7 @@ textarea {
     margin-bottom: 70px;
     border: 10px solid black;
     border-radius: 50%;    
-    border-color: #F5979B;
+    border-color: gray;
     float: left;
     background-color: white;
 }

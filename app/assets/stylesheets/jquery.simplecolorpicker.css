@@ -54,34 +54,34 @@
   margin: 0 5px 5px 0;
 }
 
-.simplecolorpicker.icon,
-.simplecolorpicker span.color {
-  display: inline-block;
+/*.simplecolorpicker.icon,*/
+/*.simplecolorpicker span.color {*/
+/*  display: inline-block;*/
 
-  cursor: pointer;
-  border: 1px solid transparent;
-}
+/*  cursor: pointer;*/
+/*  border: 1px solid transparent;*/
+/*}*/
 
 .simplecolorpicker.icon:after,
 .simplecolorpicker span.color:after {
-  content: '\00a0\00a0\00a0\00a0'; /* Spaces */
+  content: '\00a0\00a0\00a0\00a0'; /* Spaces*/ 
 }
 
-.simplecolorpicker span.color[data-disabled]:hover {
-  cursor: not-allowed;
-  border: 1px solid transparent;
-}
+/*.simplecolorpicker span.color[data-disabled]:hover {*/
+/*  cursor: not-allowed;*/
+/*  border: 1px solid transparent;*/
+/*}*/
 
-.simplecolorpicker span.color:hover,
-.simplecolorpicker span.color[data-selected],
-.simplecolorpicker span.color[data-selected]:hover {
-  border: 1px solid #222; /* @gray-dark */
-}
+/*.simplecolorpicker span.color:hover,*/
+/*.simplecolorpicker span.color[data-selected],*/
+/*.simplecolorpicker span.color[data-selected]:hover {*/
+  /*border: 1px solid #222; /* @gray-dark */
+/*}*/
 .simplecolorpicker span.color[data-selected]:after {
   color: #fff;
 }
 
 /* Vertical separator, replaces optgroup. */
-.simplecolorpicker span.vr {
-  border-left: 1px solid #222; /* @gray-dark */
-}
+/*.simplecolorpicker span.vr {*/
+  /*border-left: 1px solid #222; /* @gray-dark */
+/*}*/

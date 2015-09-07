@@ -2,18 +2,20 @@ class BoardController < ApplicationController
     
     before_action :authenticate_user!, only: [:main]
     
-    $COLOR_ARRAY = [ "#7bd148",
-                    "#5484ed",
-                    "#a4bdfc",
-                    "#46d6db",
-                    "#7ae7bf",
-                    "#51b749",
-                    "#fbd75b",
-                    "#ffb878",
-                    "#ff887c",
-                    "#dc2127",
-                    "#dbadff",
-                    "#e1e1e1"]
+    $COLOR_ARRAY = ["#EE3C39",
+                    "#50266B",
+                    "#094A78",
+                    "#F16624",
+                    "#006040",
+                    "#552B0F",
+                    "#2D2D2D"]
+    # $COLOR_HASH = {"#EE3C39" => 0,
+    #                 "#50266B" => 1,
+    #                 "#094A78" => 2,
+    #                 "#F16624" => 3,
+    #                 "#006040" => 4,
+    #                 "#552B0F" => 5,
+    #                 "#2D2D2D" => 6}
     
     def main
     
@@ -40,7 +42,7 @@ class BoardController < ApplicationController
         p = Post.create(user_id: current_user.id,
                     board_id: params[:board],
                     context: params[:context],
-                    color: 0,
+                    color: $COLOR_ARRAY.index(params[:color]),
                     like_count: 0)
         render :json => {:post => p,
                          :reply_count => p.replies.count}

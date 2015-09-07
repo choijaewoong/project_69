@@ -51,10 +51,10 @@
     $(function(){
         
         $('select[name="colorpicker"]').simplecolorpicker(
-            'selectColor', '#7bd148',
             {theme: 'regularfont'}
             ).on('change', function() {
-                                
+                
+                $('.write_form').css("border-color", $("#colorpicker").val());                
         });        
     });
 
@@ -102,7 +102,7 @@
                         
                         var $item = $(
                             "<center><a href='/board/detail/" + data.post.id + "' data-transition='fade'>"
-                            +"<div class='post_form masonry-item'><br>"
+                            +"<div class='post_form masonry-item' style='border-color:" + $('#colorpicker').val() + "'><br>"
                                 + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
                                 + "<p class='context'>"
                                     + data.post.context + "</p><br>"

@@ -1,7 +1,7 @@
 <div class="col-md-4">
     <!--게시글 detail 폼-->
     <center>
-        <div class="write_form">
+        <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(@selected_post.created_at) %> 전 
             <p class="context"><%= @selected_post.context %></p>
@@ -19,6 +19,7 @@
 <div class="col-md-6">
 
     <div class="masonry">
+        
         <center>        
             <div class="reply_form stamp-item">
                 <textarea id="reply_context" required></textarea>                                   
@@ -35,7 +36,7 @@
         
         <% @reply_all.each do |reply| %>
         <center>
-            <div class="reply_form masonry-item">
+            <div class="reply_form masonry-item" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                  <%= time_ago_in_words(reply.created_at) %> 전
@@ -85,10 +86,11 @@
                 $.ajax({
                     data: { context: $("#reply_context").val() },
                     url: "/board/reply/<%=@selected_post.id%>",
-                    success: function(data){   
+                    success: function(data){                          
+                        
                         var time = new Date(data.reply.created_at);
-                        var $item = $(
-                                "<center><div class='reply_form masonry-item'><br>"
+                        var $item = $(                 
+                                "<center><div class='reply_form masonry-item' style='border-color:<%= $COLOR_ARRAY[@selected_post.color] %>'><br>"
                                     + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " 
                                     + moment(time).fromNow()
                                     + "<p class='context'>" + data.reply.context + "</p><br>"                                
