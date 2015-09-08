@@ -4,8 +4,7 @@
         <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(@selected_post.created_at) %> 전 
-            <p class="context"><%= @selected_post.context %></p>
-            <br>
+            <p class="context"><%= @selected_post.context %></p>            
             <a href="#" id="like_button">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
             </a>
@@ -21,12 +20,13 @@
     <div class="masonry">
         
         <center>        
-            <div class="reply_form stamp-item">
-                <textarea id="reply_context" required></textarea>                                   
+            <div class="reply_form stamp-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span>
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
                     <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>
+                </a>                
             </div>
         </center>    
         
@@ -51,25 +51,36 @@
 </div>
     
 <script>
-    $(function(){   
-        // 게시물 폼 크기 설정 부분 
-        var form_size = $('.reply_form').width() + 30;
-        $('.reply_form').css({'height':form_size +'px'});
-        // $('.write_form').css({'height':form_size +'px'});
-        // $('.write_form').css({'width':form_size +'px'});
-        $('.empty_form').css({'height':form_size/2 +'px'});
+
+    $(function(){
         
-        // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-        $(window).resize(
-            function(){       
-                form_size = $('.reply_form').width() + 30;            
-                $('.reply_form').css({'height':form_size +'px'});
-                // $('.write_form').css({'height':form_size +'px'});
-                // $('.write_form').css({'width':form_size +'px'});
-                $('.empty_form').css({'height':form_size/2 +'px'});
-            }
-        );    
-    }); //function()
+        $('#reply_context').keyup(function(){            
+            var inputLength = $(this).val().length;
+            var remain = 300 - inputLength;
+            
+            $("#text_count").html(remain);
+        });
+    });
+
+    // $(function(){   
+    //     // 게시물 폼 크기 설정 부분 
+    //     var form_size = $('.reply_form').width() + 30;
+    //     $('.reply_form').css({'height':form_size +'px'});
+    //     $('.write_form').css({'height':form_size +'px'});
+    //     $('.write_form').css({'width':form_size +'px'});
+    //     $('.empty_form').css({'height':form_size/2 +'px'});
+        
+    //     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
+    //     $(window).resize(
+    //         function(){       
+    //             form_size = $('.reply_form').width() + 30;            
+    //             $('.reply_form').css({'height':form_size +'px'});
+    //             $('.write_form').css({'height':form_size +'px'});
+    //             $('.write_form').css({'width':form_size +'px'});
+    //             $('.empty_form').css({'height':form_size/2 +'px'});
+    //         }
+    //     );    
+    // }); //function()
     
     
     // 게시물 작성
@@ -102,6 +113,7 @@
                         $grid.prepend($item)
                              .masonry('prepended', $item);
                         
+                        $("#text_count").html(300);     
                         $("#reply_count").html(" " + data.reply_count);         
                         $("#reply_context").val('');                        
                     }

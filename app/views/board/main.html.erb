@@ -5,6 +5,7 @@
         <div class="write_form">            
             <input type="hidden" id="write_board" value="<%= @board.id %>">
             <textarea id="write_context" required></textarea>                            
+            <p id="text_count">300</p>
         </div><br>
         
         <!--색상 선택-->
@@ -31,16 +32,16 @@
             <%= render :partial => '/board/post_form', 
                        :locals => {:post => @post_first } %>        
         <% end %>
+        
         <!--첫번째 게시물 옆 빈 공간-->
         <div class="empty_form stamp-item">            
         </div>
         
+        <!--나머지 게시물-->
          <% if @post_all.count != 0 %>
-            <!--나머지 게시물-->
             <% @post_reminder.each do |post| %>
                <%= render :partial => '/board/post_form', 
-                          :locals => {:post => post } %>
-               <!--:locals => {:context => post.context, :like_count => post.like_count, :reply_count => post.reply.size } %>-->
+                          :locals => {:post => post } %>               
             <% end %>      
         <% end %>
     </div>
@@ -50,6 +51,17 @@
 
     $(function(){
         
+        $('#write_context').keyup(function(){            
+            var inputLength = $(this).val().length;
+            var remain = 300 - inputLength;
+            
+            $("#text_count").html(remain);
+        });
+    });
+
+    
+    // 색상 선택 부분 
+    $(function(){        
         $('select[name="colorpicker"]').simplecolorpicker(
             {theme: 'regularfont'}
             ).on('change', function() {
@@ -115,7 +127,8 @@
                             
                         $grid.prepend($item)
                              .masonry('prepended', $item);
-                             
+                        
+                        $("#text_count").html(300);     
                         $("#write_context").val('');    
                     }
                 });
