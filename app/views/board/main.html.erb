@@ -45,16 +45,38 @@
             <% end %>      
         <% end %>
     </div>
+    
+    <div class="space">
+    </div>
 </div>
     
 <script>
 
+    
     $(function(){
-        
+        // $(window).scroll(function(){
+                        
+        //     var scrollheight = $(window).scrollTop() + $(window).height();
+        //     var documentHeight = $(document).height();
+            
+        //     if(scrollheight + 200 >= documentHeight){
+        //         for(var i = 0; i< 10; i++){
+        //             $('<h1>Infinity Scroll</h1>').appendTo(".space");
+                    
+        //         }
+        //     }
+            
+        //     console.log("scrollTop : " + $(window).scrollTop());
+        //     console.log("height : " + $(window).height());
+        //     console.log("documentHeight : " + $(document).height());
+        // });
+    });
+
+    // 글자 수 카운트 하는 부분 
+    $(function(){
         $('#write_context').keyup(function(){            
             var inputLength = $(this).val().length;
             var remain = 300 - inputLength;
-            
             $("#text_count").html(remain);
         });
     });

@@ -23,7 +23,9 @@ body {
 textarea {
     width: 97%;
     height: 60%;
-    text-align: center;   
+    text-align: center;  
+    font-size: 14px;
+    line-height: 170%;
     /*box-sizing: border-box; /* Opera/IE 8+ */ 
     /*-webkit-box-sizing: border-box; /* Safari, Chrome et al */ 
     /*-moz-box-sizing: border-box; /* Firefox */     
@@ -41,6 +43,8 @@ textarea {
     height: 60%;
     background-color: gray;
     text-align: center;   
+    font-size: 14px;
+    line-height: 170%;
     margin-top: 7%;
     border-top-left-radius: 17% 50%;
     border-top-right-radius: 17% 50%;
@@ -52,6 +56,12 @@ textarea {
 
 .header {
     height: 60px;   
+}
+
+.space {
+    bottom: 0; 
+    height: 60px;   
+    background-color: gray;    
 }
 
 .write_form {        
@@ -70,7 +80,7 @@ textarea {
     margin-bottom: 70px;
     border: 15px solid black;
     border-radius: 50%;    
-    border-color: #EE3C39;
+    border-color: gray;
     float: left;
     background-color: white;
 }
@@ -80,7 +90,7 @@ textarea {
     width: 350px;
     height: 350px;   
     margin-bottom: 70px;
-    border: 10px solid black;
+    border: 8px solid black;
     border-radius: 50%;    
     border-color: gray;
     float: left;
@@ -92,7 +102,7 @@ textarea {
     
     width: 300px;
     height: 210px;
-    background-color: black;
+    /*background-color: black;*/
     float: right;
     right: 10%;    
 }
@@ -102,7 +112,6 @@ textarea {
 
 .stamp-item {    
 }
-
 
 .left_nav {
   position:fixed; /* keep fixed to window */

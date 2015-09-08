@@ -4,7 +4,7 @@
         <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(@selected_post.created_at) %> 전 
-            <p class="context"><%= @selected_post.context %></p>            
+            <p class="context"><%= @selected_post.context %></p><br>            
             <a href="#" id="like_button">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
             </a>
@@ -20,9 +20,9 @@
     <div class="masonry">
         
         <center>        
-            <div class="reply_form stamp-item">                
+            <div class="post_form stamp-item">                
                 <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span>
+                <span id="text_count">300</span><br>
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
                     <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
@@ -52,12 +52,11 @@
     
 <script>
 
+    // 글자 수 카운트 하는 부분  
     $(function(){
-        
         $('#reply_context').keyup(function(){            
             var inputLength = $(this).val().length;
             var remain = 300 - inputLength;
-            
             $("#text_count").html(remain);
         });
     });

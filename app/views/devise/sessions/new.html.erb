@@ -1,5 +1,6 @@
+<div class="col-md-4">
 <center>
-<h2>Log in</h2>
+<h2>로그인 해주세요!</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -26,3 +27,67 @@
 
 <%= render "devise/shared/links" %>
 </center>
+</div>
+<div class="col-md-6">
+  <div class="masonry">
+    <div class="post_form masonry-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span><br>
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>                
+            </div>
+            
+            
+            <div class="empty_form stamp-item">            
+        </div>
+        
+         <div class="post_form masonry-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span><br>
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>                
+            </div>
+             <div class="post_form masonry-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span><br>
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>                
+            </div>
+             <div class="post_form masonry-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span><br>
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>                
+            </div>
+             <div class="post_form masonry-item">                
+                <textarea id="reply_context" required></textarea>                                                   
+                <span id="text_count">300</span><br>
+                <!--전송 버튼(체크 모양)-->
+                <a href="#" id="reply_button" style="margin-top:30px">
+                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                </a>                
+            </div>
+        
+      </div>
+</div>
+
+<script>
+ $(function(){
+        //masonry 추가
+        var $grid = $('.masonry').masonry({
+            itemSelector: '.masonry-item',
+            stamp: '.stamp-item'
+        });   
+        
+ });
+            
+       
+     </script>

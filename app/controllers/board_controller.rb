@@ -9,14 +9,6 @@ class BoardController < ApplicationController
                     "#006040",
                     "#552B0F",
                     "#2D2D2D"]
-    # $COLOR_HASH = {"#EE3C39" => 0,
-    #                 "#50266B" => 1,
-    #                 "#094A78" => 2,
-    #                 "#F16624" => 3,
-    #                 "#006040" => 4,
-    #                 "#552B0F" => 5,
-    #                 "#2D2D2D" => 6}
-    
     def main
         @board = Board.where(:description => params[:id]).take
         if @board.nil?
