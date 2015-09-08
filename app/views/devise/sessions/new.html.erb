@@ -1,93 +1,101 @@
 <div class="col-md-4">
-<center>
-<h2>로그인 해주세요!</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</center>
+    <center>
+    
+        <button id="log_in"> 로그인 </button>
+        
+        <div id="hide_section" style="display:none">
+            <h2>로그인 해주세요!</h2>
+            
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true %>
+              </div>
+            
+              <div class="field">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+            
+              <% if devise_mapping.rememberable? -%>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end -%>
+            
+              <div class="actions">
+                <%= f.submit "Log in" %>
+              </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+        </div>
+    </center>
 </div>
+
 <div class="col-md-6">
-  <div class="masonry">
-    <div class="post_form masonry-item">                
-                <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span><br>
-                <!--전송 버튼(체크 모양)-->
-                <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
+    <div class="masonry">
+        <center>
+            <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[0] %>">                
+                <p class="context" style="margin-top:63px"></p>                
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 78%
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 78%                   
             </div>
+        </center>
             
-            
-            <div class="empty_form stamp-item">            
+        
+        <div class="empty_form stamp-item">            
         </div>
         
-         <div class="post_form masonry-item">                
-                <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span><br>
-                <!--전송 버튼(체크 모양)-->
-                <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
+        <center>
+            <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[1] %>">                
+                <p class="context" style="margin-top:63px"></p>                
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 78%
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 78%                   
             </div>
-             <div class="post_form masonry-item">                
-                <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span><br>
-                <!--전송 버튼(체크 모양)-->
-                <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
-            </div>
-             <div class="post_form masonry-item">                
-                <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span><br>
-                <!--전송 버튼(체크 모양)-->
-                <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
-            </div>
-             <div class="post_form masonry-item">                
-                <textarea id="reply_context" required></textarea>                                                   
-                <span id="text_count">300</span><br>
-                <!--전송 버튼(체크 모양)-->
-                <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
-            </div>
+        </center>
         
-      </div>
+        <center>
+            <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[2] %>">                
+                <p class="context" style="margin-top:63px" ></p>                
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 78%
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 78%                   
+            </div>
+        </center>
+        
+        <center>
+            <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[3] %>">                
+                <p class="context" style="margin-top:63px"></p>                
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 78%
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 78%                   
+            </div>
+        </center>
+   </div>
 </div>
 
 <script>
- $(function(){
+    $(function(){
         //masonry 추가
         var $grid = $('.masonry').masonry({
             itemSelector: '.masonry-item',
             stamp: '.stamp-item'
         });   
         
- });
-            
-       
-     </script>
+    });
+    
+    $(function(){
+        
+        // $(#hide_section).hide();
+        $("#log_in").click(function(){
+            alert("clicked!");
+           $("#hide_section").show(); 
+           $(this).hide();
+        });
+    });
+    
+    
+</script>

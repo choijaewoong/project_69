@@ -14,10 +14,15 @@
  *= require_self
  */
 
-@import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css); 
+@import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumpenscript.css); /* font-family: 'Nanum Pen Script', serif; */
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);  /* font-family: 'Jeju Gothic', serif; */
+@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);  /* font-family: 'Hanna', serif; */
+
 body {
     background-color: #D5D6D8;
-    font-family: 'Noto Sans Korean';
+    font-family : 'Jeju Gothic', serif;;
+    /*font-family: 'Noto Sans Korean';*/
 }
 
 textarea {
@@ -117,8 +122,8 @@ textarea {
   position:fixed; /* keep fixed to window */
   /*padding: 10px;*/
   top: 0; left: 0; /* position to top left of window */
-  height:100%; width:70px; /*set dimensions */
-  margin-left: 50px;
+  height:100%; width:80px; /*set dimensions */
+  margin-left: 40px;
   /*background: #FF6B6B;*/
   transition: width ease .5s; /* fluid transition when resizing */
 }
@@ -128,8 +133,8 @@ textarea {
   float:right;
   
   top: 0; right: 0; /* position to top left of window */
-  height:100%; width:70px; /*set dimensions */
-  margin-right: 50px;
+  height:100%; width:80px; /*set dimensions */
+  margin-right: 40px;
   /*background: #FF6B6B;*/
   transition: width ease .5s; /* fluid transition when resizing */  
 }
