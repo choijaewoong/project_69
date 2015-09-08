@@ -1,7 +1,7 @@
 <!--게시글 보여주는 폼-->
 <center>
 <a href ="/board/detail/<%= post.id %>">
-    <div class="post_form masonry-item" style="border-color: <%= $COLOR_ARRAY[post.color] %>">
+    <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[post.color] %>">
        <br>
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(post.created_at) %> 전       
        <p class="context"><%= post.context %></p>

@@ -16,7 +16,7 @@
 
 @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css); 
 body {
-    background-color: #D9E1E4;
+    background-color: #D5D6D8;
     font-family: 'Noto Sans Korean';
 }
 
@@ -92,7 +92,7 @@ textarea {
     
     width: 300px;
     height: 210px;
-    /*background-color: black;*/
+    background-color: black;
     float: right;
     right: 10%;    
 }
@@ -170,12 +170,12 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: #F5979B;
+    color: gray;
 }
 
 /* selected link */
 a:active {
-    color: #F5979B;
+    color: gray;
 }
 
 a {

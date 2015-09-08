@@ -18,7 +18,6 @@ class BoardController < ApplicationController
     #                 "#2D2D2D" => 6}
     
     def main
-    
         @board = Board.where(:description => params[:id]).take
         if @board.nil?
             @board = Board.find(1)
@@ -54,7 +53,6 @@ class BoardController < ApplicationController
     end
     
     def reply
-        
         r = Reply.create(user_id: current_user.id,
                          post_id: params[:id],
                          context: params[:context],
