@@ -20,13 +20,14 @@ class BoardController < ApplicationController
         end
         
         @post_all = @board.posts
+        @post_part = @board.posts.order("id desc").limit($board_show_count)        
         
-        if @post_all.nil?
+        if @post_all.empty?
            @last_post_id = 0
         else 
-            @last_post_id = @post_all.last.id
+           @last_post_id = @post_part.last.id
         end        
-        @post_part = @board.posts.where("id <= #{@last_post_id}").order("id desc").limit($board_show_count)
+        
         # @last_post_id = @post_all.first.id
         # if @post_all.count != 0
         #     @post_first = @post_all.last

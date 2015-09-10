@@ -55,6 +55,12 @@
     
 <script>
 
+    $(function(){
+        if( <%= @post_all.count %> <= <%= $board_show_count %>){
+            $(".space").hide();                            
+        }
+    });
+
     // 글자 수 카운트 하는 부분 
     $(function(){
         $('#write_context').keyup(function(){            
@@ -141,7 +147,7 @@
         $("#more_button").click(
             function(){
                 
-                console.log( $count );
+                console.log( $last_id );
                 
                 // var item_array = [];
                 var $count = <%= $board_show_count %>;  // 추가 할 게시글 개수 
