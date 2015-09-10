@@ -1,8 +1,12 @@
 <div class="col-md-4">
     <center>
-    
-        <button id="log_in"> 로그인 </button>
-        
+        <div style="
+            position : fixed;
+            top: 50%;
+      	    left: 25%;
+      	    transform: translate(-50%, -50%);">
+            <a href="#" id="log_in" class="login_button">Log in</a>
+        </div>
         <div id="hide_section" style="display:none">
             <h2>로그인 해주세요!</h2>
             
@@ -91,11 +95,9 @@
         
         // $(#hide_section).hide();
         $("#log_in").click(function(){
-            alert("clicked!");
            $("#hide_section").show(); 
            $(this).hide();
         });
-    });
-    
+    });    
     
 </script>

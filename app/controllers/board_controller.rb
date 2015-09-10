@@ -6,20 +6,32 @@ class BoardController < ApplicationController
                     "#50266B",
                     "#094A78",
                     "#F16624",
+ 
                     "#006040",
                     "#552B0F",
                     "#2D2D2D"]
+                    
+    $board_show_count = 5
+    
     def main
         @board = Board.where(:description => params[:id]).take
         if @board.nil?
             @board = Board.find(1)
         end
+        
         @post_all = @board.posts
         
-        if @post_all.count != 0
-            @post_first = @post_all.last
-            @post_reminder = @post_all.where("id != #{@post_first.id}").order("id desc")
-        end
+        if @post_all.nil?
+           @last_post_id = 0
+        else 
+            @last_post_id = @post_all.last.id
+        end        
+        @post_part = @board.posts.where("id <= #{@last_post_id}").order("id desc").limit($board_show_count)
+        # @last_post_id = @post_all.first.id
+        # if @post_all.count != 0
+        #     @post_first = @post_all.last
+        #     @post_reminder = @post_all.where("id != #{@post_first.id}").order("id desc")
+        # end
         
         # @post_first = Post.last 
         # if !@post_first.nil?
@@ -74,6 +86,31 @@ class BoardController < ApplicationController
             post.save
         end
         render :text => post.like_count
+    end
+    
+    def more_post
+        
+        post_array = Board.find(params[:board_id]).posts.where("id < #{params[:last_id]}").order("id desc").limit(params[:count])
+        
+        color_array = Array.new
+        reply_count_array = Array.new
+        
+        post_array.each do |post|
+            
+            color_array.append($COLOR_ARRAY[post.color])
+            reply_count_array.append(post.replies.count)
+            
+        end
+        
+        next_check = true
+        next_id = params[:last_id].to_i - $board_show_count
+        if Board.find(params[:board_id]).posts.where("id < #{next_id}").empty?
+            next_check = false        
+        end
+        render :json => { :post_array => post_array,
+                          :color_array => color_array,
+                          :reply_count_array => reply_count_array,
+                          :next_check => next_check}
     end
 end
 

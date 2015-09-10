@@ -21,42 +21,8 @@
 
 body {
     background-color: #D5D6D8;
-    font-family : 'Jeju Gothic', serif;;
-    /*font-family: 'Noto Sans Korean';*/
-}
-
-textarea {
-    width: 97%;
-    height: 60%;
-    text-align: center;  
-    font-size: 14px;
-    line-height: 170%;
-    /*box-sizing: border-box; /* Opera/IE 8+ */ 
-    /*-webkit-box-sizing: border-box; /* Safari, Chrome et al */ 
-    /*-moz-box-sizing: border-box; /* Firefox */     
-    margin-top: 20%;
-    border-top-left-radius: 17% 50%;
-    border-top-right-radius: 17% 50%;
-    border-bottom-left-radius: 17% 50%;
-    border-bottom-right-radius: 17% 50%;
-    outline: none;
-    resize: none;
-}
-
-.context {    
-    width: 97%;
-    height: 60%;
-    background-color: gray;
-    text-align: center;   
-    font-size: 14px;
-    line-height: 170%;
-    margin-top: 7%;
-    border-top-left-radius: 17% 50%;
-    border-top-right-radius: 17% 50%;
-    border-bottom-left-radius: 17% 50%;
-    border-bottom-right-radius: 17% 50%;
-    outline: none;
-    resize: none;    
+    /*font-family : 'Jeju Gothic', serif;;*/
+    font-family: 'Noto Sans Korean';
 }
 
 .header {
@@ -109,7 +75,42 @@ textarea {
     height: 210px;
     /*background-color: black;*/
     float: right;
-    right: 10%;    
+    right: 10%;   
+    /*position: relative;*/
+}
+
+textarea {
+    width: 97%;
+    height: 60%;
+    text-align: center;  
+    font-size: 14px;
+    line-height: 170%;
+    /*box-sizing: border-box; /* Opera/IE 8+ */ 
+    /*-webkit-box-sizing: border-box; /* Safari, Chrome et al */ 
+    /*-moz-box-sizing: border-box; /* Firefox */     
+    margin-top: 20%;
+    border-top-left-radius: 17% 50%;
+    border-top-right-radius: 17% 50%;
+    border-bottom-left-radius: 17% 50%;
+    border-bottom-right-radius: 17% 50%;
+    outline: none;
+    resize: none;
+}
+
+.context {    
+    width: 97%;
+    height: 60%;
+    background-color: gray;
+    text-align: center;   
+    font-size: 14px;
+    line-height: 170%;
+    margin-top: 7%;
+    border-top-left-radius: 17% 50%;
+    border-top-right-radius: 17% 50%;
+    border-bottom-left-radius: 17% 50%;
+    border-bottom-right-radius: 17% 50%;
+    outline: none;
+    resize: none;    
 }
 
 .masonry-item {
@@ -129,9 +130,8 @@ textarea {
 }
 
 .right_nav {
-  position:fixed; /* keep fixed to window */
-  float:right;
-  
+  position: fixed; /* keep fixed to window */
+  float: right;
   top: 0; right: 0; /* position to top left of window */
   height:100%; width:80px; /*set dimensions */
   margin-right: 40px;
@@ -167,31 +167,91 @@ hr.style_one {
     /*border-top: 1px solid rgba(0, 0, 0, 0.1);*/
     /*border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
     
-    background-color: #000000;
-    border-color: #000000;
+    /*background-color: #000000;*/
+    /*border-color: #000000;*/
+    
+    color: #EE3C39;
+    background-color: #EE3C39;
+}
+
+a.board_name:visited{
+    color:#ffffff;
+}
+
+a.board_name:hover{
+    color:#EE3C39;
+}
+
+a.sorting_name:visited{
+    color:#ffffff;
+}
+
+a.sorting_name:hover{
+    color:#EE3C39;
 }
 
 
+    
 /* unvisited link */
-a:link {
-    color: #000000;
-}
+/*a:link {*/
+/*    color: #000000;*/
+/*}*/
 
 /* visited link */
-a:visited {
-    color: #000000;
-}
+/*a:visited {*/
+/*    color: #000000;*/
+/*}*/
 
 /* mouse over link */
-a:hover {
-    color: gray;
-}
+/*a:hover {*/
+/*    color: gray;*/
+/*}*/
 
 /* selected link */
-a:active {
-    color: gray;
-}
+/*a:active {*/
+/*    color: gray;*/
+/*}*/
 
 a {
     text-decoration: none !important;
+}
+
+/*BUTTON*/
+.login_button {
+	-moz-box-shadow:inset 0px 0px 0px 0px #f29c93;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #f29c93;
+	box-shadow:inset 0px 0px 0px 0px #f29c93;
+	background-color:transparent;
+	-webkit-border-top-left-radius:42px;
+	-moz-border-radius-topleft:42px;
+	border-top-left-radius:42px;
+	-webkit-border-top-right-radius:42px;
+	-moz-border-radius-topright:42px;
+	border-top-right-radius:42px;
+	-webkit-border-bottom-right-radius:42px;
+	-moz-border-radius-bottomright:42px;
+	border-bottom-right-radius:42px;
+	-webkit-border-bottom-left-radius:42px;
+	-moz-border-radius-bottomleft:42px;
+	border-bottom-left-radius:42px;
+	text-indent:0px;
+	border:4px solid #EE3C39;
+	display:inline-block;
+	color:#EE3C39;
+	font-size:14px;
+	font-style:normal;
+	height:80px;
+	line-height:73px;
+	width:80px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 0px 0px #b23e35;
+}
+.login_button:visited {
+    color: #d83526;
+}
+.login_button:active {
+	position:relative;
+	top:2px;
+	left:2px;
 }
