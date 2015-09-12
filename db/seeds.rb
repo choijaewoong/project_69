@@ -5,14 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 Board.create(grade: 3,
-             description: "색동_저고리");
+             description: "78")
 Board.create(grade: 3,
-             description: "배냇_저고리");
+             description: "18")
 Board.create(grade: 3,
-             description: "반짇_고리");
+             description: "4")
 Board.create(grade: 3,
-             description: "연결_고리");
+             description: "100")
 
 
 # Post.create(user_id: 1,

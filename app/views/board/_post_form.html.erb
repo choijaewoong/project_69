@@ -4,13 +4,17 @@
     <div class="post_form masonry-item" style="border-color:<%= $COLOR_ARRAY[post.color] %>">
        <br>
        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(post.created_at) %> 전       
-       <p class="context"><%= post.context %></p>
+       <div class="post_context_wrapper">
+           <div class="left"></div>
+           <div class="right"></div>
+           <div class="context"><%= post.context %></div>
+       </div>
        <!--<a href="#" id="like_button">-->
        <br>
-       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= post.like_count %>
+       <img src='/assets/1_unlike.png' width=12 height=18> <%= post.like_count %>
        <!--</a>-->
        &nbsp;&nbsp;
-       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= post.replies.count %>
+       <img src='/assets/2_not-reply.png' width=18 height=16> <%= post.replies.count %>
     </div>            
 </a>
 </center>

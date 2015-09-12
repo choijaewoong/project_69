@@ -4,7 +4,12 @@
         <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(@selected_post.created_at) %> 전 
-            <p class="context"><%= @selected_post.context %></p><br>            
+            <div class="post_context_wrapper">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="context"><%= @selected_post.context %></div>
+            </div>
+            <br>
             <a href="#" id="like_button">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
             </a>
@@ -21,7 +26,11 @@
         
         <center>        
             <div class="post_form stamp-item">                
-                <textarea id="reply_context" required></textarea>                                                   
+                <div class="write_context_wrapper">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                    <div id="reply_context" class="text_area" contenteditable="true"></div>
+                </div> 
                 <span id="text_count">300</span><br>
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
@@ -39,8 +48,12 @@
             <div class="reply_form masonry-item" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
             <br>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                 <%= time_ago_in_words(reply.created_at) %> 전
-                <p class="context"><%= reply.context %></p><br>
+                <%= time_ago_in_words(reply.created_at) %> 전
+                <div class="reply_context_wrapper">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                    <div class="context"><%= reply.context %></div>
+                </div><br>
                 <span class='glyphicon glyphicon-heart' aria-hidden='true'></span>
                  <%= reply.like_count %>
                 <!--<a href="#" id="like_button">-->                   
@@ -94,7 +107,7 @@
         $("#reply_button").click(
             function(){                
                 $.ajax({
-                    data: { context: $("#reply_context").val() },
+                    data: { context: $("#reply_context").text() },
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){                          
                         
@@ -103,7 +116,11 @@
                                 "<center><div class='reply_form masonry-item' style='border-color:<%= $COLOR_ARRAY[@selected_post.color] %>'><br>"
                                     + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " 
                                     + moment(time).fromNow()
-                                    + "<p class='context'>" + data.reply.context + "</p><br>"                                
+                                    + "<div class='reply_context_wrapper'>"
+                                        + "<div class='left'></div>"
+                                        + "<div class='right'></div>"
+                                        + "<div class='context'>" + data.reply.context + "</div>"
+                                    + "</div><br>"
                                     + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
                                     + data.reply.like_count
                                 + "</div></center>"
@@ -114,7 +131,7 @@
                         
                         $("#text_count").html(300);     
                         $("#reply_count").html(" " + data.reply_count);         
-                        $("#reply_context").val('');                        
+                        $("#reply_context").html('');                        
                     }
                 });
             }

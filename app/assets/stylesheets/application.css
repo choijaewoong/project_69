@@ -25,16 +25,19 @@ body {
     font-family: 'Noto Sans Korean';
 }
 
+/*페이지 위 여백*/
 .header {
     height: 60px;   
 }
 
+/* 더보기 버튼 공간*/
 .space {
     bottom: 0; 
     height: 60px;   
     background-color: gray;    
 }
 
+/* 글 작성 공간*/
 .write_form {        
     width: 350px;
     height: 350px;    
@@ -42,8 +45,65 @@ body {
     border-radius: 50%;
     border-color: #EE3C39;   
     background-color: white;
+    /*overflow: hidden;*/
+    /*float: right;*/
+}
+.write_context_wrapper{
+    margin-top: 64px;
+    height:60%;
+}
+.left {
+    /*position: absolute;*/
+    /*margin-top:50px;*/        
+    float: left;
+    width: 15%;
+    height: 100%;
+    /*background-color: black;*/
+    -webkit-shape-outside: polygon(0 0, 100% 0, 30% 15% , 10% 50% , 30% 85% , 100% 100%, 0% 100% );
+    -webkit-clip-path: polygon(0 0, 100% 0, 30% 15% , 10% 50% , 30% 85% , 100% 100%, 0% 100% );
+}
+.right {    
+    float: right;
+    width: 15%;
+    height: 100%;
+    /*background-color: black;*/
+    -webkit-shape-outside: polygon(100% 0, 0 0, 70% 15% , 90% 50%, 70% 85% ,0 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 0, 0 0, 70% 15% , 90% 50%, 70% 85% ,0 100%, 100% 100%);
+}
+.text_area{
+    width: 97%;
+    height: 100%;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 14px;
+    line-height: 155%;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    border-top-left-radius: 17% 50%;
+    border-top-right-radius: 17% 50%;
+    border-bottom-left-radius: 17% 50%;
+    border-bottom-right-radius: 17% 50%;
+    outline: 0;
+}
+textarea {
+    width: 97%;
+    height: 60%;
+    text-align: center;  
+    font-size: 14px;
+    line-height: 158%;
+    /*box-sizing: border-box; /* Opera/IE 8+ */ 
+    /*-webkit-box-sizing: border-box; /* Safari, Chrome et al */ 
+    /*-moz-box-sizing: border-box; /* Firefox */     
+    margin-top: 20%;
+    border-top-left-radius: 17% 50%;
+    border-top-right-radius: 17% 50%;
+    border-bottom-left-radius: 17% 50%;
+    border-bottom-right-radius: 17% 50%;    
+    outline: none;
+    resize: none;
 }
 
+/*게시글 보여지는 공간*/
 .post_form {    
     min-width: 300px;
     width: 350px;
@@ -54,6 +114,24 @@ body {
     border-color: gray;
     float: left;
     background-color: white;
+}
+.post_context_wrapper{
+    margin-top: 23px;
+    height:60%;
+}
+.context {    
+    width: 97%;
+    height: 100%;
+    /*background-color: gray;*/
+    text-align: center;   
+    font-size: 14px;
+    line-height: 155%;    
+    border-top-left-radius: 17% 50%;
+    border-top-right-radius: 17% 50%;
+    border-bottom-left-radius: 17% 50%;
+    border-bottom-right-radius: 17% 50%;
+    outline: none;
+    resize: none;    /* ? */
 }
 
 .reply_form {
@@ -67,10 +145,13 @@ body {
     float: left;
     background-color: white;
 }
+.reply_context_wrapper{
+    margin-top: 27px;
+    height:60%;
+}
 
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {
-    
     width: 300px;
     height: 210px;
     /*background-color: black;*/
@@ -79,39 +160,6 @@ body {
     /*position: relative;*/
 }
 
-textarea {
-    width: 97%;
-    height: 60%;
-    text-align: center;  
-    font-size: 14px;
-    line-height: 170%;
-    /*box-sizing: border-box; /* Opera/IE 8+ */ 
-    /*-webkit-box-sizing: border-box; /* Safari, Chrome et al */ 
-    /*-moz-box-sizing: border-box; /* Firefox */     
-    margin-top: 20%;
-    border-top-left-radius: 17% 50%;
-    border-top-right-radius: 17% 50%;
-    border-bottom-left-radius: 17% 50%;
-    border-bottom-right-radius: 17% 50%;
-    outline: none;
-    resize: none;
-}
-
-.context {    
-    width: 97%;
-    height: 60%;
-    background-color: gray;
-    text-align: center;   
-    font-size: 14px;
-    line-height: 170%;
-    margin-top: 7%;
-    border-top-left-radius: 17% 50%;
-    border-top-right-radius: 17% 50%;
-    border-bottom-left-radius: 17% 50%;
-    border-bottom-right-radius: 17% 50%;
-    outline: none;
-    resize: none;    
-}
 
 .masonry-item {
 }
@@ -123,7 +171,7 @@ textarea {
   position:fixed; /* keep fixed to window */
   /*padding: 10px;*/
   top: 0; left: 0; /* position to top left of window */
-  height:100%; width:80px; /*set dimensions */
+  height:100%; width:60px; /*set dimensions */
   margin-left: 40px;
   /*background: #FF6B6B;*/
   transition: width ease .5s; /* fluid transition when resizing */
@@ -133,7 +181,7 @@ textarea {
   position: fixed; /* keep fixed to window */
   float: right;
   top: 0; right: 0; /* position to top left of window */
-  height:100%; width:80px; /*set dimensions */
+  height:100%; width:60px; /*set dimensions */
   margin-right: 40px;
   /*background: #FF6B6B;*/
   transition: width ease .5s; /* fluid transition when resizing */  
@@ -150,7 +198,6 @@ textarea {
 }
 
 .categori {
-    
     width: 80%;
     height: 70px;
     border-top: 1px solid #000000;
@@ -174,12 +221,54 @@ hr.style_one {
     background-color: #EE3C39;
 }
 
+a.board_name{
+    font-size: 27px;    
+}
+
+a.board_name:link{
+    color:#ffffff;        
+}
+
 a.board_name:visited{
     color:#ffffff;
 }
 
 a.board_name:hover{
     color:#EE3C39;
+}
+
+a.board_name:active{
+    color:#EE3C39;
+}
+
+/*a.board_name:focus{*/
+/*    text-decoration:underline*/
+/*}*/
+
+a.mypage_name:link{
+    color:#ffffff;    
+    font-size: 12px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;    
+    padding: 5px; 
+}
+
+a.mypage_name:visited{
+    color:#ffffff;
+}
+
+a.mypage_name:hover{
+    color:#EE3C39;
+}
+
+a.mypage_name:active{
+    color:#EE3C39;
+}
+
+
+a.sorting_name:link{
+    color:#ffffff;
+    font-size: 12px;
 }
 
 a.sorting_name:visited{
@@ -189,6 +278,11 @@ a.sorting_name:visited{
 a.sorting_name:hover{
     color:#EE3C39;
 }
+
+a.sorting_name:active{
+    color:#EE3C39;
+}
+
 
 
     
@@ -247,6 +341,7 @@ a {
 	text-align:center;
 	text-shadow:0px 0px 0px #b23e35;
 }
+
 .login_button:visited {
     color: #d83526;
 }
@@ -255,3 +350,4 @@ a {
 	top:2px;
 	left:2px;
 }
+

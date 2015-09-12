@@ -4,7 +4,13 @@
     <center>   
         <div class="write_form">            
             <input type="hidden" id="write_board" value="<%= @board.id %>">
-            <textarea id="write_context" required></textarea>                            
+            <div class="write_context_wrapper">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div id="write_context" class="text_area" contenteditable="true"></div>
+            </div>
+            
+            <!--<textarea id="write_context" required></textarea>                            -->
             <p id="text_count">300</p>
         </div><br>
         
@@ -48,13 +54,11 @@
     </div>
     
     <div class="space">
-    
         <button id="more_button">더보기</button>
     </div>
 </div>
     
 <script>
-
     $(function(){
         if( <%= @post_all.count %> <= <%= $board_show_count %>){
             $(".space").hide();                            
@@ -64,7 +68,7 @@
     // 글자 수 카운트 하는 부분 
     $(function(){
         $('#write_context').keyup(function(){            
-            var inputLength = $(this).val().length;
+            var inputLength = $(this).html().length;
             var remain = 300 - inputLength;
             $("#text_count").html(remain);
         });
@@ -115,7 +119,7 @@
         $("#write_button").click(
             function(){       
                 $.ajax({
-                    data: { context: $("#write_context").val(),
+                    data: { context: $("#write_context").text(),
                             board: $("#write_board").val(),
                             color: $("#colorpicker").val()},
                     url: "/board/write",
@@ -125,11 +129,15 @@
                             "<center><a href='/board/detail/" + data.post.id + "' data-transition='fade'>"
                             +"<div class='post_form masonry-item' style='border-color:" + $('#colorpicker').val() + "'><br>"
                                 + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                                + "<p class='context'>"
-                                    + data.post.context + "</p><br>"
-                                + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
+                                + "<div class='post_context_wrapper'>"
+                                    + "<div class='left'></div>"
+                                    + "<div class='right'></div>"
+                                    + "<div class='context'>" + data.post.context + "</div>"
+                                + "</div><br>"
+                                // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
+                                + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post.like_count
                                 + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                                + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> " +  data.reply_count
+                                + "<img src='/assets/2_not-reply.png' width=18 height=16>  " + data.reply_count
                             + "</div>"
                             + "</a></center>"
                         );  
@@ -137,7 +145,7 @@
                              .masonry('prepended', $item);
                         
                         $("#text_count").html(300);     
-                        $("#write_context").val('');    
+                        $("#write_context").html('');    
                     }
                 });
         });
@@ -146,7 +154,6 @@
         var $last_id = <%= @last_post_id %>;
         $("#more_button").click(
             function(){
-                
                 console.log( $last_id );
                 
                 // var item_array = [];
@@ -170,10 +177,14 @@
                                 "<center><a href='/board/detail/" + data.post_array[i].id + "' data-transition='fade'>"
                                 +"<div class='post_form masonry-item' style='border-color:" + data.color_array[i] + "'><br>"
                                     + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                                    + "<p class='context'>" + data.post_array[i].context + "</p><br>"
-                                    + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post_array[i].like_count
+                                    + "<div class='post_context_wrapper'>"
+                                        + "<div class='left'></div>"
+                                        + "<div class='right'></div>"
+                                        + "<div class='context'>" + data.post_array[i].context + "</div>"
+                                    + "</div><br>"
+                                    + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post_array[i].like_count
                                     + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                                    + "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> " + data.reply_count_array[i]
+                                    + "<img src='/assets/2_not-reply.png' width=18 height=16>  " + data.reply_count_array[i]
                                 + "</div>"
                                 + "</a></center>"
                             );
@@ -187,9 +198,7 @@
                     }
                 });
         });
-        
     });    
-    
 </script>
 
 
