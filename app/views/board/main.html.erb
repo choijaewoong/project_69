@@ -2,29 +2,34 @@
     <!--게시글 작성 폼-->
     <p><%= @board.description %></p><br>
     <center>   
-        <div class="write_form">            
-            <input type="hidden" id="write_board" value="<%= @board.id %>">
-            <div class="write_context_wrapper">
-                <div class="left"></div>
-                <div class="right"></div>
-                <div id="write_context" class="text_area" contenteditable="true"></div>
-            </div>
+        <div class="button_section">            
+            <a href="#" id="log_in" class="login_button">글 쓰기</a>
+        </div>
+        <div id="hide_section" style="display:none">
+            <div class="write_form">            
+                <input type="hidden" id="write_board" value="<%= @board.id %>">
+                <div class="write_context_wrapper">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                    <div id="write_context" class="text_area" contenteditable="true" wrap="hard"></div>
+                </div>
+                
+                <!--<textarea id="write_context" required></textarea>                            -->
+                <p id="text_count">300</p>
+            </div><br>
             
-            <!--<textarea id="write_context" required></textarea>                            -->
-            <p id="text_count">300</p>
-        </div><br>
-        
-        <!--색상 선택-->
-        <select id="colorpicker" name="colorpicker">
-            <% $COLOR_ARRAY.each do |color| %>
-                <option value="<%= color %>"><%= color %> </option>
-            <% end %>
-        </select><br>
-        
-        <!--전송 버튼(체크 모양)-->
-        <a href="#" id="write_button" style="margin-top:30px">
-            <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-        </a>
+            <!--색상 선택-->
+            <select id="colorpicker" name="colorpicker">
+                <% $COLOR_ARRAY.each do |color| %>
+                    <option value="<%= color %>"><%= color %> </option>
+                <% end %>
+            </select><br>
+            
+            <!--전송 버튼(체크 모양)-->
+            <a href="#" id="write_button" style="margin-top:30px">
+                <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+            </a>
+        </div>
     </center>
 </div>
 
@@ -53,12 +58,22 @@
         <!--<#% end %>-->
     </div>
     
-    <div class="space">
+    <div class="more_button_space">
         <button id="more_button">더보기</button>
     </div>
 </div>
     
 <script>
+
+    $(function(){
+        
+        // $(#hide_section).hide();
+        $("#log_in").click(function(){
+           $("#hide_section").show(); 
+           $(this).hide();
+        });
+    });  
+
     $(function(){
         if( <%= @post_all.count %> <= <%= $board_show_count %>){
             $(".space").hide();                            
@@ -119,7 +134,7 @@
         $("#write_button").click(
             function(){       
                 $.ajax({
-                    data: { context: $("#write_context").text(),
+                    data: { context: $("#write_context").html(),
                             board: $("#write_board").val(),
                             color: $("#colorpicker").val()},
                     url: "/board/write",

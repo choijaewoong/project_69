@@ -7,7 +7,7 @@
             <div class="post_context_wrapper">
                 <div class="left"></div>
                 <div class="right"></div>
-                <div class="context"><%= @selected_post.context %></div>
+                <div class="context"><%=raw @selected_post.context %></div>
             </div>
             <br>
             <a href="#" id="like_button">
@@ -52,7 +52,7 @@
                 <div class="reply_context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
-                    <div class="context"><%= reply.context %></div>
+                    <div class="context"><%=raw reply.context %></div>
                 </div><br>
                 <span class='glyphicon glyphicon-heart' aria-hidden='true'></span>
                  <%= reply.like_count %>
@@ -107,7 +107,7 @@
         $("#reply_button").click(
             function(){                
                 $.ajax({
-                    data: { context: $("#reply_context").text() },
+                    data: { context: $("#reply_context").html() },
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){                          
                         
