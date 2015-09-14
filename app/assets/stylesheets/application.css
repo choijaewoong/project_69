@@ -30,6 +30,20 @@ body {
     height: 60px;   
 }
 
+.write_container{
+    float: left; 
+    width: 40%;  
+    padding-left:100px; 
+    padding-right:30px;
+}
+
+.post_container{
+    float: left; 
+    width: 60%;  
+    padding-left:30px; 
+    padding-right:100px;
+}
+
 /* 더보기 버튼 공간*/
 .more_button_space {
     bottom: 0; 
@@ -37,10 +51,10 @@ body {
     background-color: gray;    
 }
 
-/* 글 작성 공간*/
+/* 글 작성 */
 .write_form {        
-    width: 350px;
-    height: 350px;    
+    /*width: 370px;*/
+    /*height: 370px;    */
     border: 15px solid black;    
     border-radius: 50%;
     border-color: #EE3C39;   
@@ -49,11 +63,11 @@ body {
     /*float: right;*/
 }
 .write_context_wrapper{
-    margin-top: 64px;
+    margin-top: 20%;
     height:60%;
 }
 .text_area{
-    width: 97%;
+    width: 96%;
     height: 100%;
     border: 1px solid black;
     text-align: center;
@@ -83,11 +97,12 @@ body {
 /*    resize: none;*/
 /*}*/
 
-/*게시글 보여지는 공간*/
+/*게시글*/
 .post_form {    
     min-width: 300px;
-    width: 350px;
-    height: 350px;       
+    min-height: 300px;
+    /*width: 370px;*/
+    /*height: 370px;       */
     margin-bottom: 70px;
     border: 15px solid black;
     border-radius: 50%;    
@@ -95,14 +110,14 @@ body {
     float: left;
     background-color: white;
 }
-.post_context_wrapper{
-    margin-top: 23px;
+.post_context_wrapper{   
+    margin-top: 20%;
     height:60%;
 }
 .context {    
-    width: 97%;
+    width: 96%;
     height: 100%;
-    /*background-color: gray;*/
+    background-color: gray;
     text-align: center;   
     font-size: 14px;
     line-height: 155%;    
@@ -114,10 +129,11 @@ body {
     resize: none;    /* ? */
 }
 
+/*댓글*/
 .reply_form {
-    min-width: 300px;
-    width: 350px;
-    height: 350px;   
+    min-width: 340px;
+    width: 340px;
+    height: 340px;   
     margin-bottom: 70px;
     border: 8px solid black;
     border-radius: 50%;    
@@ -126,10 +142,14 @@ body {
     background-color: white;
 }
 .reply_context_wrapper{
-    margin-top: 27px;
+    margin-top: 20%;
     height:60%;
 }
 
+.time_section{
+    position:relative;
+    top:-75%;
+}
 
 /* 작성 폼 경계 넘는 것 방지하는 div */
 .left {
@@ -151,15 +171,26 @@ body {
     -webkit-clip-path: polygon(100% 0, 0 0, 70% 15% , 90% 50%, 70% 85% ,0 100%, 100% 100%);
 }
 
+/*연결 고리 div*/
+.link_section{
+    position:relative;
+    top: -30px;
+    clear: left;
+    height: 100px;
+    /*background:url("/assets/link_line.1.png");*/
+    
+}
+
 
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {
-    width: 300px;
+    width: 370px;
     height: 210px;
     /*background-color: black;*/
-    float: right;
-    right: 10%;   
-    /*position: relative;*/
+    /*float: left;*/
+    /*right: 10%;*/
+    left: 370px;
+    position: relative;
 }
 
 
@@ -296,8 +327,8 @@ a.sorting_name:active{color:#EE3C39;}
 /*}*/
 
 .button_section{
-    position : fixed;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
+    /*position:relative;*/
+    /*top: 50%;*/
+    /*left: 25%;*/
+    /*transform: translate(-50%, -50%);*/
 }

@@ -1,11 +1,11 @@
-<div class="col-md-4">
+<div class="write_container">
     <!--게시글 작성 폼-->
     <p><%= @board.description %></p><br>
     <center>   
         <div class="button_section">            
             <a href="#" id="log_in" class="login_button">글 쓰기</a>
         </div>
-        <div id="hide_section" style="display:none">
+        <div id="hide_section" style="display:none; float:right">
             <div class="write_form">            
                 <input type="hidden" id="write_board" value="<%= @board.id %>">
                 <div class="write_context_wrapper">
@@ -13,7 +13,7 @@
                     <div class="right"></div>
                     <div id="write_context" class="text_area" contenteditable="true" wrap="hard"></div>
                 </div>
-                
+                <br>
                 <!--<textarea id="write_context" required></textarea>                            -->
                 <p id="text_count">300</p>
             </div><br>
@@ -34,7 +34,7 @@
 </div>
 
 <!--모든 게시물-->
-<div class="col-md-6">
+<div class="post_container">
     
     <div class="masonry">        
         
@@ -64,9 +64,29 @@
 </div>
     
 <script>
+    
+     // $(function(){   
+    //     // 게시물 폼 크기 설정 부분 
+    //     var form_size = $('.post_form').width() + 30;
+    //     $('.post_form').css({'height':form_size +'px'});
+    //     $('.write_form').css({'height':form_size +'px'});
+    //     $('.write_form').css({'width':form_size +'px'});
+    //     $('.empty_form').css({'height':form_size/2 +'px'});
+        
+    //     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
+    //     $(window).resize(
+    //         function(){       
+    //             form_size = $('.post_form').width() + 30;            
+    //             $('.post_form').css({'height':form_size +'px'});
+    //             $('.write_form').css({'height':form_size +'px'});
+    //             $('.write_form').css({'width':form_size +'px'});
+    //             $('.empty_form').css({'height':form_size/2 +'px'});
+    //         }
+    //     );    
+    // }); //function() 
+    
 
     $(function(){
-        
         // $(#hide_section).hide();
         $("#log_in").click(function(){
            $("#hide_section").show(); 
@@ -76,7 +96,7 @@
 
     $(function(){
         if( <%= @post_all.count %> <= <%= $board_show_count %>){
-            $(".space").hide();                            
+            $(".more_button_space").hide();                            
         }
     });
 
@@ -100,28 +120,6 @@
         });        
     });
 
-
-    // $(function(){   
-    //     // 게시물 폼 크기 설정 부분 
-    //     var form_size = $('.post_form').width() + 30;
-    //     $('.post_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'width':form_size +'px'});
-    //     $('.empty_form').css({'height':form_size/2 +'px'});
-        
-    //     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-    //     $(window).resize(
-    //         function(){       
-    //             form_size = $('.post_form').width() + 30;            
-    //             $('.post_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'width':form_size +'px'});
-    //             $('.empty_form').css({'height':form_size/2 +'px'});
-    //         }
-    //     );    
-        
-    // }); //function()
-    
     // 게시물 작성
     $(function(){     
         //masonry 추가
@@ -138,17 +136,21 @@
                             board: $("#write_board").val(),
                             color: $("#colorpicker").val()},
                     url: "/board/write",
-                    success: function(data){                                           
+                    success: function(data){    
                         var time = new Date(data.post.created_at);
+                        
                         var $item = $(
                             "<center><a href='/board/detail/" + data.post.id + "' data-transition='fade'>"
-                            +"<div class='post_form masonry-item' style='border-color:" + $('#colorpicker').val() + "'><br>"
-                                + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                            +"<div class='post_form masonry-item' style='border-color:" + $('#colorpicker').val() 
+                                + "; width:" + size + "px; height:" + size + "px'>"
                                 + "<div class='post_context_wrapper'>"
                                     + "<div class='left'></div>"
                                     + "<div class='right'></div>"
                                     + "<div class='context'>" + data.post.context + "</div>"
-                                + "</div><br>"
+                                + "</div>"
+                                + "<div class='time_section'>"
+                                    + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                                + "</div>"
                                 // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
                                 + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post.like_count
                                 + "&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -160,7 +162,8 @@
                              .masonry('prepended', $item);
                         
                         $("#text_count").html(300);     
-                        $("#write_context").html('');    
+                        $("#write_context").html('');      
+                        // window.location.reload(true);
                     }
                 });
         });
@@ -183,20 +186,23 @@
                         
                         // console.log(data.next_check);
                         if(!data.next_check){
-                            $(".space").hide();                            
+                            $(".more_button_space").hide();                            
                         }
                         // if(data.post_array.length > 0)
                         for(i = 0; i < data.post_array.length; i++){
                             var time = new Date(data.post_array[i].created_at);
                             var item = $(
                                 "<center><a href='/board/detail/" + data.post_array[i].id + "' data-transition='fade'>"
-                                +"<div class='post_form masonry-item' style='border-color:" + data.color_array[i] + "'><br>"
-                                    + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                                +"<div class='post_form masonry-item' style='border-color:" + data.color_array[i] 
+                                    + "; width:" + size + "px; height:" + size + "px'>"
                                     + "<div class='post_context_wrapper'>"
                                         + "<div class='left'></div>"
                                         + "<div class='right'></div>"
                                         + "<div class='context'>" + data.post_array[i].context + "</div>"
-                                    + "</div><br>"
+                                    + "</div>"
+                                    + "<div class='time_section'>"
+                                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                                    + "</div>"
                                     + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post_array[i].like_count
                                     + "&nbsp;&nbsp;&nbsp;&nbsp;"
                                     + "<img src='/assets/2_not-reply.png' width=18 height=16>  " + data.reply_count_array[i]

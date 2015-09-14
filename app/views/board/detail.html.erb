@@ -1,15 +1,16 @@
-<div class="col-md-4">
+<div class="write_container">
     <!--게시글 detail 폼-->
     <center>
         <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
-            <br>
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(@selected_post.created_at) %> 전 
             <div class="post_context_wrapper">
                 <div class="left"></div>
                 <div class="right"></div>
                 <div class="context"><%=raw @selected_post.context %></div>
             </div>
-            <br>
+            <div class="time_section">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                 <%= time_ago_in_words(@selected_post.created_at) %> 전
+            </div>
             <a href="#" id="like_button">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
             </a>
@@ -20,10 +21,8 @@
 </div>
 
 <!--모든 댓글-->
-<div class="col-md-6">
-
+<div class="post_container">
     <div class="masonry">
-        
         <center>        
             <div class="post_form stamp-item">                
                 <div class="write_context_wrapper">
@@ -46,14 +45,15 @@
         <% @reply_all.each do |reply| %>
         <center>
             <div class="reply_form masonry-item" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
-            <br>
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                <%= time_ago_in_words(reply.created_at) %> 전
                 <div class="reply_context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
                     <div class="context"><%=raw reply.context %></div>
-                </div><br>
+                </div>
+                <div class="time_section">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                    <%= time_ago_in_words(reply.created_at) %> 전
+                </div>
                 <span class='glyphicon glyphicon-heart' aria-hidden='true'></span>
                  <%= reply.like_count %>
                 <!--<a href="#" id="like_button">-->                   
@@ -64,7 +64,23 @@
 </div>
     
 <script>
-
+    
+    var resolution = window.screen.width;
+    var size = resolution*0.23;
+    var empty_left = resolution*0.24;
+    
+    $(function(){
+        // console.log(resolution);
+        $('.empty_form').css({'width':size +'px'});
+        $('.empty_form').css({'left':empty_left +'px'});
+        $('.post_form').css({'width':size +'px'});
+        $('.post_form').css({'height':size +'px'});
+        $('.write_form').css({'width':size +'px'});
+        $('.write_form').css({'height':size +'px'});    
+        $('.reply_form').css({'width':size +'px'});
+        $('.reply_form').css({'height':size +'px'});    
+    });
+    
     // 글자 수 카운트 하는 부분  
     $(function(){
         $('#reply_context').keyup(function(){            
@@ -113,14 +129,16 @@
                         
                         var time = new Date(data.reply.created_at);
                         var $item = $(                 
-                                "<center><div class='reply_form masonry-item' style='border-color:<%= $COLOR_ARRAY[@selected_post.color] %>'><br>"
-                                    + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " 
-                                    + moment(time).fromNow()
+                                "<center><div class='reply_form masonry-item' style='border-color:<%= $COLOR_ARRAY[@selected_post.color] %>"
+                                    + "; width:" + size + "px; height:" + size + "px'>"
                                     + "<div class='reply_context_wrapper'>"
                                         + "<div class='left'></div>"
                                         + "<div class='right'></div>"
                                         + "<div class='context'>" + data.reply.context + "</div>"
-                                    + "</div><br>"
+                                    + "</div>"
+                                    + "<div class='time_section'>"
+                                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                                    + "</div>"
                                     + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
                                     + data.reply.like_count
                                 + "</div></center>"
