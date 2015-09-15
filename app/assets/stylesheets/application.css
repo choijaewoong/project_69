@@ -15,9 +15,9 @@
  */
 
 @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
-@import url(https://fonts.googleapis.com/earlyaccess/nanumpenscript.css); /* font-family: 'Nanum Pen Script', serif; */
-@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);  /* font-family: 'Jeju Gothic', serif; */
-@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);  /* font-family: 'Hanna', serif; */
+/*@import url(https://fonts.googleapis.com/earlyaccess/nanumpenscript.css); /* font-family: 'Nanum Pen Script', serif; */
+/*@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);  /* font-family: 'Jeju Gothic', serif; */
+/*@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);  /* font-family: 'Hanna', serif; */
 
 body {
     background-color: #D5D6D8;
@@ -98,12 +98,14 @@ body {
 /*}*/
 
 /*게시글*/
-.post_form {    
+.post_form {
+    /*position: relative;*/
+    /*top:-76px;*/
     min-width: 300px;
     min-height: 300px;
     /*width: 370px;*/
     /*height: 370px;       */
-    margin-bottom: 70px;
+    margin-bottom: 45px;
     border: 15px solid black;
     border-radius: 50%;    
     border-color: gray;
@@ -159,28 +161,66 @@ body {
     width: 15%;
     height: 100%;
     /*background-color: black;*/
-    -webkit-shape-outside: polygon(0 0, 100% 0, 30% 15% , 10% 50% , 30% 85% , 100% 100%, 0% 100% );
-    -webkit-clip-path: polygon(0 0, 100% 0, 30% 15% , 10% 50% , 30% 85% , 100% 100%, 0% 100% );
+    /*-ms-shape-outside: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );*/
+    /*-ms-clip-path: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );*/
+    /*-moz-shape-outside: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );*/
+    /*-moz-clip-path: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );*/
+    -webkit-shape-outside: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );
+    -webkit-clip-path: polygon(0 0, 100% 0, 40% 15% , 10% 50% , 40% 85% , 100% 100%, 0% 100% );
 }
 .right {    
     float: right;
     width: 15%;
     height: 100%;
     /*background-color: black;*/
-    -webkit-shape-outside: polygon(100% 0, 0 0, 70% 15% , 90% 50%, 70% 85% ,0 100%, 100% 100%);
-    -webkit-clip-path: polygon(100% 0, 0 0, 70% 15% , 90% 50%, 70% 85% ,0 100%, 100% 100%);
+    /*-ms-shape-outside: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
+    /*-ms-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
+    /*-moz-shape-outside: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
+    /*-moz-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
+    -webkit-shape-outside: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);
+    /*-webkit-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
 }
 
 /*연결 고리 div*/
-.link_section{
-    position:relative;
-    top: -30px;
+.link_section_down{
+    /*mix-blend-mode: luminosity;*/
+    float: right;
+    position: relative;
     clear: left;
-    height: 100px;
-    /*background:url("/assets/link_line.1.png");*/
+    z-index: -1;
     
-}
+    right: 18.9%;
+    bottom: 45px;
 
+    height: 8px;
+    width: 40%;    
+    -ms-transform: rotate(-33deg); 
+    -moz-transform: rotate(-33deg); 
+    -webkit-transform: rotate(-33deg); 
+    transform: rotate(-33deg);
+    /*background:-ms-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);  */
+    /*background:-moz-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%); */
+    /*background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, red 100%); */
+    /*background:linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);*/
+}
+.link_section_up{
+    /*mix-blend-mode: luminosity;*/
+    position: relative;
+    clear: left;
+    z-index: -1;
+    left: 18.9%; 
+    height: 8px;
+    width: 40%;    
+    -ms-transform: rotate(-33deg); 
+    -moz-transform: rotate(-33deg); 
+    -webkit-transform: rotate(-33deg); 
+    transform: rotate(-33deg);
+    /*background:-ms-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);  */
+    /*background:-moz-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%); */
+    /*background:-webkit-linear-gradient(left, blue 0%, rgba(0, 0, 0, 0) 100%); */
+    /*background:linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);*/
+}
+    
 
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {

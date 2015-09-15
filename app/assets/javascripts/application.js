@@ -14,20 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-var resolution = window.screen.width;
-var size = resolution*0.23;
-var empty_left = resolution*0.24;
-
-$(function(){
-    // console.log(resolution);
-    $('.empty_form').css({'width':size +'px'});
-    $('.empty_form').css({'left':empty_left +'px'});
-    $('.post_form').css({'width':size +'px'});
-    $('.post_form').css({'height':size +'px'});
-    $('.write_form').css({'width':size +'px'});
-    $('.write_form').css({'height':size +'px'});    
-});
-
 $(function(){        
     moment.locale('ko', {
         months : '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
