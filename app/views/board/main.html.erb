@@ -1,14 +1,14 @@
-<div class="write_container">
+<div class="write_container" style="display:none">
     <!--게시글 작성 폼-->
-    <p><%= @board.description %></p><br>
     <center>   
+        <p><%= @board.description %></p>
         <div class="button_section">            
             <a href="#" id="log_in" class="login_button">글 쓰기</a>
         </div>
-        <div id="hide_section" style="display:none; float:right">
+        <div class="form_section" style="display:none">
             <div class="write_form">            
                 <input type="hidden" id="write_board" value="<%= @board.id %>">
-                <div class="write_context_wrapper">
+                <div class="context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
                     <div id="write_context" class="text_area" contenteditable="true" wrap="hard"></div>
@@ -34,7 +34,7 @@
 </div>
 
 <!--모든 게시물-->
-<div class="post_container">
+<div class="post_container" style="display:none">
     
     <div class="masonry">        
         
@@ -64,10 +64,13 @@
 </div>
     
 <script>
-
     var resolution = window.screen.width;
     var size = resolution*0.23;
     var empty_left = resolution*0.24;
+    var post_margin_bottom = resolution*0.025;
+    var bottom_link = resolution*0.01;
+    var top_link = resolution*0.015;
+    var link_width = resolution * 0.005;
     
     $(function(){
         // console.log(resolution);
@@ -77,34 +80,20 @@
         $('.post_form').css({'height':size +'px'});
         $('.write_form').css({'width':size +'px'});
         $('.write_form').css({'height':size +'px'});           
-    });
-    
-     // $(function(){   
-    //     // 게시물 폼 크기 설정 부분 
-    //     var form_size = $('.post_form').width() + 30;
-    //     $('.post_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'width':form_size +'px'});
-    //     $('.empty_form').css({'height':form_size/2 +'px'});
         
-    //     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-    //     $(window).resize(
-    //         function(){       
-    //             form_size = $('.post_form').width() + 30;            
-    //             $('.post_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'width':form_size +'px'});
-    //             $('.empty_form').css({'height':form_size/2 +'px'});
-    //         }
-    //     );    
-    // }); //function() 
-    
+        $('.post_form').css({'margin-bottom':post_margin_bottom +'px'});
+        $('.link').css({'height': link_width + 'px'});
+        $('.bottom').css({'bottom':bottom_link +'px'});
+        $('.top').css({'bottom':top_link +'px'});
+        $('.write_container').show();
+        $('.post_container').show();
+    });
 
     $(function(){
         // $(#hide_section).hide();
         $("#log_in").click(function(){
-           $("#hide_section").show(); 
-           $(this).hide();
+           $(".form_section").show(); 
+           $(".hide_section").hide();
         });
     });  
 
@@ -134,6 +123,46 @@
         });        
     });
 
+    
+    // 게시글 item 생성 함수
+    function create_item(post, color, reply_count){
+        var time = new Date(post.created_at);
+        var item = $(
+            "<div class='masonry-item'><center>"
+                + "<div class='link top' style='height:" + link_width + "px; bottom:" + top_link + "px; "
+                    + "background:-webkit-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:-ms-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:-moz-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%)'>"
+                + "</div>"
+                + "<div class='post_form' style='border-color:" + color
+                    + "; width:" + size + "px; height:" + size + "px; margin-bottom:" + post_margin_bottom + "px'>"
+                    + "<div class='context_wrapper'>"
+                        + "<div class='left'></div>"
+                        + "<div class='right'></div>"
+                        + "<a href='/board/detail/" + post.id + "' data-transition='fade'>"
+                            + "<div class='context'>" + post.context + "</div>"
+                        + "</a>"
+                    + "</div>"
+                    + "<div class='time_section'>"
+                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                    + "</div>"
+                    // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
+                    + "<img src='/assets/1_unlike.png' width=17 height=16>   " + post.like_count
+                    + "&nbsp;&nbsp;&nbsp;&nbsp;"
+                    + "<img src='/assets/2_not-reply.png' width=15 height=17>  " + reply_count
+                + "</div>"
+                + "<div class='link bottom' style='height:" + link_width + "px; bottom:" + bottom_link + "px; "
+                    + "background:-webkit-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:-ms-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:-moz-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%)'>"
+                + "</div>"
+            + "</center></div>"
+            ); 
+        return item;
+    }
+
     // 게시물 작성
     $(function(){     
         //masonry 추가
@@ -151,29 +180,11 @@
                             color: $("#colorpicker").val()},
                     url: "/board/write",
                     success: function(data){    
-                        var time = new Date(data.post.created_at);
                         
-                        var $item = $(
-                            "<center><a href='/board/detail/" + data.post.id + "' data-transition='fade'>"
-                            +"<div class='post_form masonry-item' style='border-color:" + $('#colorpicker').val() 
-                                + "; width:" + size + "px; height:" + size + "px'>"
-                                + "<div class='post_context_wrapper'>"
-                                    + "<div class='left'></div>"
-                                    + "<div class='right'></div>"
-                                    + "<div class='context'>" + data.post.context + "</div>"
-                                + "</div>"
-                                + "<div class='time_section'>"
-                                    + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                                + "</div>"
-                                // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
-                                + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post.like_count
-                                + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                                + "<img src='/assets/2_not-reply.png' width=18 height=16>  " + data.reply_count
-                            + "</div>"
-                            + "</a></center>"
-                        );  
-                        $grid.prepend($item)
-                             .masonry('prepended', $item);
+                        var item = create_item(data.post, $("#colorpicker").val(), data.reply_count);
+                          
+                        $grid.prepend(item)
+                             .masonry('prepended', item);
                         
                         $("#text_count").html(300);     
                         $("#write_context").html('');      
@@ -204,25 +215,9 @@
                         }
                         // if(data.post_array.length > 0)
                         for(i = 0; i < data.post_array.length; i++){
-                            var time = new Date(data.post_array[i].created_at);
-                            var item = $(
-                                "<center><a href='/board/detail/" + data.post_array[i].id + "' data-transition='fade'>"
-                                +"<div class='post_form masonry-item' style='border-color:" + data.color_array[i] 
-                                    + "; width:" + size + "px; height:" + size + "px'>"
-                                    + "<div class='post_context_wrapper'>"
-                                        + "<div class='left'></div>"
-                                        + "<div class='right'></div>"
-                                        + "<div class='context'>" + data.post_array[i].context + "</div>"
-                                    + "</div>"
-                                    + "<div class='time_section'>"
-                                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                                    + "</div>"
-                                    + "<img src='/assets/1_unlike.png' width=12 height=18>   " + data.post_array[i].like_count
-                                    + "&nbsp;&nbsp;&nbsp;&nbsp;"
-                                    + "<img src='/assets/2_not-reply.png' width=18 height=16>  " + data.reply_count_array[i]
-                                + "</div>"
-                                + "</a></center>"
-                            );
+
+                            var item = create_item(data.post_array[i], data.color_array[i], data.reply_count_array[i]);
+                            
                             // item_array.push(item);
                             $grid.append(item)
                              .masonry('appended', item);

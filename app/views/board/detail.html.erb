@@ -1,31 +1,34 @@
-<div class="write_container">
+<div class="write_container" style="display:none">
     <!--게시글 detail 폼-->
     <center>
-        <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
-            <div class="post_context_wrapper">
-                <div class="left"></div>
-                <div class="right"></div>
-                <div class="context"><%=raw @selected_post.context %></div>
-            </div>
-            <div class="time_section">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                 <%= time_ago_in_words(@selected_post.created_at) %> 전
-            </div>
-            <a href="#" id="like_button">
-                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span id="like_count"> <%= @selected_post.like_count %></span>
-            </a>
-            &nbsp;&nbsp;
-            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span id="reply_count"> <%= @selected_post.replies.count %></span>
-        </div> 
+        <p><%= @selected_post.board.description %></p>
+        <div class="form_section">
+            <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
+                <div class="context_wrapper">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                    <div class="context"><%=raw @selected_post.context %></div>
+                </div>
+                <div class="time_section">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                     <%= time_ago_in_words(@selected_post.created_at) %> 전
+                </div>
+                <a href="#" id="like_button">
+                    <img src='/assets/1_unlike.png' width=17 height=16><span id="like_count"> <%= @selected_post.like_count %></span>
+                </a>
+                &nbsp;&nbsp;
+                    <img src='/assets/2_not-reply.png' width=15 height=17><span id="reply_count"> <%= @selected_post.replies.count %></span>
+            </div> 
+        </div>
     </center>
 </div>
 
 <!--모든 댓글-->
-<div class="post_container">
+<div class="post_container" style="display:none">
     <div class="masonry">
-        <center>        
-            <div class="post_form stamp-item">                
-                <div class="write_context_wrapper">
+        <center>
+            <div class="stamp-item post_form">
+                <div class="context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
                     <div id="reply_context" class="text_area" contenteditable="true"></div>
@@ -33,34 +36,53 @@
                 <span id="text_count">300</span><br>
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
-                    <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
-                </a>                
+                    <img src='/assets/3_unconfirm.png' width=30 height=30>
+                </a>
             </div>
-        </center>    
-        
+            <!--float:left; width:30%; z-index:1; left:5%;-->
+            <div class="link bottom" 
+                 style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
+                        background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
+                        background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
+                        background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%)">
+            </div>
+        </center>
         <!--댓글 작성 폼 옆 빈 공간-->
         <div class="empty_form stamp-item">            
         </div>
         
+        
         <% @reply_all.each do |reply| %>
-        <center>
-            <div class="reply_form masonry-item" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
-                <div class="reply_context_wrapper">
-                    <div class="left"></div>
-                    <div class="right"></div>
-                    <div class="context"><%=raw reply.context %></div>
+            <div class="masonry-item"><center>
+                <div class="link top" 
+                     style="background:-webkit-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:-ms-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:-moz-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%)">
+                </div>  
+                <div class="reply_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
+                    <div class="context_wrapper">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                        <div class="context"><%=raw reply.context %></div>
+                    </div>
+                    <div class="time_section">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <%= time_ago_in_words(reply.created_at) %> 전
+                    </div>
+                    <img src='/assets/1_unlike.png' width=17 height=16>
+                     <%= reply.like_count %>
+                    <!--<a href="#" id="like_button">-->                   
                 </div>
-                <div class="time_section">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    <%= time_ago_in_words(reply.created_at) %> 전
+                <div class="link bottom" 
+                     style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
+                            background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
+                            background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
+                            background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%)">
                 </div>
-                <span class='glyphicon glyphicon-heart' aria-hidden='true'></span>
-                 <%= reply.like_count %>
-                <!--<a href="#" id="like_button">-->                   
-            </div>            
-        </center>
+            </center></div>
         <% end %>
-    </div>
+    </div><!--masonry-->
 </div>
     
 <script>
@@ -68,6 +90,11 @@
     var resolution = window.screen.width;
     var size = resolution*0.23;
     var empty_left = resolution*0.24;
+    
+    var reply_margin_bottom = resolution*0.025;
+    var link_width = resolution * 0.005;
+    var bottom_link = resolution*0.01;
+    var top_link = resolution*0.015;
 
     $(function(){
         $('.empty_form').css({'width':size +'px'});
@@ -78,6 +105,15 @@
         $('.write_form').css({'height':size +'px'});    
         $('.reply_form').css({'width':size +'px'});
         $('.reply_form').css({'height':size +'px'});    
+        
+        $('.post_form').css({'margin-bottom':reply_margin_bottom +'px'});
+        $('.reply_form').css({'margin-bottom':reply_margin_bottom +'px'});
+        $('.link').css({'height': link_width + 'px'});
+        $('.bottom').css({'bottom':bottom_link +'px'});
+        $('.top').css({'bottom':top_link +'px'});
+        
+        $('.write_container').show();
+        $('.post_container').show();
     });
     
     // 글자 수 카운트 하는 부분  
@@ -108,6 +144,42 @@
     //         }
     //     );    
     // }); //function()
+    function create_item(reply, color){
+        var time = new Date(reply.created_at);
+        var item = $(
+            "<div class='masonry-item'><center>"
+                + "<div class='link top' style='height:" + link_width + "px; bottom:" + top_link + "px; "
+                    + "background:-webkit-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:-ms-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:-moz-linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%);"
+                    + "background:linear-gradient(left, " + color + " 30%, rgba(0, 0, 0, 0) 70%)'>"
+                + "</div>"
+                + "<div class='reply_form' style='border-color:" + color
+                    + "; width:" + size + "px; height:" + size + "px; margin-bottom:" + reply_margin_bottom + "px'>"
+                    + "<div class='context_wrapper'>"
+                        + "<div class='left'></div>"
+                        + "<div class='right'></div>"
+                        + "<a href='/board/detail/" + reply.id + "' data-transition='fade'>"
+                            + "<div class='context'>" + reply.context + "</div>"
+                        + "</a>"
+                    + "</div>"
+                    + "<div class='time_section'>"
+                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                    + "</div>"
+                    // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
+                    + "<img src='/assets/1_unlike.png' width=17 height=16>   " + reply.like_count
+                + "</div>"
+                + "<div class='link bottom' style='height:" + link_width + "px; bottom:" + bottom_link + "px; "
+                    + "background:-webkit-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:-ms-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:-moz-linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%);"
+                    + "background:linear-gradient(left,  rgba(0, 0, 0, 0) 30%, " + color + " 60%)'>"
+                + "</div>"
+            + "</center></div>"
+            ); 
+        return item;
+    }
+    
     
     
     // 게시물 작성
@@ -125,26 +197,26 @@
                     data: { context: $("#reply_context").html() },
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){                          
+                        var item = create_item(data.reply , "<%= $COLOR_ARRAY[@selected_post.color] %>");
                         
-                        var time = new Date(data.reply.created_at);
-                        var $item = $(                 
-                                "<center><div class='reply_form masonry-item' style='border-color:<%= $COLOR_ARRAY[@selected_post.color] %>"
-                                    + "; width:" + size + "px; height:" + size + "px'>"
-                                    + "<div class='reply_context_wrapper'>"
-                                        + "<div class='left'></div>"
-                                        + "<div class='right'></div>"
-                                        + "<div class='context'>" + data.reply.context + "</div>"
-                                    + "</div>"
-                                    + "<div class='time_section'>"
-                                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                                    + "</div>"
-                                    + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
-                                    + data.reply.like_count
-                                + "</div></center>"
-                        );     
+                        // $(                 
+                        //         "<center><div class='reply_form masonry-item' style='border-color:<%#= $COLOR_ARRAY[@selected_post.color] %>"
+                        //             + "; width:" + size + "px; height:" + size + "px'>"
+                        //             + "<div class='context_wrapper'>"
+                        //                 + "<div class='left'></div>"
+                        //                 + "<div class='right'></div>"
+                        //                 + "<div class='context'>" + data.reply.context + "</div>"
+                        //             + "</div>"
+                        //             + "<div class='time_section'>"
+                        //                 + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                        //             + "</div>"
+                        //             + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
+                        //             + data.reply.like_count
+                        //         + "</div></center>"
+                        // );     
                         
-                        $grid.prepend($item)
-                             .masonry('prepended', $item);
+                        $grid.prepend(item)
+                             .masonry('prepended', item);
                         
                         $("#text_count").html(300);     
                         $("#reply_count").html(" " + data.reply_count);         

@@ -66,6 +66,11 @@ body {
     margin-top: 20%;
     height:60%;
 }
+.context_wrapper{
+    margin-top: 20%;
+    height:60%;
+}
+
 .text_area{
     width: 96%;
     height: 100%;
@@ -99,14 +104,11 @@ body {
 
 /*게시글*/
 .post_form {
-    /*position: relative;*/
-    /*top:-76px;*/
     min-width: 300px;
     min-height: 300px;
     /*width: 370px;*/
     /*height: 370px;       */
-    margin-bottom: 45px;
-    border: 15px solid black;
+    border: 16px solid black;
     border-radius: 50%;    
     border-color: gray;
     float: left;
@@ -119,7 +121,7 @@ body {
 .context {    
     width: 96%;
     height: 100%;
-    background-color: gray;
+    /*background-color: gray;*/
     text-align: center;   
     font-size: 14px;
     line-height: 155%;    
@@ -133,9 +135,10 @@ body {
 
 /*댓글*/
 .reply_form {
-    min-width: 340px;
-    width: 340px;
-    height: 340px;   
+    min-width: 300px;
+    min-height: 300px;
+    /*width: 340px;*/
+    /*height: 340px;   */
     margin-bottom: 70px;
     border: 8px solid black;
     border-radius: 50%;    
@@ -178,66 +181,62 @@ body {
     /*-moz-shape-outside: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
     /*-moz-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
     -webkit-shape-outside: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);
-    /*-webkit-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);*/
+    -webkit-clip-path: polygon(100% 0, 0 0, 60% 15% , 90% 50%, 60% 85% ,0 100%, 100% 100%);
 }
 
 /*연결 고리 div*/
-.link_section_down{
-    /*mix-blend-mode: luminosity;*/
-    float: right;
+.link{
     position: relative;
     clear: left;
     z-index: -1;
+    /*bottom:16px;*/
+    /*bottom: 45px;*/
+    /*height: 1px;*/
+    width: 60%;    
+    -ms-transform: rotate(-35deg); 
+    -moz-transform: rotate(-32deg); 
+    -webkit-transform: rotate(-32deg); 
     
-    right: 18.9%;
-    bottom: 45px;
-
-    height: 8px;
-    width: 40%;    
-    -ms-transform: rotate(-33deg); 
-    -moz-transform: rotate(-33deg); 
-    -webkit-transform: rotate(-33deg); 
-    transform: rotate(-33deg);
+    /*transform: rotate(-32deg);*/
+    /*background-color:black;*/
     /*background:-ms-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);  */
     /*background:-moz-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%); */
     /*background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, red 100%); */
     /*background:linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);*/
 }
-.link_section_up{
-    /*mix-blend-mode: luminosity;*/
-    position: relative;
-    clear: left;
-    z-index: -1;
-    left: 18.9%; 
-    height: 8px;
-    width: 40%;    
-    -ms-transform: rotate(-33deg); 
-    -moz-transform: rotate(-33deg); 
-    -webkit-transform: rotate(-33deg); 
-    transform: rotate(-33deg);
-    /*background:-ms-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);  */
-    /*background:-moz-linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%); */
-    /*background:-webkit-linear-gradient(left, blue 0%, rgba(0, 0, 0, 0) 100%); */
-    /*background:linear-gradient(left, red 0%, rgba(0, 0, 0, 0) 80%);*/
+.bottom{
+    /*bottom:16px;*/
 }
+.top{
+    /*bottom:24px;*/
+}
+.stamp_link{
+    /*position:relative;*/ 
     
+    float:left;
+}
 
 /*첫번째 게시물 옆 빈 공간*/
 .empty_form {
     width: 370px;
     height: 210px;
-    /*background-color: black;*/
+    background-color: black;
     /*float: left;*/
     /*right: 10%;*/
+    /*display:inline;*/
     left: 370px;
     position: relative;
 }
 
+.write_form_wrapper{
+    margin:0;
+    width:400px;
+}
 
 /* masonry_item */
 .masonry-item {
 }
-.stamp-item {    
+.stamp-item {
 }
 
 
@@ -367,8 +366,15 @@ a.sorting_name:active{color:#EE3C39;}
 /*}*/
 
 .button_section{
-    /*position:relative;*/
-    /*top: 50%;*/
-    /*left: 25%;*/
-    /*transform: translate(-50%, -50%);*/
+    position:relative;
+    top: 250px;
+    left: 10%;
+    transform: translate(0, -50%);
+}
+
+.form_section{    
+    position:relative;
+    top: 250px;
+    left: 10%;    
+    transform: translate(0, -50%);
 }
