@@ -1,7 +1,7 @@
 <div class="write_container" style="display:none">
     <!--게시글 작성 폼-->
     <center>   
-        <p><%= @board.description %></p>
+        <!--<p><%#= @board.description %></p>-->
         <div class="button_section">            
             <a href="#" id="log_in" class="login_button">글 쓰기</a>
         </div>
@@ -15,7 +15,7 @@
                 </div>
                 <br>
                 <!--<textarea id="write_context" required></textarea>                            -->
-                <p id="text_count">300</p>
+                <!--<p id="text_count">300</p>-->
             </div><br>
             
             <!--색상 선택-->
@@ -51,10 +51,11 @@
         
         <!--나머지 게시물-->
         <!--<#% if @post_all.count != 0 %>-->
+        
         <% @post_part.each do |post| %>
            <%= render :partial => '/board/post_form', 
                       :locals => {:post => post } %>               
-        <% end %>      
+        <% end %>
         <!--<#% end %>-->
     </div>
     
@@ -104,13 +105,13 @@
     });
 
     // 글자 수 카운트 하는 부분 
-    $(function(){
-        $('#write_context').keyup(function(){            
-            var inputLength = $(this).html().length;
-            var remain = 300 - inputLength;
-            $("#text_count").html(remain);
-        });
-    });
+    // $(function(){
+    //     $('#write_context').keyup(function(){            
+    //         var inputLength = $(this).html().length;
+    //         var remain = 300 - inputLength;
+    //         $("#text_count").html(remain);
+    //     });
+    // });
 
     
     // 색상 선택 부분 
@@ -187,8 +188,7 @@
                              .masonry('prepended', item);
                         
                         $("#text_count").html(300);     
-                        $("#write_context").html('');      
-                        // window.location.reload(true);
+                        $("#write_context").html('');                              
                     }
                 });
         });
@@ -228,7 +228,70 @@
                     }
                 });
         });
-    });    
+    });   
+    
+    // 게시판 체크
+    $(function(){ 
+        
+        
+        $('a.board_name').each(function(i, category){            
+            if($(this).html() == "<%=@board.description %>"){
+                $(this).css("color", "#EE3C39");
+                return false;
+            }            
+        });
+        $('a.board_name').on('click', function(){
+            $('a.board_name').css("color", "#ffffff");
+            $(this).css("color", "#EE3C39");
+        });
+    });
+    
+    // $(window).on('hashchange', function() {
+    //     console.log("hhel");  
+    // });
+    
+    // $( window ).on("unload", function() {
+        
+    //   window.location.reload(true);
+    // });
+    
+        
+    // $(function(){
+    //     $(window).on("navigate", function(event, data) {
+            
+    //         console.log("hello");
+            
+    //         var direction = data.state.direction;
+    //         // if (direction == 'back') {
+    //         console.log("hello");
+    //             // window.location.reload(true);
+    //             // do something
+            
+    //         // if (direction == 'forward') {
+    //         //     // window.location.reload(true);
+    //         //     // do something else
+    //         // }
+    //     });
+    // });
+    
+    // $(function(){
+        
+    //      var $grid = $('.masonry').isotope({
+    //         itemSelector: '.masonry-item',
+    //         getSortData: {
+    //             // context: '.context'              
+    //             category : '[data-like]'
+              
+    //         }
+    //       });
+        
+    //       // bind sort button click
+    //       $('.right_nav').on( 'click', 'a', function() {
+    //         // var sortValue = $(this).attr('data-sort-value');
+    //         console.log("clicked");
+    //         $grid.isotope({ sortBy: "category" });
+    //       });       
+    // });
 </script>
 
 

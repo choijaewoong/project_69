@@ -220,17 +220,13 @@ body {
 .empty_form {
     width: 370px;
     height: 210px;
-    background-color: black;
+
+/*background-color: black;*/
     /*float: left;*/
     /*right: 10%;*/
     /*display:inline;*/
     left: 370px;
     position: relative;
-}
-
-.write_form_wrapper{
-    margin:0;
-    width:400px;
 }
 
 /* masonry_item */
@@ -302,6 +298,10 @@ a.board_name:visited{color:#ffffff;}
 a.board_name:hover{color:#EE3C39;}
 a.board_name:active{color:#EE3C39;}
 
+/*.board_name.is_checked{*/
+/*    color:#EE3C39 !important;*/
+/*}*/
+
 /*a.board_name:focus{*/
 /*    text-decoration:underline*/
 /*}*/
@@ -322,6 +322,9 @@ a.sorting_name:link{color:#ffffff;}
 a.sorting_name:visited{color:#ffffff;}
 a.sorting_name:hover{color:#EE3C39;}
 a.sorting_name:active{color:#EE3C39;}
+
+
+
 
 /*BUTTON*/
 .login_button {

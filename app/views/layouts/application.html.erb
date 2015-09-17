@@ -12,6 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="/assets/masonry.pkgd.min.js" type="text/javascript"></script>
+    <!--<script src="/assets/backfix.min.js" type="text/javascript"></script>-->
+    <!--<script src="/assets/isotope.pkgd.min.js" type="text/javascript"></script>-->
     <script src="/assets/jquery.simplecolorpicker.js" type="text/javascript"></script>
 </head>
 <body>
@@ -54,19 +56,19 @@
             <!--</div>-->
             <!--<hr class="style_one">-->
             <div style="height:70px">
-                <a class="board_name" href="/board/main/78">78</a>
+                <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[0]%>"><%=$CATEGORY_NAME[0]%></a>
             </div>
             <div style="height:70px">
             <!--<hr class="style_one">-->
-                <a class="board_name" href="/board/main/18">18</a>
+                <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[1]%>"><%=$CATEGORY_NAME[1]%></a>
             </div>
             <div style="height:70px">
             <!--<hr class="style_one">-->
-            <a class="board_name" href="/board/main/4">4</a>
+            <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[2]%>"><%=$CATEGORY_NAME[2]%></a>
             </div>
             <div style="height:70px">
             <!--<hr class="style_one">-->
-            <a class="board_name" href="/board/main/100">100</a>
+            <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[3]%>"><%=$CATEGORY_NAME[3]%></a>
             </div>
             <!--<hr class="style_one">-->
             <br>
@@ -118,16 +120,14 @@
     <!--</div>-->
 </div>
 <script>
-
     
-    
-    $(function(){
-        // $(#hide_section).hide();
-        // $("#log_in").click(function(){
-        //   $("#hide_section").show(); 
-        //   $(this).hide();
-        // });
-    });
+    // $(function(){
+    //     // $(#hide_section).hide();
+    //     // $("#log_in").click(function(){
+    //     //   $("#hide_section").show(); 
+    //     //   $(this).hide();
+    //     // });
+    // });
 </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <div class="write_container" style="display:none">
     <!--게시글 detail 폼-->
     <center>
-        <p><%= @selected_post.board.description %></p>
+        <!--<p><%#= @selected_post.board.description %></p>-->
         <div class="form_section">
             <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
                 <div class="context_wrapper">
@@ -32,24 +32,25 @@
                     <div class="left"></div>
                     <div class="right"></div>
                     <div id="reply_context" class="text_area" contenteditable="true"></div>
-                </div> 
-                <span id="text_count">300</span><br>
+                </div><br> 
+                <!--<span id="text_count">300</span><br>-->
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
-                    <img src='/assets/3_unconfirm.png' width=30 height=30>
+                    <img src='/assets/3_confirm.png' width=30 height=30>
                 </a>
-            </div>
-            <!--float:left; width:30%; z-index:1; left:5%;-->
-            <div class="link bottom" 
-                 style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
-                        background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
-                        background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);
-                        background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%)">
-            </div>
+            </div>            
         </center>
         <!--댓글 작성 폼 옆 빈 공간-->
         <div class="empty_form stamp-item">            
         </div>
+        
+        <!--float:left; width:30%; z-index:1; left:5%;-->
+        <!--<div class="link bottom stamp-item" -->
+        <!--     style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);-->
+        <!--            background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);-->
+        <!--            background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%);-->
+        <!--            background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, gray 60%)">-->
+        <!--</div>-->
         
         
         <% @reply_all.each do |reply| %>
@@ -117,33 +118,14 @@
     });
     
     // 글자 수 카운트 하는 부분  
-    $(function(){
-        $('#reply_context').keyup(function(){            
-            var inputLength = $(this).val().length;
-            var remain = 300 - inputLength;
-            $("#text_count").html(remain);
-        });
-    });
+    // $(function(){
+    //     $('#reply_context').keyup(function(){            
+    //         var inputLength = $(this).val().length;
+    //         var remain = 300 - inputLength;
+    //         $("#text_count").html(remain);
+    //     });
+    // });
 
-    // $(function(){   
-    //     // 게시물 폼 크기 설정 부분 
-    //     var form_size = $('.reply_form').width() + 30;
-    //     $('.reply_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'height':form_size +'px'});
-    //     $('.write_form').css({'width':form_size +'px'});
-    //     $('.empty_form').css({'height':form_size/2 +'px'});
-        
-    //     // 웹 페이지 크기 변경시 게시물 폼 크기 변경 되는 부분
-    //     $(window).resize(
-    //         function(){       
-    //             form_size = $('.reply_form').width() + 30;            
-    //             $('.reply_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'height':form_size +'px'});
-    //             $('.write_form').css({'width':form_size +'px'});
-    //             $('.empty_form').css({'height':form_size/2 +'px'});
-    //         }
-    //     );    
-    // }); //function()
     function create_item(reply, color){
         var time = new Date(reply.created_at);
         var item = $(
@@ -241,6 +223,18 @@
                 });
             }
         );
+        
+         $(function(){ 
+            $('a.board_name').each(function(i, category){            
+                if($(this).html() == "<%=@selected_post.board.description %>"){
+                    $(this).css("color", "#EE3C39");
+                    return false;
+                }            
+            });
+            $('a.board_name').on('click', function(){
+                $(this).css("color", "#EE3C39");
+            });
+        });
     });
 </script>
 

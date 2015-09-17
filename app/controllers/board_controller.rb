@@ -1,7 +1,9 @@
 class BoardController < ApplicationController
+    
     before_action :authenticate_user!, only: [:main]
     
     $CATEGORY_NAME = ["78", "18", "4", "100"]
+    
     $COLOR_ARRAY = ["#EE3C39",
                     "#50266B",
                     "#094A78",
@@ -9,6 +11,7 @@ class BoardController < ApplicationController
                     "#006040",
                     "#552B0F",
                     "#2D2D2D"]
+                    
     $board_show_count = 10
     
     def main
