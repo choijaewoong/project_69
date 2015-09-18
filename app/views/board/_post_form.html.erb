@@ -2,21 +2,21 @@
 <div class="masonry-item" data-like="<%= post.like_count %>">
     <center>
         <div class="link top" 
-             style="background:-webkit-linear-gradient(left, <%= $COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                    background:-ms-linear-gradient(left, <%= $COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                    background:-moz-linear-gradient(left, <%= $COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                    background:linear-gradient(left, <%= $COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%)">
+             style="background:-webkit-linear-gradient(left, <%= @COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                    background:-ms-linear-gradient(left, <%= @COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                    background:-moz-linear-gradient(left, <%= @COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
+                    background:linear-gradient(left, <%= @COLOR_ARRAY[post.color] %> 30%, rgba(0, 0, 0, 0) 70%)">
         </div>                  
-        <div class="post_form" style="border-color:<%= $COLOR_ARRAY[post.color] %>">
+        <div class="post_form" style="border-color:<%= @COLOR_ARRAY[post.color] %>">
            <div class="context_wrapper">
                <div class="left"></div>
                <div class="right"></div>
-               <a href ="/board/detail/<%= post.id %>" style="color: <%= $COLOR_ARRAY[post.color] %>">
+               <a href ="/board/detail/<%= post.id %>" style="color: <%= @COLOR_ARRAY[post.color] %>">
                    <div class="context"><%=raw post.context %></div>
                </a>
            </div>
            <div class="time_section">
-               <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= time_ago_in_words(post.created_at) %> 전
+               <img src='/assets/clock.png' color="black" width=16 height=16> <%= time_ago_in_words(post.created_at) %> 전
            </div>
            <!--<a href="#" id="like_button">-->
            <img src='/assets/1_unlike.png' width=17 height=16> <%= post.like_count %>
@@ -25,10 +25,10 @@
            <img src='/assets/2_not-reply.png' width=15 height=17> <%= post.replies.count %>
         </div>
         <div class="link bottom" 
-             style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[post.color] %> 60%);
-                    background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[post.color] %> 60%);
-                    background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[post.color] %> 60%);
-                    background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[post.color] %> 60%)">
+             style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[post.color] %> 60%);
+                    background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[post.color] %> 60%);
+                    background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[post.color] %> 60%);
+                    background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[post.color] %> 60%)">
         </div>
     </center>
 </div>

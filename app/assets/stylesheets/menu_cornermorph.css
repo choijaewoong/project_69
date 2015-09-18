@@ -1,31 +1,14 @@
-
 .container{
+	/*overflow: hidden;*/
 	width: 100%;
-
+	height: 100%;
 }
 
-/*.container::before {*/
-/*	position: fixed;*/
-/*	top: 0;*/
-/*	left: 0;*/
-/*	z-index: 10;*/
-/*	width: 100%;*/
-/*	height:100%;*/
-/*	background: rgba(0,0,0,0.3);*/
-/*	content: '';*/
-/*	opacity: 0;*/
-/*	-webkit-transition: opacity 0.3s, -webkit-transform 0s 0.3s;*/
-/*	transition: opacity 0.3s, transform 0s 0.3s;*/
-/*	-webkit-transform: translate3d(100%,0,0);*/
-/*	transform: translate3d(100%,0,0);*/
-/*}*/
-
-.content {
-	position: relative;
-	background: #b4bad2;
+.container {
+	/*background: #373a47;*/
 }
 
-.content::before {
+.container::before {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -53,24 +36,26 @@
 	border: none;
 	font-size: 1.5em;
 	color: #373a47;
-	background: transparent;
+	background-color: red;
+	/*background: transparent;*/
 }
 
 .menu-button span {
 	display: none;
 }
 
-.menu-button:hover {
-	opacity: 0.6;
-}
+/*.logo-button:hover {*/
+/*	opacity: 0.6;*/
+/*}*/
 
-.logo_section .bi{
+.logo-section .bi{
 	  /*z-index:1000;*/
     width : 50px;
     height : 50px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
-.logo_button{		
+.logo-button{		
     border: none;
     background: transparent;
     outline: none;
@@ -79,15 +64,15 @@
 /* Menu */
 .menu-wrap {
 	position: fixed;
-	z-index: -1;
+	z-index: 999;
 	background: #ebedf4;
 	-webkit-transition: width 0.3s, height 0.3s;
-	transition: width 0.3s, height 0.3s;
+	transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
 	width: 0;
 	height: 0;
 	font-size: 1.5em;
-	top:  1em;	
-	left: 1em;
+	top: 0em;
+	left: 0em;
 	-webkit-transform-origin: 0% 100%;
 	transform-origin: 0% 100%;
 }
@@ -155,13 +140,13 @@
 }
 
 .icon-list a {
-	font-size: 1.3em;
+	font-size: 1.5em;
 	margin-left: 0.25em;
 	color: rgba(125,129,148,0.5);
 }
 
 /* Shown menu */
-.show-menu .container::before{
+.show-menu .container::before {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
@@ -170,9 +155,10 @@
 }
 
 .show-menu .menu-wrap {
-	z-index : 999;
 	width: 250px;
 	height: 300px;
+	top: 1em;
+	left: 1em;
 	-webkit-animation: anim-jelly 0.8s linear forwards;
 	animation: anim-jelly 0.8s linear forwards;
 }

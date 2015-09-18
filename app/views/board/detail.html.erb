@@ -3,11 +3,11 @@
     <center>
         <!--<p><%#= @selected_post.board.description %></p>-->
         <div class="form_section">
-            <div class="write_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
+            <div class="write_form" style="border-color: <%= @post_color %>">
                 <div class="context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
-                    <div class="context" style="color: <%= $COLOR_ARRAY[@selected_post.color] %>" ><%=raw @selected_post.context %></div>
+                    <div class="context" style="color: <%= @post_color %>" ><%=raw @selected_post.context %></div>
                 </div>
                 <div class="time_section">
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -56,16 +56,16 @@
         <% @reply_all.each do |reply| %>
             <div class="masonry-item"><center>
                 <div class="link top" 
-                     style="background:-webkit-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                            background:-ms-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                            background:-moz-linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%);
-                            background:linear-gradient(left, <%= $COLOR_ARRAY[@selected_post.color] %> 30%, rgba(0, 0, 0, 0) 70%)">
+                     style="background:-webkit-linear-gradient(left, <%= @post_color %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:-ms-linear-gradient(left, <%= @post_color %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:-moz-linear-gradient(left, <%= @post_color %> 30%, rgba(0, 0, 0, 0) 70%);
+                            background:linear-gradient(left, <%= @post_color %> 30%, rgba(0, 0, 0, 0) 70%)">
                 </div>  
-                <div class="reply_form" style="border-color: <%= $COLOR_ARRAY[@selected_post.color] %>">
+                <div class="reply_form" style="border-color: <%= @post_color %>">
                     <div class="context_wrapper">
                         <div class="left"></div>
                         <div class="right"></div>
-                        <div class="context" style="color:<%= $COLOR_ARRAY[@selected_post.color] %>"><%=raw reply.context %></div>
+                        <div class="context" style="color:<%= @post_color %>"><%=raw reply.context %></div>
                     </div>
                     <div class="time_section">
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -76,10 +76,10 @@
                     <!--<a href="#" id="like_button">-->                   
                 </div>
                 <div class="link bottom" 
-                     style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
-                            background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
-                            background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%);
-                            background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[@selected_post.color] %> 60%)">
+                     style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @post_color %> 60%);
+                            background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @post_color %> 60%);
+                            background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @post_color %> 60%);
+                            background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @post_color %> 60%)">
                 </div>
             </center></div>
         <% end %>
@@ -113,6 +113,7 @@
         $('.bottom').css({'bottom':bottom_link +'px'});
         $('.top').css({'bottom':top_link +'px'});
         
+        $('.write_container').css({'min-width':(size + 100) + 'px'});
         $('.write_container').show();
         $('.post_container').show();
     });
@@ -141,9 +142,7 @@
                     + "<div class='context_wrapper'>"
                         + "<div class='left'></div>"
                         + "<div class='right'></div>"
-                        + "<a href='/board/detail/" + reply.id + "' data-transition='fade'>"
                             + "<div class='context' style='color:" + color + "'>" + reply.context + "</div>"
-                        + "</a>"
                     + "</div>"
                     + "<div class='time_section'>"
                         + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
@@ -179,10 +178,10 @@
                     data: { context: $("#reply_context").html() },
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){                          
-                        var item = create_item(data.reply , "<%= $COLOR_ARRAY[@selected_post.color] %>");
+                        var item = create_item(data.reply , "<%= @post_color %>");
                         
                         // $(                 
-                        //         "<center><div class='reply_form masonry-item' style='border-color:<%#= $COLOR_ARRAY[@selected_post.color] %>"
+                        //         "<center><div class='reply_form masonry-item' style='border-color:<%#= @post_color %>"
                         //             + "; width:" + size + "px; height:" + size + "px'>"
                         //             + "<div class='context_wrapper'>"
                         //                 + "<div class='left'></div>"
@@ -221,18 +220,18 @@
             }
         );
         
-         $(function(){ 
-            $('a.board_name').each(function(i, category){            
-                if($(this).html() == "<%=@selected_post.board.description %>"){
-                    $(this).css("color", "#EE3C39");
-                    return false;
-                }            
-            });
-            $('a.board_name').on('click', function(){
-                $('a.board_name').css("color", "#ffffff");
-                $(this).css("color", "#EE3C39");
-            });
-        });
+        //  $(function(){ 
+        //     $('a.board_name').each(function(i, category){            
+        //         if($(this).html() == "<%=@selected_post.board.description %>"){
+        //             $(this).css("color", "#EE3C39");
+        //             return false;
+        //         }            
+        //     });
+        //     $('a.board_name').on('click', function(){
+        //         $('a.board_name').css("color", "#ffffff");
+        //         $(this).css("color", "#EE3C39");
+        //     });
+        // });
     });
 </script>
 

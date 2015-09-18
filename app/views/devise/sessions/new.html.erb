@@ -43,16 +43,16 @@
             <div class="masonry-item">
                 <center>
                     <div class="link top" 
-                        style="background:-webkit-linear-gradient(left, <%= $COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
-                        background:-ms-linear-gradient(left, <%= $COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
-                        background:-moz-linear-gradient(left, <%= $COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
-                        background:linear-gradient(left, <%= $COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%)">
+                        style="background:-webkit-linear-gradient(left, <%= @COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
+                        background:-ms-linear-gradient(left, <%= @COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
+                        background:-moz-linear-gradient(left, <%= @COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%);
+                        background:linear-gradient(left, <%= @COLOR_ARRAY[i] %> 30%, rgba(0, 0, 0, 0) 70%)">
                     </div>  
-                    <div class="post_form" style="border-color:<%= $COLOR_ARRAY[i] %>">                
+                    <div class="post_form" style="border-color:<%= @COLOR_ARRAY[i] %>">                
                         <div class="context_wrapper">
                            <div class="left"></div>
                            <div class="right"></div>
-                           <div class="context"></div>
+                           <div class="context" style="color: <%= @COLOR_ARRAY[i] %>"> <%= i+1 %> 번째 글 입니다. </div>
                         </div>
                         <br>
                         <img src='/assets/1_unlike.png' width=17 height=16> 78%
@@ -60,10 +60,10 @@
                         <img src='/assets/2_not-reply.png' width=15 height=17> 78%    
                     </div>
                     <div class="link bottom" 
-                         style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[i] %> 60%);
-                                background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[i] %> 60%);
-                                background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[i] %> 60%);
-                                background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= $COLOR_ARRAY[i] %> 60%)">
+                         style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[i] %> 60%);
+                                background:-ms-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[i] %> 60%);
+                                background:-moz-linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[i] %> 60%);
+                                background:linear-gradient(left, rgba(0, 0, 0, 0) 30%, <%= @COLOR_ARRAY[i] %> 60%)">
                     </div>
                 </center>
             </div>

@@ -20,7 +20,7 @@
             
             <!--색상 선택-->
             <select id="colorpicker" name="colorpicker">
-                <% $COLOR_ARRAY.each do |color| %>
+                <% @COLOR_ARRAY.each do |color| %>
                     <option value="<%= color %>"><%= color %> </option>
                 <% end %>
             </select><br>
@@ -100,7 +100,7 @@
     });  
 
     $(function(){
-        if( <%= @post_all.count %> <= <%= $board_show_count %>){
+        if( <%= @post_all.count %> <= <%= @board_show_count %>){
             $(".more_button_space").hide();                            
         }
     });
@@ -113,7 +113,6 @@
     //         $("#text_count").html(remain);
     //     });
     // });
-
     
     // 색상 선택 부분 
     $(function(){        
@@ -124,7 +123,6 @@
                 $('.write_form').css("border-color", $("#colorpicker").val());                
         });        
     });
-
     
     // 게시글 item 생성 함수
     function create_item(post, color, reply_count){
@@ -147,7 +145,7 @@
                         + "</a>"
                     + "</div>"
                     + "<div class='time_section'>"
-                        + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
+                        + "<img src='/assets/clock.png' width=16 height=16>" + moment(time).fromNow()
                     + "</div>"
                     // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
                     + "<img src='/assets/1_unlike.png' width=17 height=16>   " + post.like_count
@@ -201,7 +199,6 @@
                 console.log( last_index );
                 
                 // var item_array = [];
-                
                 $.ajax({
                     data: { board_id : <%= @board.id %>,
                             sorting : "<%= @sorting %>",
@@ -209,7 +206,6 @@
                     url: "/board/more_post",
                     success: function(data){
                         
-                        // console.log(data.next_check);
                         if(!data.next_check){
                             $(".more_button_space").hide();                            
                         }
@@ -222,7 +218,6 @@
                             $grid.append(item)
                              .masonry('appended', item);
                         }
-
                         // var $item_array = $(item_array);
                         last_index = data.last_index;
                     }
