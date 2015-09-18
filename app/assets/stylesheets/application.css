@@ -20,9 +20,9 @@
 /*@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);  /* font-family: 'Hanna', serif; */
 
 body {
+    background-color: #D5D6D8;
     /*font-family : 'Jeju Gothic', serif;;*/
     font-family: 'Noto Sans Korean';
-	background: #D5D6D8;
 }
 
 /*페이지 위 여백*/
@@ -297,10 +297,6 @@ a.board_name:active{color:#EE3C39;}
     color:#EE3C39 !important;
 }
 
-/*a.board_name:focus{*/
-/*    text-decoration:underline*/
-/*}*/
-
 a.mypage_name{
     font-size: 12px;
     border-top: 1px solid;
@@ -323,9 +319,6 @@ a.sorting_name:active{color:#EE3C39;}
 
 /*BUTTON*/
 .login_button {
-	/*-moz-box-shadow:inset 0px 0px 0px 0px #f29c93;*/
-	/*-webkit-box-shadow:inset 0px 0px 0px 0px #f29c93;*/
-	/*box-shadow:inset 0px 0px 0px 0px #f29c93;*/
 	background-color:transparent;
 	-webkit-border-top-left-radius:42px;
 	-moz-border-radius-topleft:42px;
@@ -376,3 +369,4 @@ a.sorting_name:active{color:#EE3C39;}
     left: 10%;    
     transform: translate(0, -50%);
 }
+
