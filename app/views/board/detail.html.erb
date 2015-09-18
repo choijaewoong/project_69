@@ -215,26 +215,24 @@
                     data: { post_id: <%= @selected_post.id %> },
                     url: "/board/like",
                     success: function(data){                                                               
-                        
                         $("#like_count").html(" " + data);
-                        
-                        
                     }
                 });
             }
         );
         
-         $(function(){ 
-            $('a.board_name').each(function(i, category){            
-                if($(this).html() == "<%=@selected_post.board.description %>"){
-                    $(this).css("color", "#EE3C39");
-                    return false;
-                }            
-            });
-            $('a.board_name').on('click', function(){
-                $(this).css("color", "#EE3C39");
-            });
-        });
+        //  $(function(){ 
+        //     $('a.board_name').each(function(i, category){            
+        //         if($(this).html() == "<%=@selected_post.board.description %>"){
+        //             $(this).css("color", "#EE3C39");
+        //             return false;
+        //         }            
+        //     });
+        //     $('a.board_name').on('click', function(){
+        //         $('a.board_name').css("color", "#ffffff");
+        //         $(this).css("color", "#EE3C39");
+        //     });
+        // });
     });
 </script>
 

@@ -298,9 +298,9 @@ a.board_name:visited{color:#ffffff;}
 a.board_name:hover{color:#EE3C39;}
 a.board_name:active{color:#EE3C39;}
 
-/*.board_name.is_checked{*/
-/*    color:#EE3C39 !important;*/
-/*}*/
+.board_name.is-checked{
+    color:#EE3C39 !important;
+}
 
 /*a.board_name:focus{*/
 /*    text-decoration:underline*/

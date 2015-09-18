@@ -12,22 +12,43 @@ class BoardController < ApplicationController
                     "#552B0F",
                     "#2D2D2D"]
                     
-    $board_show_count = 10
+    $board_show_count = 5
     
     def main
+        
+        # 정렬 방법 설정 변수
+        if params[:sorting].nil?
+            @sorting = "id"
+        else 
+            @sorting = params[:sorting]
+        end
+        
         @board = Board.where(:description => params[:id]).take
         if @board.nil?
             @board = Board.where(:description => $CATEGORY_NAME[0]).take
         end
-        
         @post_all = @board.posts
-        @post_part = @board.posts.order("id desc").limit($board_show_count)        
-        
         if @post_all.empty?
-           @last_post_id = 0
+            @last_post_index = 0
         else 
-           @last_post_id = @post_part.last.id
-        end        
+            # 정렬 방법
+            case @sorting
+            when "id"
+                @sorted_posts = @board.posts.order("id desc")
+                @showed_posts = @sorted_posts.limit($board_show_count)                
+            when "like"
+                @sorted_posts = @board.posts.order("like_count desc")
+                @showed_posts = @sorted_posts.limit($board_show_count)
+            when "color"
+                @sorted_posts = @board.posts.order("color")
+                @showed_posts = @sorted_posts.limit($board_show_count)
+            else
+                @sorted_posts = @board.posts.order("id desc")
+                @showed_posts = @sorted_posts.limit($board_show_count)
+            end            
+            @last_post_index = @showed_posts.count
+        end 
+               
         
         # @last_post_id = @post_all.first.id
         # if @post_all.count != 0
@@ -92,27 +113,59 @@ class BoardController < ApplicationController
     
     def more_post
         
-        post_array = Board.find(params[:board_id]).posts.where("id < #{params[:last_id]}").order("id desc").limit(params[:count])
+        index = params[:last_index].to_i
+        
+        case params[:sorting]
+        when "id"
+            sorted_posts = Board.find(params[:board_id]).posts.order("id desc")
+        when "like"
+            sorted_posts = Board.find(params[:board_id]).posts.order("like_count desc")
+        when "color"
+            sorted_posts = Board.find(params[:board_id]).posts.order("color")
+        else
+            sorted_posts = Board.find(params[:board_id]).posts.order("id desc")
+        end 
+        post_array = sorted_posts[index...(index+$board_show_count)]
+        # post_array = Board.find(params[:board_id]).posts.where("id < #{params[:last_id]}").order("id desc").limit($board_show_count)
         
         color_array = Array.new
         reply_count_array = Array.new
-        
+
         post_array.each do |post|
-            
             color_array.append($COLOR_ARRAY[post.color])
             reply_count_array.append(post.replies.count)
-            
         end
         
+        index += post_array.count
         next_check = true
-        next_id = params[:last_id].to_i - $board_show_count
-        if Board.find(params[:board_id]).posts.where("id < #{next_id}").empty?
+        if sorted_posts[index].nil?
             next_check = false        
         end
         render :json => { :post_array => post_array,
                           :color_array => color_array,
                           :reply_count_array => reply_count_array,
-                          :next_check => next_check}
+                          :next_check => next_check,
+                          :last_index => index}
+    end
+    
+    def sorting_post
+        
+        sorting_post_all = Board.find(params[:board_id]).posts.order("color desc");
+        
+        sorting_post = sorting_post_all.limit($board_show_count);
+        
+        color_array = Array.new
+        reply_count_array = Array.new
+        
+        sorting_post.each do |post|
+            color_array.append($COLOR_ARRAY[post.color])
+            reply_count_array.append(post.replies.count)
+        end
+        
+        render :json => { :post_array => sorting_post,
+                          :color_array => color_array,
+                          :reply_count_array => reply_count_array}
+        
     end
 end
 
