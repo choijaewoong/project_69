@@ -20,9 +20,9 @@
 /*@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);  /* font-family: 'Hanna', serif; */
 
 body {
-    background-color: #D5D6D8;
     /*font-family : 'Jeju Gothic', serif;;*/
     font-family: 'Noto Sans Korean';
+	background: #D5D6D8;
 }
 
 /*페이지 위 여백*/
@@ -246,7 +246,7 @@ body {
   /*background: #FF6B6B;*/
   transition: width ease .5s; /* fluid transition when resizing */
 }
-.right_nav {
+.right_nav{
   position: fixed; /* keep fixed to window */
   float: right;
   top: 0; right: 0; /* position to top left of window */
@@ -256,15 +256,10 @@ body {
   transition: width ease .5s; /* fluid transition when resizing */  
 }
 
-
 .logo_section {
     height:130px;
 }
-.logo_section .bi{
-    width : 50px;
-    height : 50px;
-    margin-top: 50px;
-}
+
 
 /*.category {*/
 /*    width: 80%;*/

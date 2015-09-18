@@ -7,7 +7,7 @@
                 <div class="context_wrapper">
                     <div class="left"></div>
                     <div class="right"></div>
-                    <div class="context"><%=raw @selected_post.context %></div>
+                    <div class="context" style="color: <%= $COLOR_ARRAY[@selected_post.color] %>" ><%=raw @selected_post.context %></div>
                 </div>
                 <div class="time_section">
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -36,7 +36,7 @@
                 <!--<span id="text_count">300</span><br>-->
                 <!--전송 버튼(체크 모양)-->
                 <a href="#" id="reply_button" style="margin-top:30px">
-                    <img src='/assets/3_confirm.png' width=30 height=30>
+                    <img src='/assets/3_check.png' width=30 height=30>
                 </a>
             </div>            
         </center>
@@ -65,7 +65,7 @@
                     <div class="context_wrapper">
                         <div class="left"></div>
                         <div class="right"></div>
-                        <div class="context"><%=raw reply.context %></div>
+                        <div class="context" style="color:<%= $COLOR_ARRAY[@selected_post.color] %>"><%=raw reply.context %></div>
                     </div>
                     <div class="time_section">
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -142,7 +142,7 @@
                         + "<div class='left'></div>"
                         + "<div class='right'></div>"
                         + "<a href='/board/detail/" + reply.id + "' data-transition='fade'>"
-                            + "<div class='context'>" + reply.context + "</div>"
+                            + "<div class='context' style='color:" + color + "'>" + reply.context + "</div>"
                         + "</a>"
                     + "</div>"
                     + "<div class='time_section'>"
@@ -221,18 +221,18 @@
             }
         );
         
-        //  $(function(){ 
-        //     $('a.board_name').each(function(i, category){            
-        //         if($(this).html() == "<%=@selected_post.board.description %>"){
-        //             $(this).css("color", "#EE3C39");
-        //             return false;
-        //         }            
-        //     });
-        //     $('a.board_name').on('click', function(){
-        //         $('a.board_name').css("color", "#ffffff");
-        //         $(this).css("color", "#EE3C39");
-        //     });
-        // });
+         $(function(){ 
+            $('a.board_name').each(function(i, category){            
+                if($(this).html() == "<%=@selected_post.board.description %>"){
+                    $(this).css("color", "#EE3C39");
+                    return false;
+                }            
+            });
+            $('a.board_name').on('click', function(){
+                $('a.board_name').css("color", "#ffffff");
+                $(this).css("color", "#EE3C39");
+            });
+        });
     });
 </script>
 

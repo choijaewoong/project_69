@@ -23,10 +23,9 @@ class BoardController < ApplicationController
             @sorting = params[:sorting]
         end
         
-        @board = Board.where(:description => params[:id]).take
-        if @board.nil?
-            @board = Board.where(:description => $CATEGORY_NAME[0]).take
-        end
+        @board = Board.where(:description => params[:id]).take ||
+        @board = Board.where(:description => $CATEGORY_NAME[0]).take
+
         @post_all = @board.posts
         if @post_all.empty?
             @last_post_index = 0
@@ -37,10 +36,10 @@ class BoardController < ApplicationController
                 @sorted_posts = @board.posts.order("id desc")
                 @showed_posts = @sorted_posts.limit($board_show_count)                
             when "like"
-                @sorted_posts = @board.posts.order("like_count desc")
+                @sorted_posts = @board.posts.order("like_count desc, id desc")
                 @showed_posts = @sorted_posts.limit($board_show_count)
             when "color"
-                @sorted_posts = @board.posts.order("color")
+                @sorted_posts = @board.posts.order("color, id desc")
                 @showed_posts = @sorted_posts.limit($board_show_count)
             else
                 @sorted_posts = @board.posts.order("id desc")
@@ -48,6 +47,7 @@ class BoardController < ApplicationController
             end            
             @last_post_index = @showed_posts.count
         end 
+              
                
         
         # @last_post_id = @post_all.first.id
@@ -119,9 +119,9 @@ class BoardController < ApplicationController
         when "id"
             sorted_posts = Board.find(params[:board_id]).posts.order("id desc")
         when "like"
-            sorted_posts = Board.find(params[:board_id]).posts.order("like_count desc")
+            sorted_posts = Board.find(params[:board_id]).posts.order("like_count desc, id desc")
         when "color"
-            sorted_posts = Board.find(params[:board_id]).posts.order("color")
+            sorted_posts = Board.find(params[:board_id]).posts.order("color, id desc")
         else
             sorted_posts = Board.find(params[:board_id]).posts.order("id desc")
         end 

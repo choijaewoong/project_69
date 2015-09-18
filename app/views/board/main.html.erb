@@ -27,7 +27,7 @@
             
             <!--전송 버튼(체크 모양)-->
             <a href="#" id="write_button" style="margin-top:30px">
-                <span class="glyphicon glyphicon-ok btn-lg" aria-hidden="true"></span>
+                <img src='/assets/3_check.png' width=30 height=30>
             </a>
         </div>
     </center>
@@ -52,9 +52,9 @@
         <!--나머지 게시물-->
         <!--<#% if @post_all.count != 0 %>-->
         
-        <% @showed_posts.each do |post| %>
+        <% @showed_posts.each do |postt| %>
            <%= render :partial => '/board/post_form', 
-                      :locals => {:post => post } %>               
+                      :locals => {:post => postt } %>               
         <% end %>
         <!--<#% end %>-->
     </div>
@@ -88,6 +88,7 @@
         $('.top').css({'bottom':top_link +'px'});
         $('.write_container').show();
         $('.post_container').show();
+        $('#sorting').show();
     });
 
     $(function(){
@@ -142,7 +143,7 @@
                         + "<div class='left'></div>"
                         + "<div class='right'></div>"
                         + "<a href='/board/detail/" + post.id + "' data-transition='fade'>"
-                            + "<div class='context'>" + post.context + "</div>"
+                            + "<div class='context' style='color:" + color + "'>" + post.context + "</div>"
                         + "</a>"
                     + "</div>"
                     + "<div class='time_section'>"
@@ -230,43 +231,14 @@
         
         
         // 정렬
-        $("a.sorting_name").each(function(i, sorting){
+        // $("a.sorting_name").each(function(i, sorting){
         
-            var $sorting = $(sorting);
-            $sorting.on('click', function(){
+        //     var $sorting = $(sorting);
+        //     $sorting.on('click', function(){
                 
-                // location.reload();
-                // $.ajax({
-                //     data: { board_id : <%#= @board.id %>
-                //           },
-                //     url: "/board/sorting_post",
-                //     success: function(data){
-                        
-                //         // // console.log(data.next_check);
-                //         // if(!data.next_check){
-                //         //     $(".more_button_space").hide();                            
-                //         // }
-                        
-                //         // $grid.masonry( 'remove', itemSelector)
-                //         //     .masonry();
-                //         // // if(data.post_array.length > 0)
-                //         for(i = 0; i < data.post_array.length; i++){
-        
-                //             var item = create_item(data.post_array[i], data.color_array[i], data.reply_count_array[i]);
-                            
-                //             // item_array.push(item);
-                //             $grid.append(item)
-                //              .masonry('appended', item);
-                //         }
-        
-                //         $("#more_button").attr('id', 'aaa');
-                //         // var $item_array = $(item_array);
-                //         // $last_id -= data.post_array.length;
-                //     }
-                // });
-                
-            });
-        });        
+            
+        //     });
+        // });        
     });   
     
     // // 게시판 체크

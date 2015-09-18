@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/assets/bootstrap-theme.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/jquery.simplecolorpicker.css" type="text/css">
     <link rel="stylesheet" href="/assets/jquery.simplecolorpicker-regularfont.css" type="text/css">  
+    <link rel="stylesheet" href="/assets/menu_cornermorph.css" type="text/css" />
     <%= stylesheet_link_tag 'application'%>
     <%= javascript_include_tag 'application'%>
     <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -18,113 +19,110 @@
     <!--<script src="/assets/backfix.min.js" type="text/javascript"></script>-->
     <!--<script src="/assets/isotope.pkgd.min.js" type="text/javascript"></script>-->
     <script src="/assets/jquery.simplecolorpicker.js" type="text/javascript"></script>
+    
 </head>
 <body>
 
-<!--페이지 상단 여백-->
-<div class="header">
-</div>
-
-<div class="row">
-
-    <!---->
-    <!--<div class="col-md-1">-->
-        
-    <!--</div>  -->
-  
-    <%= yield %>
+<div class="container">
     
-    <div class="left_nav">
-            <div class="logo_section">
-                <a href="/"><img src="/assets/BI_color.png" class="bi"/></a>
-            </div>
-            
-            <!--<div class="category">              -->
-            <!--    <a href="#">색동</a>-->
-            <!--</div>-->
-            <!--<div class="category">  -->
-            <!--  <a href="#">배냇</a>-->
-            <!--</div>  -->
-            <!--<div class="category">-->
-            <!--  <a href="#">반짇</a>-->
-            <!--</div>  -->
-            <!--<div class="category">-->
-            <!--  <a href="#">연결</a>              -->
-            <!--</div>  -->
-            <!--<div class="category">   -->
-            <!--  <a href="#">나의</a>-->
-            <!--</div>                    -->
-            <!--<div class="category">-->
-            <!--<a href="#" class="open">캠페인</a>-->
-            <!--</div>-->
-            <!--<hr class="style_one">-->
-            <div style="height:70px">
-                <a class="board_name is-checked" href="/board/main/<%=$CATEGORY_NAME[0]%>"><%=$CATEGORY_NAME[0]%></a>
-            </div>
-            <div style="height:70px">
-            <!--<hr class="style_one">-->
-                <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[1]%>"><%=$CATEGORY_NAME[1]%></a>
-            </div>
-            <div style="height:70px">
-            <!--<hr class="style_one">-->
-            <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[2]%>"><%=$CATEGORY_NAME[2]%></a>
-            </div>
-            <div style="height:70px">
-            <!--<hr class="style_one">-->
-            <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[3]%>"><%=$CATEGORY_NAME[3]%></a>
-            </div>
-            <!--<hr class="style_one">-->
-            <br>
-            <!--<hr class="style_one">-->
-            <div style="height:70px">
-            <a class="mypage_name" href="#">나의 고리</a>
-            </div>
-            <!--<hr class="style_one">-->
-            <!--<br>            -->
-            <!--<hr class="style_one">-->
-            <div style="height:70px">
-            <a class="mypage_name" href="#">캠페인</a>
-            </div>
-            <!--<hr class="style_one">-->
-        </div>
+    <!--페이지 상단 여백-->
+    <div class="header">
+    </div>
+    <%= yield %>
 
-
-    <!--<div class="col-md-1">-->
-        <div class="right_nav" style="display:none"> 
-            <div style="height:50px">
-            </div>
-            <hr class="style_one">
-            <a class="sorting_name" href="#" >나의 고리<img src="/"></a>
-            <hr class="style_one">
-            <a class="sorting_name" href="#">댓글 고리<img src="/"></a>
-            <hr class="style_one">
-            <a class="sorting_name" href="#">공감 고리<img src="/"></a>
-            <hr class="style_one">
-            <a class="sorting_name" href="#">스크랩<img src="/"></a>
-            <hr class="style_one">
-            <a class="sorting_name" href="#">정렬</a>
-            <hr class="style_one">      
-            <a href="#" class="open">&rarr;</a>
-            <hr>
-        </div>
-        <div class="right_nav">
-            <div style="height:50px">
-            </div>
-            <hr class="style_one">
-            <%= link_to "최신순", {:id => params[:id],  :sorting=> "id"}, {:class => "sorting_name"}%>
-            <!--<a class="sorting_name" href="/board/main" data-sorting="1">최신순<img src="/"></a>-->
-            <hr class="style_one">
-            <%= link_to "공감순", { :id => params[:id],  :sorting=> "like"}, {:class => "sorting_name"}%>
-            <!--<a class="sorting_name" href="#">감정순<img src="/"></a>-->
-            <hr class="style_one">
-            <%= link_to "감정순", { :id => params[:id], :sorting=> "color"}, {:class => "sorting_name"}%>
-            <!--<a class="sorting_name" href="#">공감순<img src="/"></a>-->
-            <hr class="style_one">      
-            <!--<a href="#" class="open">&rarr;</a>-->
-            <!--<hr>-->
-        </div>       
-    <!--</div>-->
 </div>
+
+<div id="category" class="left_nav">
+    <% if user_signed_in? %>
+        <div class="menu-wrap">
+    		<nav class="menu">
+    		<!--<img src="img/user1.png" alt="Matthew Greenberg"/>-->
+    			<div class="profile"><span><%= current_user.email %></span></div>
+    			<div class="link-list">
+    				<a href="#"><span> 개인 정보 수정 </span></a>
+    				<a href="#"><span> 배경 화면 변경</span></a>
+    				<a href="#"><span> 문의 메일 / 오류신고 </span></a>
+    				<!--<a href="#"><span>Security &amp; Privacy</span></a>-->
+    			</div>
+    			<div class="icon-list">
+    			    <a href="/users/sign_out">로그아웃</a>
+    			</div>
+    		</nav>
+    	</div>
+	<% end %>
+    <div class="logo_section">
+        <button class="logo_button" id="open-button" ><img src="/assets/BI_color.png" class="bi"/></a>
+    </div>
+    
+    <div style="height:70px">
+        <a class="board_name is-checked" href="/board/main/<%=$CATEGORY_NAME[0]%>"><%=$CATEGORY_NAME[0]%></a>
+    </div>
+    <div style="height:70px">
+    <!--<hr class="style_one">-->
+        <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[1]%>"><%=$CATEGORY_NAME[1]%></a>
+    </div>
+    <div style="height:70px">
+    <!--<hr class="style_one">-->
+    <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[2]%>"><%=$CATEGORY_NAME[2]%></a>
+    </div>
+    <div style="height:70px">
+    <!--<hr class="style_one">-->
+    <a class="board_name" href="/board/main/<%=$CATEGORY_NAME[3]%>"><%=$CATEGORY_NAME[3]%></a>
+    </div>
+    <!--<hr class="style_one">-->
+    <br>
+    <!--<hr class="style_one">-->
+    <div style="height:70px">
+    <a class="mypage_name" href="#">나의 고리</a>
+    </div>
+    <!--<hr class="style_one">-->
+    <!--<br>            -->
+    <!--<hr class="style_one">-->
+    <div style="height:70px">
+    <a class="mypage_name" href="#">캠페인</a>
+    </div>
+    <!--<hr class="style_one">-->
+</div>
+
+
+<!--<div class="col-md-1">-->
+<div id="mypage" class="right_nav" style="display:none"> 
+    <div style="height:50px">
+    </div>
+    <hr class="style_one">
+    <a class="sorting_name" href="#" >나의 고리<img src="/"></a>
+    <hr class="style_one">
+    <a class="sorting_name" href="#">댓글 고리<img src="/"></a>
+    <hr class="style_one">
+    <a class="sorting_name" href="#">공감 고리<img src="/"></a>
+    <hr class="style_one">
+    <a class="sorting_name" href="#">스크랩<img src="/"></a>
+    <hr class="style_one">
+    <a class="sorting_name" href="#">정렬</a>
+    <hr class="style_one">      
+    <a href="#" class="open">&rarr;</a>
+    <hr>
+</div>
+<div id="sorting" class="right_nav" style="display:none">
+    <div style="height:50px">
+    </div>
+    <hr class="style_one">
+    <%= link_to "최신순 #{image_tag('7_sorting_recently-disable.png', width:'15', height:'15')}".html_safe, {:id => params[:id],  :sorting=> "id"}, {:class => "sorting_name"}%>
+    <!--<a class="sorting_name" href="/board/main" data-sorting="1">최신순<img src="/"></a>-->
+    <hr class="style_one">
+    <%= link_to "공감순 #{image_tag('7_sorting_like-disable.png', width:'12', height:'15')}".html_safe, { :id => params[:id],  :sorting=> "like"}, {:class => "sorting_name"}%>
+    <!--<a class="sorting_name" href="#">감정순<img src="/"></a>-->
+    <hr class="style_one">
+    <%= link_to "감정순 #{image_tag('7_sorting_emotion-en:disable.png', width:'15', height:'15')}".html_safe, { :id => params[:id], :sorting=> "color"}, {:class => "sorting_name"}%>
+    <!--<a class="sorting_name" href="#">공감순<img src="/"></a>-->
+    <hr class="style_one">      
+    <!--<a href="#" class="open">&rarr;</a>-->
+    <!--<hr>-->
+</div>       
+
+
+<script src="/assets/classie.js"></script>
+	<script src="/assets/setting.js"></script>
 <script>
 
     $(function(){
