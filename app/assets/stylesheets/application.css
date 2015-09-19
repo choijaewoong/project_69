@@ -284,6 +284,9 @@ hr.style_one {
     background-color: #EE3C39;
 }
 
+
+
+
 a {text-decoration: none !important;}
 
 a.board_name{font-size: 27px;}
@@ -313,7 +316,10 @@ a.sorting_name:visited{color:#ffffff;}
 a.sorting_name:hover{color:#EE3C39;}
 a.sorting_name:active{color:#EE3C39;}
 
-
+a.like_button:link{color:black;}
+a.like_button:visited{color:black;}
+a.like_button:hover{color:black;}
+a.like_button:active{color:black;}
 
 
 /*BUTTON*/

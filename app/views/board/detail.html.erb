@@ -2,7 +2,7 @@
     <!--게시글 detail 폼-->
     <center>
         <!--<p><%#= @selected_post.board.description %></p>-->
-        <div class="form_section">
+        <div class="form_section" style="top:300px">
             <div class="write_form" style="border-color: <%= @post_color %>">
                 <div class="context_wrapper">
                     <div class="left"></div>
@@ -13,7 +13,7 @@
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                      <%= time_ago_in_words(@selected_post.created_at) %> 전
                 </div>
-                <a href="#" id="like_button">
+                <a href="#" id="like_button" class="like_button">
                     <img src='/assets/1_unlike.png' width=17 height=16><span id="like_count"> <%= @selected_post.like_count %></span>
                 </a>
                 &nbsp;&nbsp;
