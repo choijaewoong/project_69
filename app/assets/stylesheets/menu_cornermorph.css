@@ -77,15 +77,15 @@
 	transform-origin: 0% 100%;
 }
 
-@media screen and (max-width: 50em) {
-	.menu-button {
-		margin: 0.25em;
-	}
-	.menu-wrap {
-		bottom: 0.25em;
-		left: 0.25em;
-	}
-}
+/*@media screen and (max-width: 50em) {*/
+/*	.menu-button {*/
+/*		margin: 0.25em;*/
+/*	}*/
+/*	.menu-wrap {*/
+/*		bottom: 0.25em;*/
+/*		left: 0.25em;*/
+/*	}*/
+/*}*/
 
 .menu {
 	height: 100%;

@@ -19,5 +19,6 @@ class ApplicationController < ActionController::Base
                     
     @board_show_count = 20
     
+  
   end
 end

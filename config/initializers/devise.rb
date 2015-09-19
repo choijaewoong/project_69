@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   #페이스북
-  config.omniauth :facebook, "135854190097662", "6626e198ca61d80927ab8e784f4b4cd7"
+  config.omniauth :facebook, "414777775384597", "5076429e5878c2413137008f850fbb3b"
   
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

@@ -64,4 +64,10 @@ $(function(){
         }
     });
     moment.locale('ko'); // 한글 형식으로 변경
+    
+    $("#step1 .next-step").click(function() {
+        
+      $("#step1").hide(); 
+      $("#step2").show(); 
+    });
 });

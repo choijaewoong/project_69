@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :like_posts
   has_many :like_replies
-
+  
+  
   def self.find_for_facebook_oauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -19,14 +20,17 @@ class User < ActiveRecord::Base
       user.name = auth.info.name   # assuming the user model has a name
       user.image = auth.info.image # assuming the user model has an image
     end
-    
+  
+  
     user   # 최종 반환값은 user 객체이어야 한다.
   end
   
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+        # user.email = data["email"] if user.email.blank?
+        user.email = "default2@default.com"        
+        user.password = 12341234
       end
     end
   end  
