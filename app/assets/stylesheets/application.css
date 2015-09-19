@@ -46,9 +46,8 @@ body {
 
 /* 더보기 버튼 공간*/
 .more_button_space {
-    bottom: 0; 
-    height: 60px;   
-    background-color: gray;    
+    padding-top:50px;
+    padding-bottom:50px;
 }
 
 /* 글 작성 */
@@ -358,15 +357,15 @@ a.sorting_name:active{color:#EE3C39;}
 
 .button_section{
     position:relative;
-    top: 250px;
-    left: 10%;
-    transform: translate(0, -50%);
+    top: 350px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .form_section{    
     position:relative;
-    top: 250px;
-    left: 10%;    
-    transform: translate(0, -50%);
+    top: 350px;
+    left: 50%;    
+    transform: translate(-50%, -50%);
 }
 

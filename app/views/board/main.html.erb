@@ -1,10 +1,7 @@
 <div class="write_container" style="display:none">
     <!--게시글 작성 폼-->
-    <center>   
         <!--<p><%#= @board.description %></p>-->
-        <div class="button_section">      
-            <a href="#" id="log_in" class="login_button">글 쓰기</a>
-        </div>
+    <center>
         <div class="form_section" style="display:none">
             <div class="write_form">            
                 <input type="hidden" id="write_board" value="<%= @board.id %>">
@@ -31,6 +28,17 @@
             </a>
         </div>
     </center>
+    <!--글 쓰기 버튼-->
+    <div class="button_section">      
+        <div id="menuBall2" class="menuBall">
+        	<a href="#" id="log_in" class="ball redball">
+                <div class="menuText">
+                    Write
+                </div>
+            </a>
+        </div>
+        <!--<a href="#" id="log_in" class="login_button">글 쓰기</a>-->
+    </div>
 </div>
 
 <!--모든 게시물-->
@@ -60,47 +68,14 @@
     </div>
     
     <div class="more_button_space">
-        <button id="more_button">더보기</button>
-        <!--<button id="more_button" class="colins-submit">-->
-        <!--    <svg width="196" height="70" -->
-        <!--         viewPort="0 0 196 70" version="1.1"-->
-        <!--         xmlns="http://www.w3.org/2000/svg">-->
-              
-        <!--      <rect class="btn-shape btn-bg"-->
-        <!--            x="3" y="3" -->
-        <!--            width="190" height="64"-->
-        <!--            rx="32" ry="32" -->
-        <!--            fill="#ffffff"-->
-        <!--            fill-opacity="1"-->
-        <!--            stroke="#ccc" stroke-width="4"-->
-        <!--            />	-->
-        <!--      <rect class="btn-shape btn-color"-->
-        <!--            x="3" y="3" -->
-        <!--            width="190" height="64"-->
-        <!--            rx="32" ry="32" -->
-        <!--            fill="#ffffff"-->
-        <!--            fill-opacity="0"-->
-        <!--            stroke="rgb(30,205,151)" stroke-width="4"-->
-        <!--            />-->
-        <!--      <text class="checkNode" x="96" y="40" -->
-        <!--            font-family="Montserrat" -->
-        <!--            font-size="22"-->
-        <!--            fill-opacity="1"-->
-        <!--            text-anchor="middle"-->
-        <!--            fill="rgb(255,255,255)" >-->
-        <!--        ✔-->
-        <!--      </text>-->
-        <!--      <text class="textNode" x="96" y="40" -->
-        <!--            transform="scale(1)"-->
-        <!--            font-family="Montserrat" -->
-        <!--            font-size="16"-->
-        <!--            fill-opacity="1"-->
-        <!--            text-anchor="middle"-->
-        <!--            fill="rgb(30,205,151)" >-->
-        <!--        More Post-->
-        <!--      </text>-->
-        <!--    </svg>-->
-        <!--</button>-->
+        <!--<button id="more_button">더보기</button>-->
+        <div id="menuBall2" class="menuSquare">
+        	<button id="more_button" class="square redball">
+                <div class="menuText" style="top:30%">
+                    More Post
+                </div>
+            </a>
+        </div>
     </div>
 </div>
     
@@ -135,7 +110,7 @@
         // $(#hide_section).hide();
         $("#log_in").click(function(){
            $(".form_section").show(); 
-           $(".hide_section").hide();
+           $(".button_section").hide();
         });
     });  
 

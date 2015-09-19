@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907014400) do
+ActiveRecord::Schema.define(version: 20150919073104) do
 
   create_table "boards", force: :cascade do |t|
     t.integer  "grade",       default: 3
@@ -74,6 +74,10 @@ ActiveRecord::Schema.define(version: 20150907014400) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
