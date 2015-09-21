@@ -50,16 +50,6 @@
         <div class="empty_form stamp-item">            
         </div>   
        
-        
-        <!--첫번째 게시물-->
-        <!--% if @post_all.count != 0 %>-->
-        <!--    %= render :partial => '/board/post_form', -->
-        <!--               :locals => {:post => @post_first } %>        -->
-        <!--% end %>       -->
-        
-        <!--나머지 게시물-->
-        <!--<#% if @post_all.count != 0 %>-->
-        
         <% @showed_posts.each do |postt| %>
            <%= render :partial => '/board/post_form', 
                       :locals => {:post => postt } %>               
@@ -68,7 +58,6 @@
     </div>
     
     <div class="more_button_space">
-        <!--<button id="more_button">더보기</button>-->
         <div id="menuBall2" class="menuSquare">
         	<button id="more_button" class="square redball">
                 <div class="menuText" style="top:30%">
@@ -120,6 +109,29 @@
         }
     });
 
+     $(function(){
+     // insert your code here
+         
+         $("a.board_name:nth-of-type(<%= @board.id %>)").addClass('is-checked');                
+              
+         
+         console.log("<%= @sorting %>");
+         switch ("<%=@sorting %>"){         
+         case "id" : 
+             $("a.sorting_name:nth-of-type(1)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_recently-color.png");
+             break;
+         case "like" : 
+             $("a.sorting_name:nth-of-type(2)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_like-color.png");
+             break;
+         case "color" : 
+             $("a.sorting_name:nth-of-type(3)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_emotion_color.png");
+             break;
+         default:
+             break;
+         }
+    // code here
+    });
+    
     // 글자 수 카운트 하는 부분 
     // $(function(){
     //     $('#write_context').keyup(function(){            

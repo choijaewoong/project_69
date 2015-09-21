@@ -63,6 +63,9 @@
 
 /* Menu */
 .menu-wrap {
+	
+	border: 2px solid #EE3C39;
+	border-radius: 10px;
 	position: fixed;
 	z-index: 999;
 	background: #ebedf4;
@@ -88,6 +91,7 @@
 /*}*/
 
 .menu {
+		
 	height: 100%;
 	opacity: 0;
 	font-size: 0.65em;

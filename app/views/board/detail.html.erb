@@ -126,6 +126,15 @@
     //         $("#text_count").html(remain);
     //     });
     // });
+    
+     $(function(){
+     // insert your code here
+         
+         $("a.board_name:nth-of-type(<%= @selected_post.board.id %>)").addClass('is-checked');                
+              
+    // code here
+    });
+    
 
     function create_item(reply, color){
         var time = new Date(reply.created_at);
