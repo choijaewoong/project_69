@@ -159,7 +159,7 @@
 }
 
 .show-menu .menu-wrap {
-	width: 250px;
+	width: 280px;
 	height: 300px;
 	top: 1em;
 	left: 1em;
@@ -242,4 +242,7 @@
 /*  96.666667% { -webkit-transform: matrix3d(1.00056, 0, 0, 0, 0, 1.00056, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.00056, 0, 0, 0, 0, 1.00056, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }*/
 /*  100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);} */
 /*}*/
+
+
+
 

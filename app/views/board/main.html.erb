@@ -37,7 +37,6 @@
                 </div>
             </a>
         </div>
-        <!--<a href="#" id="log_in" class="login_button">글 쓰기</a>-->
     </div>
 </div>
 
@@ -113,34 +112,26 @@
      // insert your code here
          
          $("a.board_name:nth-of-type(<%= @board.id %>)").addClass('is-checked');                
-              
-         
-         console.log("<%= @sorting %>");
+                  
+        //  console.log("<%= @sorting %>");
          switch ("<%=@sorting %>"){         
          case "id" : 
-             $("a.sorting_name:nth-of-type(1)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_recently-color.png");
+             $("a.sorting_name:nth-of-type(1)").addClass('is-checked');
+                //  .children('img').attr("src", "/assets/7_sorting_recently-color.png");
              break;
          case "like" : 
-             $("a.sorting_name:nth-of-type(2)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_like-color.png");
+             $("a.sorting_name:nth-of-type(2)").addClass('is-checked');
+                //  .children('img').attr("src", "/assets/7_sorting_like-color.png");
              break;
          case "color" : 
-             $("a.sorting_name:nth-of-type(3)").addClass('is-checked').children('img').attr("src", "/assets/7_sorting_emotion_color.png");
+             $("a.sorting_name:nth-of-type(3)").addClass('is-checked');
+                //  .children('img').attr("src", "/assets/7_sorting_emotion_color.png");
              break;
          default:
              break;
          }
-    // code here
     });
-    
-    // 글자 수 카운트 하는 부분 
-    // $(function(){
-    //     $('#write_context').keyup(function(){            
-    //         var inputLength = $(this).html().length;
-    //         var remain = 300 - inputLength;
-    //         $("#text_count").html(remain);
-    //     });
-    // });
-    
+
     // 색상 선택 부분 
     $(function(){        
         $('select[name="colorpicker"]').simplecolorpicker(
@@ -174,7 +165,6 @@
                     + "<div class='time_section'>"
                         + "<img src='/assets/clock.png' width=16 height=16>" + moment(time).fromNow()
                     + "</div>"
-                    // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
                     + "<img src='/assets/1_unlike.png' width=17 height=16>   " + post.like_count
                     + "&nbsp;&nbsp;&nbsp;&nbsp;"
                     + "<img src='/assets/2_not-reply.png' width=15 height=17>  " + reply_count
@@ -211,8 +201,6 @@
                           
                         $grid.prepend(item)
                              .masonry('prepended', item);
-                        
-                        $("#text_count").html(300);     
                         $("#write_context").html('');                              
                     }
                 });
@@ -222,8 +210,6 @@
         var last_index = <%= @last_post_index %>;
         $("#more_button").click(
             function(){
-                console.log( last_index );
-                
                 // var item_array = [];
                 $.ajax({
                     data: { board_id : <%= @board.id %>,
@@ -231,7 +217,6 @@
                             last_index: last_index},
                     url: "/board/more_post",
                     success: function(data){
-                        
                         if(!data.next_check){
                             $(".more_button_space").hide();                            
                         }
@@ -250,52 +235,6 @@
                 });
         });
     });    
-
-        
-        // 정렬
-        // $("a.sorting_name").each(function(i, sorting){
-        
-        //     var $sorting = $(sorting);
-        //     $sorting.on('click', function(){
-                
-            
-        //     });
-        // });        
-       
-    
-    // // 게시판 체크
-    // $(function(){ 
-    //     $('a.board_name').each(function(i, category){            
-    //         if($(this).html() == "<%#=@board.description %>"){
-    //             $(this).css("color", "#EE3C39");
-    //             return false;
-    //         }            
-    //     });
-    //     $('a.board_name').on('click', function(){
-    //         $('a.board_name').css("color", "#ffffff");
-    //         $(this).css("color", "#EE3C39");
-    //     });
-    // });
-
-    
-    // $(function(){
-        
-    //      var $grid = $('.masonry').isotope({
-    //         itemSelector: '.masonry-item',
-    //         getSortData: {
-    //             // context: '.context'              
-    //             category : '[data-like]'
-              
-    //         }
-    //       });
-        
-    //       // bind sort button click
-    //       $('.right_nav').on( 'click', 'a', function() {
-    //         // var sortValue = $(this).attr('data-sort-value');
-    //         console.log("clicked");
-    //         $grid.isotope({ sortBy: "category" });
-    //       });       
-    // });
 </script>
 
 

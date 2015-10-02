@@ -10,14 +10,14 @@
                     <div class="context" style="color: <%= @post_color %>" ><%=raw @selected_post.context %></div>
                 </div>
                 <div class="time_section">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                     <img src='/assets/clock.png' width=16 height=16></img>
                      <%= time_ago_in_words(@selected_post.created_at) %> 전
                 </div>
                 <a href="#" id="like_button" class="like_button">
-                    <img src='/assets/1_unlike.png' width=17 height=16><span id="like_count"> <%= @selected_post.like_count %></span>
+                    <img src='/assets/1_unlike.png' width=17 height=16></img><span id="like_count"> <%= @selected_post.like_count %></span>
                 </a>
                 &nbsp;&nbsp;
-                    <img src='/assets/2_not-reply.png' width=15 height=17><span id="reply_count"> <%= @selected_post.replies.count %></span>
+                    <img src='/assets/2_not-reply.png' width=15 height=17></img><span id="reply_count"> <%= @selected_post.replies.count %></span>
             </div> 
         </div>
     </center>
@@ -118,15 +118,6 @@
         $('.post_container').show();
     });
     
-    // 글자 수 카운트 하는 부분  
-    // $(function(){
-    //     $('#reply_context').keyup(function(){            
-    //         var inputLength = $(this).val().length;
-    //         var remain = 300 - inputLength;
-    //         $("#text_count").html(remain);
-    //     });
-    // });
-    
      $(function(){
      // insert your code here
          
@@ -156,7 +147,6 @@
                     + "<div class='time_section'>"
                         + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
                     + "</div>"
-                    // + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " + data.post.like_count
                     + "<img src='/assets/1_unlike.png' width=17 height=16>   " + reply.like_count
                 + "</div>"
                 + "<div class='link bottom' style='height:" + link_width + "px; bottom:" + bottom_link + "px; "
@@ -169,8 +159,6 @@
             ); 
         return item;
     }
-    
-    
     
     // 게시물 작성
     $(function(){
@@ -188,22 +176,6 @@
                     url: "/board/reply/<%=@selected_post.id%>",
                     success: function(data){                          
                         var item = create_item(data.reply , "<%= @post_color %>");
-                        
-                        // $(                 
-                        //         "<center><div class='reply_form masonry-item' style='border-color:<%#= @post_color %>"
-                        //             + "; width:" + size + "px; height:" + size + "px'>"
-                        //             + "<div class='context_wrapper'>"
-                        //                 + "<div class='left'></div>"
-                        //                 + "<div class='right'></div>"
-                        //                 + "<div class='context'>" + data.reply.context + "</div>"
-                        //             + "</div>"
-                        //             + "<div class='time_section'>"
-                        //                 + "<span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + moment(time).fromNow()
-                        //             + "</div>"
-                        //             + "<span class='glyphicon glyphicon-heart' aria-hidden='true'></span> " 
-                        //             + data.reply.like_count
-                        //         + "</div></center>"
-                        // );     
                         
                         $grid.prepend(item)
                              .masonry('prepended', item);
@@ -228,19 +200,6 @@
                 });
             }
         );
-        
-        //  $(function(){ 
-        //     $('a.board_name').each(function(i, category){            
-        //         if($(this).html() == "<%=@selected_post.board.description %>"){
-        //             $(this).css("color", "#EE3C39");
-        //             return false;
-        //         }            
-        //     });
-        //     $('a.board_name').on('click', function(){
-        //         $('a.board_name').css("color", "#ffffff");
-        //         $(this).css("color", "#EE3C39");
-        //     });
-        // });
     });
 </script>
 
